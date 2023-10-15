@@ -1,7 +1,5 @@
 # **Object Oriented Programming**
 
----
-
 Object Oriented Programming is the programming paradigm that uses classes and objects to structure their code.
 
 ---
