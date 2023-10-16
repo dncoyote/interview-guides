@@ -499,6 +499,21 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
     }
 
   }
+
+  public class MainApp {
+
+    public static void main(String[] args) {
+
+        System.out.println(Singleton.getInstance("Geekific"));
+        Singleton singleton = Singleton.getInstance("Singleton");
+        System.out.println(singleton);
+        System.out.println(singleton.getData());
+
+    }
+
+
+  }
+
   ```
 
 ---
@@ -518,47 +533,48 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
 
   - Concrete Creator: The concrete creator classes implement the factory method to produce specific instances of concrete products. Each concrete creator is responsible for creating a particular type of product.
 
-  ```
-  // Product
-  interface Animal {
-    void makeSound();
-  }
+```
 
-  // Concrete Products
-  class Dog implements Animal {
-  public void makeSound() {
-  System.out.println("Dog barks");
-  }
-  }
+// Product
+interface Animal {
+void makeSound();
+}
 
-  class Cat implements Animal {
-  public void makeSound() {
-  System.out.println("Cat meows");
-  }
-  }
+// Concrete Products
+class Dog implements Animal {
+public void makeSound() {
+System.out.println("Dog barks");
+}
+}
 
-  // Creator (Factory)
-  interface AnimalFactory {
-  Animal createAnimal();
-  }
+class Cat implements Animal {
+public void makeSound() {
+System.out.println("Cat meows");
+}
+}
 
-  // Concrete Creators
-  class DogFactory implements AnimalFactory {
-  public Animal createAnimal() {
-  return new Dog();
-  }
-  }
+// Creator (Factory)
+interface AnimalFactory {
+Animal createAnimal();
+}
 
-  class CatFactory implements AnimalFactory {
-  public Animal createAnimal() {
-  return new Cat();
-  }
-  }
+// Concrete Creators
+class DogFactory implements AnimalFactory {
+public Animal createAnimal() {
+return new Dog();
+}
+}
 
-  public class FactoryMethodExample {
-  public static void main(String[] args) {
-  AnimalFactory factory1 = new DogFactory();
-  AnimalFactory factory2 = new CatFactory();
+class CatFactory implements AnimalFactory {
+public Animal createAnimal() {
+return new Cat();
+}
+}
+
+public class FactoryMethodExample {
+public static void main(String[] args) {
+AnimalFactory factory1 = new DogFactory();
+AnimalFactory factory2 = new CatFactory();
 
             Animal dog = factory1.createAnimal();
             Animal cat = factory2.createAnimal();
@@ -567,9 +583,9 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
             cat.makeSound(); // Output: Cat meows
         }
 
-  }
+}
 
-  ```
+```
 
 ---
 
