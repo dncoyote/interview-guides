@@ -1,4 +1,4 @@
-package com.interview.neetcode75;
+package com.interview.codinground.neetcode75.arrays_hashing;
 
 import java.util.HashMap;
 import java.util.Map;

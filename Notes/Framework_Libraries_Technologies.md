@@ -172,6 +172,82 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
 
 ---
 
+### **SQL**
+
+---
+
+### **Primary key v/s Unique key v/s Foreign key**
+
+#### Primary key
+
+- A primary key is a column or a set of columns in a database table that uniquely identifies each row (record) in the table.
+- It ensures that each row in the table is distinct, and there are no duplicate entries for the primary key values.
+- Enforces the uniqueness and non-null property of the primary key columns.
+  Eg: id in StudentTable
+
+#### Unique key
+
+- A unique key, often referred to as a unique constraint, is a set of one or more columns in a database table that must contain unique values within the table.
+- Unique key does not necessarily need to be used to identify individual rows. It's primarily used to ensure that certain columns or combinations of columns have distinct values.
+  eg: email in StudentTable
+
+#### Foreign key
+
+- A foreign key is a column or a set of columns in a table that establishes a link between data in two tables.
+- Foreign keys are used to create relationships between tables, allowing you to retrieve related data from different tables through JOIN operations.
+- Foreign key in a child table typically references the primary key in the parent table, it helps maintain data consistency and prevent orphaned data.
+  Eg: studentId in DepartmentTable
+
+---
+
+### **GROUP BY**
+
+- `GROUP BY` clause is used to group rows that have the same values in specified columns into summary rows.
+- Data Aggregation
+
+```
+SELECT product_category, SUM(sales_amount) as total_sales
+FROM sales
+GROUP BY product_category;
+```
+
+- Data Summarization
+
+```
+SELECT DATE(order_date), SUM(order_total) as daily_total
+FROM orders
+GROUP BY DATE(order_date);
+```
+
+- Data Cleansing
+
+```
+SELECT email, COUNT(*) as count
+FROM customers
+GROUP BY email
+HAVING count > 1;
+```
+
+- Data Segmentation
+
+```
+SELECT CASE
+          WHEN total_purchases >= 10 THEN 'Frequent Buyer'
+          ELSE 'Occasional Buyer'
+       END as buyer_segment,
+       COUNT(*) as customer_count
+FROM customers
+GROUP BY buyer_segment;
+```
+
+- Statistical Analysis
+
+```
+SELECT FLOOR(value/10)*10 as bin, COUNT(*) as frequency
+FROM data_values
+GROUP BY bin;
+```
+
 ### **Hibernate**
 
 - Hibernate is an open-source Java ORM framework that implements the JPA specification.
@@ -187,6 +263,14 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
 - JPQL
 - Criteria API
 - @Transactional
+
+---
+
+### **SessionFactory**
+
+- `SessionFactory` is a critical component that serves as a factory for creating and managing Hibernate Session instances.
+- It plays a key role in connecting to the database, managing the database connection, and providing a means to perform database operations.
+- It is responsible for managing database connections, configuring Hibernate, and providing a way to interact with the database using objects rather than SQL.
 
 ---
 
@@ -249,6 +333,37 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
 
 - In Spring Boot, beans are created using a process called "dependency injection". Dependency injection is a design pattern in which objects are passed their dependencies instead of creating them themselves. This pattern is implemented by the Spring framework, and it allows for loosely-coupled and easily testable code.
 - When a Spring Boot application starts up, the Spring framework scans the project for classes that are annotated with @Component, @Service, @Controller, @Repository, or @Configuration. These annotations indicate that a class should be treated as a bean, and Spring creates an instance of the class and registers it in its container.
+- In Spring Boot, you can define beans with different scopes, including Singleton and Prototype.
+- These bean scopes determine how Spring manages and creates instances of those beans
+
+---
+
+### **Singleton Bean**
+
+- Singleton bean is the default scope in Spring. It means that only one instance of the bean is created for the entire application context.
+- Spring returns the same instance whenever bean is requested.
+- Singleton beans are suitable for stateless services, utility classes, and beans that don't maintain state specific to individual clients or users.
+- Singleton beans are cached in the Spring container and reused whenever requested.
+
+---
+
+### **Prototype Bean**
+
+- Prototype bean scope means that a new instance of the bean is created every time it is requested.
+- Prototype beans are suitable for stateful objects, where each client or user should have a unique instance of the bean.(web request handlers, user sessions, or objects that must not be shared among different clients.)
+- These beans are not cached, and a new instance is created for every request.
+
+```
+@Component
+@Scope("prototype")
+public class MyPrototypeBean {
+    private int counter = 0;
+
+    public int increment() {
+        return ++counter;
+    }
+}
+```
 
 ---
 

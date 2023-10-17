@@ -374,6 +374,8 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 
 - Static variables: Also known as class variables, they are shared by all instances of a class. They are initialized only once when the class is loaded, and any changes to them are reflected across all instances of the class.
 
+- Static fields cannot be serialized as they belong to the class and not to a specific instance of class.
+
 ```
 
 public class Counter {
@@ -476,6 +478,39 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
 - When `final` is applied to a variable, the value of the variable cannot be changed once it is initialized.
 - When `final` is applied to a method, the method cannot be overridden in the subclasses.
 - When `final` is applied to a class, the class cannot be subclassed.
+
+---
+
+### **How to create a Custom Immutable class in java**
+
+- Make the class final.
+- Declare fields private and final.
+- Provide no setter methods
+- Provide constructor initialization.
+- Immutable classes are designed to be unchangeable once they are created, which can lead to more predictable and robust code in various scenarios. They are also
+  - Thread safe.
+  - Safely cached
+  - Secure
+
+```
+public final class ImmutablePerson {
+    private final String name;
+    private final int age;
+
+    public ImmutablePerson(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+```
 
 ---
 
@@ -621,6 +656,20 @@ Collections.sort(myCollection);
   - Vector
   - CopyOnWriteArrayList
 
+### **ArrayList**
+
+- ArrayList is an implementation of the List interface that uses a dynamic array to store its elements.
+- It provides fast random access to elements, making it suitable for scenarios where you frequently access elements by their index.
+- Adding or removing elements at the end of an ArrayList is efficient, but adding or removing elements in the middle requires shifting subsequent elements, which can be less efficient.
+- Suitable for scenarios that involve mainly read operations, but its performance may degrade when many elements are added or removed frequently.
+
+### **LinkedList**
+
+- LinkedList is another implementation of the List interface that uses a doubly-linked list to store its elements.
+- While LinkedList supports random access, accessing elements by index is slower compared to ArrayList because it requires traversing the list from the beginning or end to reach the desired index.
+- It provides fast insertions and removals at any position in the list because it only requires adjusting a few references.
+- Suitable for scenarios where you frequently add or remove elements in the middle of the list, as well as for implementing queues or other data structures.
+
 ---
 
 ### **Set**
@@ -645,6 +694,24 @@ Collections.sort(myCollection);
   - TreeMap
   - LinkedHashMap
   - HashTable
+
+#### HashMap
+
+- HashMap is an implementation of the Map interface that does not guarantee any specific order for its elements.
+- Key-value pairs are stored based on the hash code of the keys, making the retrieval of values efficient.
+- The order of elements in a HashMap is not guaranteed and may change over time as the map is modified. This means that the elements are not stored in a specific order.
+
+#### LinkedHashMap
+
+- LinkedHashMap is another implementation of the Map interface, but it maintains the order of elements based on the order in which they were added.
+- The order of elements in a LinkedHashMap is predictable and matches the insertion order. This means that when you iterate through a LinkedHashMap, the elements are returned in the order they were added.
+
+```
+Map<String, Integer> linkedHashMap = new LinkedHashMap<>();
+linkedHashMap.put("Alice", 25);
+linkedHashMap.put("Bob", 30);
+linkedHashMap.put("Carol", 22);
+```
 
 ---
 
