@@ -663,11 +663,11 @@ Collections.sort(myCollection);
 - Adding or removing elements at the end of an ArrayList is efficient, but adding or removing elements in the middle requires shifting subsequent elements, which can be less efficient.
 - Suitable for scenarios that involve mainly read operations, but its performance may degrade when many elements are added or removed frequently.
 
-#### **Dynamic Array**
+##### **Dynamic Array**
 
 A dynamic array is a data structure that can grow or shrink in size as needed. It is implemented as a single contiguous block of memory, and elements are stored in adjacent memory locations.
 
-#### **LinkedList**
+### **LinkedList**
 
 - LinkedList is another implementation of the List interface that uses a doubly-linked list to store its elements.
 - While LinkedList supports random access, accessing elements by index is slower compared to ArrayList because it requires traversing the list from the beginning or end to reach the desired index.
