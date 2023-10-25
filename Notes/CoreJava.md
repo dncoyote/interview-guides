@@ -1165,6 +1165,34 @@ class MyClass implements Serializable {
 
 - It's important to note that volatile does not provide a general-purpose replacement for all synchronization mechanisms. It's primarily used for simple scenarios where variables are read and written independently and not involved in compound operations that need atomicity. For more complex synchronization requirements, other mechanisms like synchronized blocks or classes from the java.util.concurrent package are typically used.
 
+## **synchronized**
+
+- `synchronized` keyword is used to create synchronized blocks and methods, which provide a way to control access to critical sections of code, making them thread-safe. This is especially important in multi-threaded applications where multiple threads may access shared resources concurrently.
+- This keyword ensures that only one thread can execute the synchronized code block or method at a time, preventing race conditions and data corruption.
+
+#### Synchronized Blocks
+
+- Synchronized blocks are used to create critical sections within methods or code blocks.
+- They are defined using the synchronized keyword followed by an object reference, typically this or another shared object.
+
+```java
+synchronized (sharedObject) {
+    // Critical section code here
+}
+```
+
+#### Synchronized Methods
+
+- Synchronized methods provide a way to make entire methods thread-safe.
+- They are automatically synchronized on the instance of the class that owns the method.
+
+```java
+public synchronized void someMethod() {
+    // Thread-safe code here
+}
+
+```
+
 ## **Atomic classes**
 
 - Atomic classes are essential for writing thread-safe and concurrent code. They eliminate the need for explicit synchronization mechanisms like locks or synchronized blocks, which can lead to performance bottlenecks and potential deadlocks in multi-threaded applications.

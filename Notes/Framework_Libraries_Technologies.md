@@ -457,7 +457,7 @@ public class MyPrototypeBean {
   - Private Static Instance: It typically contains a private static instance of the class itself.
   - Public Static Method: It provides a public static method that allows access to the unique instance. This method creates the instance if it doesn't exist or returns the existing instance
 
-  ```
+  ```java
   public class Singleton {
 
     private final String data;
@@ -473,6 +473,7 @@ public class MyPrototypeBean {
     public static Singleton getInstance() {
       Singleton result = instance;
         if (result == null) {
+          //only one thread at a time can enter this critical section
             synchronized (Singleton.class) {
                 result = instance;
                 if (result == null) {
@@ -488,6 +489,7 @@ public class MyPrototypeBean {
     }
 
   }
+  ---
 
   public class MainApp {
 
@@ -520,7 +522,7 @@ public class MyPrototypeBean {
 
   - Concrete Creator: The concrete creator classes implement the factory method to produce specific instances of concrete products. Each concrete creator is responsible for creating a particular type of product.
 
-```
+```java
 
 // Product
 interface Animal {
