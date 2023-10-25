@@ -1,6 +1,6 @@
 # **Core Java**
 
-### **Java Architecture**
+## **Java Architecture**
 
 <div align="center">
   <img alt="image" src="images/javaarchiteecture.webp" />
@@ -66,7 +66,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
 ---
 
-### **public static void main**
+## **public static void main**
 
 - public
   - Access modifier of main class.
@@ -95,7 +95,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
 ---
 
-### **Primitive**
+## **Primitive**
 
 - A primitive is a data type that represents a single value and is not an object.
 - There are 8 primitive datatypes in java
@@ -121,7 +121,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
 ---
 
-### **Wrapper Classes**
+## **Wrapper Classes**
 
 - Wrapper classes are classes that encapsulate Java's primitive types, allowing them to be treated as objects.
 - This enables the programmer to use them in scenarios where objects need to be used instead of primitive types. ie Collections, Generics, API's etc.
@@ -150,13 +150,13 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
 ---
 
-### **Reference Types and Primitive Types**
+## **Reference Types and Primitive Types**
 
 A "reference type" refers to the data type that represents references to objects rather than the objects themselves. This is in contrast to "primitive types," which directly store the values they represent.
 
 ---
 
-### **Literals**
+## **Literals**
 
 - literal is a representation of a fixed value that is expressed in the source code of a program
 - Integer Literals: Used to represent whole numbers.
@@ -189,7 +189,7 @@ A "reference type" refers to the data type that represents references to objects
 
 ---
 
-### **Constructors**
+## **Constructors**
 
 - Constructors in Java are special methods that are used to create objects of a class.
 - They are called automatically when an object is created using the `new` keyword.
@@ -251,7 +251,7 @@ MyClass obj = new MyClass();
 
 ---
 
-### **Control-flow statements**
+## **Control-flow statements**
 
 - Conditional Statements:
   - if: Executes a block of code if a condition is true.
@@ -274,7 +274,7 @@ MyClass obj = new MyClass();
 
 ---
 
-### **Iterator**
+## **Iterator**
 
 - Iterator is an interface that belongs to the Java Collections Framework. It provides a way to traverse or iterate over elements in a collection (such as a List, Set, or Map) without exposing the underlying data structure.
 - Iterators are commonly used to access and manipulate the elements in a collection, and they are especially useful when you need to sequentially process the elements.
@@ -302,7 +302,7 @@ public class IteratorExample {
 
 ---
 
-### **super**
+## **super**
 
 - `super` can be used to refer immediate parent class instance variable.
 - `super` can be used to invoke immediate parent class instance method.
@@ -348,7 +348,7 @@ super(name);
 
 ---
 
-### **String**
+## **String**
 
 - `String` is a class that represents a sequence of characters. Strings are widely used in Java programming, and they are used to store and manipulate text-based data such as names, addresses, and other textual information.
 - `String` in Java are reference types, which means that they are actually objects that contain a reference to a memory location where the string's characters are stored. This is in contrast to primitive types (like int or char), which are not objects and are stored directly in memory.
@@ -356,7 +356,7 @@ super(name);
 
 ---
 
-### **`==` operator v/s `equals()` method**
+## **`==` operator v/s `equals()` method**
 
 | `==` operator                                                                                                                                                                     | `equals()` method                                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -377,7 +377,7 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 
 ---
 
-### `String str = "Hello"` v/s `String str = new String("Hello")`
+## `String str = "Hello"` v/s `String str = new String("Hello")`
 
 | String str = "Hello"                                               | String str = new String("Hello")                                                                                         |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
@@ -386,7 +386,7 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 
 ---
 
-### **String v/s String Builder v/s String Buffer**
+## **String v/s String Builder v/s String Buffer**
 
 | String                                                                                                                                                                                                            | String Builder                                                                                                 | String Buffer                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -396,7 +396,7 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 
 ---
 
-### **static**
+## **static**
 
 - `static` keyword is used to create variables, methods, and nested classes that belong to the class rather than to any specific instance of the class.
 
@@ -489,7 +489,7 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
 
 ---
 
-### **static v/s instance**
+## **static v/s instance**
 
 | static                                                                                                | instance                                                                                                      |
 | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -500,7 +500,7 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
 
 ---
 
-### **final**
+## **final**
 
 - `final` keyword is used to declare entities that cannot be modified.
 - When `final` is applied to a variable, the value of the variable cannot be changed once it is initialized.
@@ -509,7 +509,7 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
 
 ---
 
-### **How to create a Custom Immutable class in java**
+## **How to create a Custom Immutable class in java**
 
 - Make the class final.
 - Declare fields private and final.
@@ -542,13 +542,13 @@ public final class ImmutablePerson {
 
 ---
 
-### **finally**
+## **finally**
 
 - `finally` keyword is used to define a block of code that will be executed after a try block, whether an exception is thrown or not. It is often used to perform cleanup operations like closing a file or releasing a resource that was opened in the try block.
 
 ---
 
-### **finalize()**
+## **finalize()**
 
 - `finalize()` is a method in Java that is called by the garbage collector when an object is no longer being used and is about to be garbage collected.
 - The purpose of `finalize()` is to give an object a chance to perform any necessary cleanup operations before it is destroyed.
@@ -557,7 +557,7 @@ public final class ImmutablePerson {
 
 ---
 
-### **Exception handling**
+## **Exception handling**
 
 - Exception handling in Java is a mechanism to handle runtime errors and exceptional situations that may occur during the execution of a program.
 - It is a way to gracefully recover from errors and prevent the program from crashing.
@@ -581,7 +581,7 @@ try {
 
 ---
 
-### **ClassNotFoundException v/s NoClassDefFoundError**
+## **ClassNotFoundException v/s NoClassDefFoundError**
 
 | ClassNotFoundException                                                                                                                                                                       | NoClassDefFoundError                                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -591,7 +591,7 @@ try {
 
 ---
 
-### **Custom Exception**
+## **Custom Exception**
 
 - Custom exceptions can be created by extending the Exception class or one of its subclasses like RuntimeException.
 - By creating custom exceptions, developers can define their own exceptions for specific use cases, improving code clarity and allowing for more targeted exception handling.
@@ -608,7 +608,7 @@ public class CustomException extends Exception {
 
 ---
 
-### **Throw**
+## **Throw**
 
 - `throw` is a keyword used to throw an exception explicitly. It is used to throw a custom or predefined exception explicitly within a method or block of code.
 
@@ -626,7 +626,7 @@ public void divide(int a, int b) {
 
 ---
 
-### **Throws**
+## **Throws**
 
 - `throws` keyword is used in method signatures to declare that a method might throw certain types of checked exceptions.
 - When a method declares that it throws an exception, it means that the method might encounter a situation that could cause an exception to be thrown, and that the method is not able to handle that exception on its own. Instead, the method declares that it might throw the exception, and it is the responsibility of the calling code to handle the exception.
@@ -641,7 +641,7 @@ public void readFromFile(String filename) throws IOException {
 
 ---
 
-### **Collection**
+## **Collection**
 
 - "Collection" refers to a framework or a group of classes and interfaces that are used to store, manipulate, and manage groups of objects.
 - Collections provide a convenient and efficient way to work with groups of data, such as lists of items, sets of unique elements, and mappings of key-value pairs.
@@ -658,7 +658,7 @@ public void readFromFile(String filename) throws IOException {
 
 ---
 
-### **Collection v/s Collections**
+## **Collection v/s Collections**
 
 | Collection                                                                                                                                                                                                                       | Collections                                                                                                                                                                                                                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -675,7 +675,7 @@ Collections.sort(myCollection);
 
 ---
 
-### **List**
+## **List**
 
 - List is an interface that represents an ordered collection of elements.
 - Elements in a List can be accessed by their index, and a List can contain duplicate elements.
@@ -709,7 +709,7 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 
 ---
 
-### **Set**
+## **Set**
 
 - Set is an interface in the Java Collections Framework that represents a collection of unique elements, where each element can occur at most once.
 - Set implementations provide a way to store, retrieve, and manipulate elements without duplicates.
@@ -721,7 +721,7 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 
 ---
 
-### **Map**
+## **Map**
 
 - Map is an interface in the Java Collections Framework that represents a collection of key-value pairs.
 - Each key in a Map is associated with a corresponding value, and you can use the key to retrieve its associated value.
@@ -752,26 +752,26 @@ linkedHashMap.put("Carol", 22);
 
 ---
 
-### **Concurrent Hashmap**
+## **Concurrent Hashmap**
 
 - ConcurrentHashMap is a class in Java's that provides a thread-safe implementation of the Map interface.
 - It is designed to be used in concurrent (multi-threaded) environments where multiple threads can access and modify the map concurrently.
 
 ---
 
-### **Synchronized Hashmap**
+## **Synchronized Hashmap**
 
 ---
 
-### **Queue**
+## **Queue**
 
 ---
 
-### **Comparable**
+## **Comparable**
 
 ---
 
-### **Comparator**
+## **Comparator**
 
 - Comparator is an interface in Java is an interface that defines a way to compare two objects for ordering or sorting purposes. It allows you to define custom comparison logic for objects that may not have a natural ordering or for cases where you want to sort objects based on criteria other than their natural order.
 
@@ -804,7 +804,7 @@ Comparator<MonthlyStatement> comparator = null;
 
 ---
 
-### **Which collection should we use during multithreading?**
+## **Which collection should we use during multithreading?**
 
 - ConcurrentHashMap
 - ConcurrentLinkedQueue
@@ -814,7 +814,7 @@ Comparator<MonthlyStatement> comparator = null;
 
 ---
 
-### **Generics**
+## **Generics**
 
 - Generics allows you to write classes, methods, and interfaces in a way that can work with different data types while providing compile-time type safety. Generics enable you to create reusable and type-safe code by parameterizing types.
 
@@ -853,7 +853,7 @@ public class Main {
 
 ---
 
-### **Interface**
+## **Interface**
 
 - An interface is a collection of abstract methods (methods without implementation) that can be used to define a contract that a class must adhere to.
 - Interfaces are used to define common behavior that can be shared among multiple classes.
@@ -863,14 +863,14 @@ public class Main {
 
 ---
 
-### **Abstract Class**
+## **Abstract Class**
 
 - An abstract class is a class that cannot be instantiated directly, but can be extended by other classes. It serves as a blueprint for other classes to derive from and provides common functionality that can be inherited by its subclasses.
 - An abstract class cannot be instantiated, meaning we cannot create objects of it, but we can use it as a template for creating other classes that extend it.
 
 ---
 
-### **Interface v/s Abstract Class**
+## **Interface v/s Abstract Class**
 
 | Interface                                   | Abstract Class                                       |
 | ------------------------------------------- | ---------------------------------------------------- |
@@ -882,7 +882,7 @@ public class Main {
 
 ---
 
-### **Runnable Interface**
+## **Runnable Interface**
 
 - The Runnable interface is a functional interface in Java that defines a single abstract method run(). It is commonly used to define the code that should be executed in a new thread.
 
@@ -914,20 +914,20 @@ public class Main {
 
 ---
 
-### **Callable Interface**
+## **Callable Interface**
 
 - The Callable interface is similar to the Runnable interface, but it allows a task to return a result and throw a checked exception. The Callable interface defines a single call() method that returns a generic type V.
 
 ---
 
-### **Abstract Method**
+## **Abstract Method**
 
 - An abstract method is a method that is declared in an abstract class or an interface but does not have an implementation.
 - It serves as a template or a contract for the derived classes or implementing classes to provide their own implementation.
 
 ---
 
-### **Marker Interface**
+## **Marker Interface**
 
 - A marker interface is an empty interface that does not contain any methods.
 - It is used to mark or tag classes that implement it, indicating that they possess a certain behavior or characteristic.
@@ -935,7 +935,7 @@ public class Main {
 
 ---
 
-### **Cloneable Interface**
+## **Cloneable Interface**
 
 - The Cloneable interface in Java is a marker interface.
 - It is used to indicate that an object can be cloned using the `clone()` method.
@@ -943,7 +943,7 @@ public class Main {
 
 ---
 
-### **Serializable Interface**
+## **Serializable Interface**
 
 - The Serializable interface in Java is a marker interface.
 - Serializable interface in Java is used to indicate that an object's state can be converted into a stream of bytes and then be restored back into an object again.
@@ -951,7 +951,7 @@ public class Main {
 
 ---
 
-### **Functional Interface**
+## **Functional Interface**
 
 - Functional interface is an interface that has exactly one abstract method.
 - Functional interfaces are also known as single abstract method (SAM) interfaces.
@@ -959,7 +959,7 @@ public class Main {
 
 ---
 
-### **Anonymous Class**
+## **Anonymous Class**
 
 - An anonymous class is a type of inner class that is defined and instantiated at the same time without explicitly declaring a class name.
 - Anonymous classes are typically used for creating short, one-time-use classes with limited functionality.
@@ -993,7 +993,7 @@ public class AnonymousClassDemo {
 
 ---
 
-### **Inheritance**
+## **Inheritance**
 
 - Inheritance allows one class to inherit properties and methods from another class.
 - The class that is being inherited from is called the superclass or parent class, and the class that inherits is called the subclass or child class.
@@ -1041,7 +1041,7 @@ public class Main {
 
 ---
 
-### **public**
+## **public**
 
 - `public` is an access modifier that can be applied to classes, methods, and fields.
 - `public` members can be accessed from any other class or package.
@@ -1051,7 +1051,7 @@ public class Main {
 
 ---
 
-### **private**
+## **private**
 
 - `private` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as private, it can only be accessed within the same class in which it is declared.
 - `private` members can only be accessed within the same class in which they are declared.
@@ -1061,7 +1061,7 @@ public class Main {
 
 ---
 
-### **protected**
+## **protected**
 
 - `protected` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as protected, it can be accessed within the same class, within subclasses, and within the same package.
 - `protected` members can be accessed within the same class, within subclasses, and within the same package.
@@ -1071,7 +1071,7 @@ public class Main {
 
 ---
 
-### **Default**
+## **Default**
 
 - Default method
 - It is a method defined within an interface that provides a default implementation
@@ -1099,7 +1099,7 @@ class MyClass {
 
 ---
 
-### **Predicate**
+## **Predicate**
 
 - `Predicate` is a functional interface introduced in the Java 8 release as part of the java.util.function package. It represents a single argument function that takes an input and returns a boolean value, indicating whether the input satisfies a certain condition.
 - The Predicate interface is commonly used for filtering or testing elements based on a specific criterion.
@@ -1140,7 +1140,7 @@ List<String> filteredList = new ArrayList<>();
 
 ---
 
-### **StreamAPI**
+## **StreamAPI**
 
 - Stream API in Java provides a way to process collections of objects in a declarative and functional style.
 - It is part of the Java Collections Framework.
@@ -1182,7 +1182,7 @@ mappedStream.forEach(System.out::println);
 
 ---
 
-### **Lambda Expression**
+## **Lambda Expression**
 
 - Lambda Expression provide a concise way to express functionality that can be passed around like data.
 - A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
@@ -1241,7 +1241,7 @@ public class HelloWorld {
 
 ---
 
-### **Transient**
+## **Transient**
 
 - `transient` keyword is used to mark a class variable as not being serialized during object serialization. Serialization is the process of converting an object into a stream of bytes, so that it can be saved to a file or sent over a network.
 - When a variable is marked as transient, its value will not be saved as part of the serialization process. Instead, when the object is deserialized (i.e., converted back from a stream of bytes into an object), the transient variable will be set to its default value (i.e., null for object types, 0 for numeric types, and false for boolean types).
@@ -1256,7 +1256,7 @@ class MyClass implements Serializable {
 
 ---
 
-### **volatile**
+## **volatile**
 
 - `volatile` keyword is used as a modifier for a variable to indicate that the variable's value may be changed by multiple threads simultaneously.
 - It ensures certain visibility and ordering guarantees for that variable's access.
@@ -1269,7 +1269,7 @@ class MyClass implements Serializable {
 
 ---
 
-### **Atomic classes**
+## **Atomic classes**
 
 - Atomic classes are essential for writing thread-safe and concurrent code. They eliminate the need for explicit synchronization mechanisms like locks or synchronized blocks, which can lead to performance bottlenecks and potential deadlocks in multi-threaded applications.
 - They don't require explicit synchronization
@@ -1282,7 +1282,7 @@ class MyClass implements Serializable {
 
 ---
 
-### **Record**
+## **Record**
 
 - New feature introduced in Java 16.
 - Records are a new kind of class that was introduced to simplify the creation of classes primarily used to store data.
@@ -1299,7 +1299,7 @@ Person person = new Person("Alice", 30);
 
 ---
 
-### **var**
+## **var**
 
 - `var` keyword was introduced in Java 10 as part of a feature called "Local-Variable Type Inference."
 - It allows you to declare local variables without explicitly specifying their data types, relying on the compiler to infer the type based on the assigned value.
@@ -1350,7 +1350,7 @@ for (var num : numbers) {
 
 ---
 
-### **Enum**
+## **Enum**
 
 - Enums are used to define collections of values that are treated as distinct types.
 
@@ -1384,7 +1384,7 @@ class Animal {
 
 ---
 
-### **Garbage Collection**
+## **Garbage Collection**
 
 - Garbage Collection is the process of automatically reclaiming unused memory by destroying unused objects.
 - Garbage Collection is an automated process of managing the memory in Java. It helps to free up the memory space occupied by the objects that are no longer being used by the program.
@@ -1415,7 +1415,7 @@ class Animal {
 
 ---
 
-### **Garbage Collection in Java 11**
+## **Garbage Collection in Java 11**
 
 - One of the major changes in Java 11 is the introduction of a new garbage collector called the Z Garbage Collector (ZGC).
 - ZGC is a low-latency garbage collector that can handle heaps ranging from a few hundred megabytes to several terabytes in size, with a maximum pause time of 10ms. It is designed to reduce the impact of garbage collection on the application's performance and improve overall throughput.
@@ -1423,7 +1423,7 @@ class Animal {
 
 ---
 
-### **Threads**
+## **Threads**
 
 - Threads are a fundamental concept for concurrent programming.
 - Threads are lightweight processes within a Java application that allow it to perform multiple tasks concurrently.
@@ -1471,7 +1471,7 @@ Thread 12: Message 4
 
 ---
 
-### **New Features : Java**
+## **New Features : Java**
 
 #### Java 8 (March 2014)
 
