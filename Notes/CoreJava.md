@@ -8,7 +8,7 @@
 
 #### JVM
 
-##### "Write Once, Run anywhere"
+> Write Once, Run anywhere
 
 The JVM is responsible for executing Java bytecode. The JVM is a virtual machine that executes Java bytecode. It is responsible for running Java applications on a specific platform.
 
@@ -42,17 +42,21 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 - GC (System.GC();)
 - Java Native Interface : Is a bridge that permit supporting packages for other programming languages like C/C++.
 
-##### JVM languages
+###### JVM languages
 
 - Scala
 - Groovy
 - Kotlin
+
+---
 
 #### **JRE**
 
 - The JRE is a runtime environment that is necessary for running Java applications. It includes the JVM and a set of standard class libraries that are required for executing Java programs.
 - The JRE does not include development tools (e.g., compiler) or source code. It is designed for end-users who want to run Java applications.
 - End-users need a JRE installed on their system to execute Java applications.
+
+---
 
 #### **JDK**
 
@@ -75,7 +79,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
   - Stores java command line arguments. It is used to pass command-line arguments to a java program when executed from the command line.
 
-  ```
+  ```java
   public class HelloWorld {
    public static void main(String[] args) {
   	  System.out.println("Hello World!");
@@ -107,7 +111,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 - They hold actual data and not the reference.
 - They are immutable.
 
-  ```
+  ```java
   int age = 30;
   double price = 49.99;
   char grade = 'A';
@@ -133,7 +137,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
   - Character - char
   - Boolean - boolean
 
-  ```
+  ```java
   // Using Integer and int
   Integer wrappedInt = Integer.valueOf(42); // Wrapping an int
   int unwrappedInt = wrappedInt.intValue();   // Unwrapping to get the int value
@@ -195,7 +199,7 @@ A "reference type" refers to the data type that represents references to objects
 
 Object Initialization:
 
-```
+```java
 
 public class Circle {
 private double radius;
@@ -212,7 +216,7 @@ Overloading Constructors:
 
 - Refers to the practice of defining multiple constructors for a class with different parameter lists. Java allows you to have more than one constructor in a class, as long as they have different parameter lists.
 
-```
+```java
 
 public class Circle {
 private double radius;
@@ -232,7 +236,7 @@ Default Constructor:
 
 - A default constructor in Java is a constructor that is automatically provided by the Java compiler if a class does not explicitly define any constructors. It is also known as a no-argument constructor or the default no-arg constructor.
 
-```
+```java
 
 public class Circle {
 private double radius;
@@ -275,7 +279,7 @@ MyClass obj = new MyClass();
 - Iterator is an interface that belongs to the Java Collections Framework. It provides a way to traverse or iterate over elements in a collection (such as a List, Set, or Map) without exposing the underlying data structure.
 - Iterators are commonly used to access and manipulate the elements in a collection, and they are especially useful when you need to sequentially process the elements.
 
-```
+```java
 public class IteratorExample {
     public static void main(String[] args) {
         List<String> names = new ArrayList<>();
@@ -303,7 +307,7 @@ public class IteratorExample {
 - `super` can be used to refer immediate parent class instance variable.
 - `super` can be used to invoke immediate parent class instance method.
 
-```
+```java
 class Parent{
     void display(){
         System.out.println("Parent");
@@ -332,7 +336,7 @@ Child
 
 - `super` can be used to invoke immediate parent class constructor.
 
-```
+```java
 
 super.name;
 super.getName();
@@ -359,7 +363,7 @@ super(name);
 | The `==` operator compares the references of two objects, including strings. It checks if two objects refer to the same memory location, i.e., if they are the exact same object. | The `equals()` method is a method defined in the Object class and overridden in the String class to compare the content of two objects for equality. |
 | When used to compare strings, the == operator checks if two string variables refer to the same instance of the string object, not necessarily if their content is the same.       | When used to compare strings, the equals() method checks if the content (sequence of characters) of two string objects is the same.                  |
 
-```
+```java
 String str1 = "Hello";
 String str2 = "Hello";
 String str3 = new String("Hello");
@@ -400,7 +404,7 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 
 - Static fields cannot be serialized as they belong to the class and not to a specific instance of class.
 
-```
+```java
 
 public class Counter {
 private static int count = 0;
@@ -423,7 +427,7 @@ System.out.println(Counter.getCount()); // Prints 2
 
 - Static methods: They belong to the class rather than to any instance of the class. They can be called without creating an object of the class and can access only static variables and methods of the class.
 
-```
+```java
 
 public class MathUtils {
 public static int add(int a, int b) {
@@ -444,7 +448,7 @@ double result = MathUtils.square(4.0);
 
 - Static nested classes: They are declared as static when they are nested inside another class. They are like regular nested classes, but they do not have access to the instance variables of the enclosing class.
 
-```
+```java
 
 public class Person {
 private String name;
@@ -516,7 +520,7 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
   - Safely cached
   - Secure
 
-```
+```java
 public final class ImmutablePerson {
     private final String name;
     private final int age;
@@ -560,7 +564,7 @@ public final class ImmutablePerson {
 - Java provides a built-in mechanism to handle exceptions using the try-catch block.
 - The try block contains the code that may cause an exception, and the catch block handles the exception if it occurs.
 
-```
+```java
 
 try {
     // Code that may cause an exception
@@ -592,7 +596,7 @@ try {
 - Custom exceptions can be created by extending the Exception class or one of its subclasses like RuntimeException.
 - By creating custom exceptions, developers can define their own exceptions for specific use cases, improving code clarity and allowing for more targeted exception handling.
 
-```
+```java
 
 public class CustomException extends Exception {
     public CustomException(String message) {
@@ -608,7 +612,7 @@ public class CustomException extends Exception {
 
 - `throw` is a keyword used to throw an exception explicitly. It is used to throw a custom or predefined exception explicitly within a method or block of code.
 
-```
+```java
 
 public void divide(int a, int b) {
     if (b == 0) {
@@ -627,7 +631,7 @@ public void divide(int a, int b) {
 - `throws` keyword is used in method signatures to declare that a method might throw certain types of checked exceptions.
 - When a method declares that it throws an exception, it means that the method might encounter a situation that could cause an exception to be thrown, and that the method is not able to handle that exception on its own. Instead, the method declares that it might throw the exception, and it is the responsibility of the calling code to handle the exception.
 
-```
+```java
 
 public void readFromFile(String filename) throws IOException {
 // code to read from the file
@@ -660,7 +664,7 @@ public void readFromFile(String filename) throws IOException {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `Collection` is an interface that is part of the Java Collections Framework. It's a fundamental interface that represents a group of objects, or elements, and provides a common set of methods for working with these elements. | `Collections` is a utility class in the java.util package. It contains a set of static methods that operate on or provide utility for objects that implement the Collection interface. These methods are used for common collection-related tasks, such as sorting, searching, shuffling, and synchronizing collections. |
 
-```
+```java
 Collection<Integer> myCollection = new ArrayList<>();
 myCollection.add(3);
 myCollection.add(1);
@@ -739,7 +743,7 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 - LinkedHashMap is another implementation of the Map interface, but it maintains the order of elements based on the order in which they were added.
 - The order of elements in a LinkedHashMap is predictable and matches the insertion order. This means that when you iterate through a LinkedHashMap, the elements are returned in the order they were added.
 
-```
+```java
 Map<String, Integer> linkedHashMap = new LinkedHashMap<>();
 linkedHashMap.put("Alice", 25);
 linkedHashMap.put("Bob", 30);
@@ -771,7 +775,7 @@ linkedHashMap.put("Carol", 22);
 
 - Comparator is an interface in Java is an interface that defines a way to compare two objects for ordering or sorting purposes. It allows you to define custom comparison logic for objects that may not have a natural ordering or for cases where you want to sort objects based on criteria other than their natural order.
 
-```
+```java
 Comparator<MonthlyStatement> comparator = null;
 
         switch (sortBy.toLowerCase()) {
@@ -814,7 +818,7 @@ Comparator<MonthlyStatement> comparator = null;
 
 - Generics allows you to write classes, methods, and interfaces in a way that can work with different data types while providing compile-time type safety. Generics enable you to create reusable and type-safe code by parameterizing types.
 
-```
+```java
 class Box<T> {
     private T value;
 
@@ -882,7 +886,7 @@ public class Main {
 
 - The Runnable interface is a functional interface in Java that defines a single abstract method run(). It is commonly used to define the code that should be executed in a new thread.
 
-```
+```java
 
 public class MyTask implements Runnable {
     private String message;
@@ -962,7 +966,7 @@ public class Main {
 - They cannot define constructors or static members, and not being able to implement multiple interfaces.
 - They are best suited for use cases where a full-fledged named inner class or a separate standalone class may be unnecessary.
 
-```
+```java
 
 interface MyNewInterface {
     void doSomething();
@@ -995,7 +999,7 @@ public class AnonymousClassDemo {
 - The class that is being inherited from is called the superclass or parent class, and the class that inherits is called the subclass or child class.
 - Inheritance is achieved using the keyword `extends` and then the subclass can access the non-private fields and methods of its superclass as if they were its own.
 
-```
+```java
 
 class Animal {
 protected String name;
@@ -1072,7 +1076,7 @@ public class Main {
 - Default method
 - It is a method defined within an interface that provides a default implementation
 
-```
+```java
 
 public interface MyInterface {
     default void myMethod() {
@@ -1085,7 +1089,7 @@ public interface MyInterface {
 - Default access modifier
 - When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
 
-```
+```java
 
 class MyClass {
     int myVariable; // default access modifier
@@ -1100,7 +1104,7 @@ class MyClass {
 - `Predicate` is a functional interface introduced in the Java 8 release as part of the java.util.function package. It represents a single argument function that takes an input and returns a boolean value, indicating whether the input satisfies a certain condition.
 - The Predicate interface is commonly used for filtering or testing elements based on a specific criterion.
 
-```
+```java
 
 public class PredicateExample {
 public static void main(String[] args) {
@@ -1142,7 +1146,7 @@ List<String> filteredList = new ArrayList<>();
 - It is part of the Java Collections Framework.
 - It provides a set of operations that can be performed on streams, such as filtering, mapping, sorting, and reducing.
 
-```
+```java
 
 List<String> list = Arrays.asList("apple", "banana", "cherry", "date");
 
@@ -1183,7 +1187,7 @@ mappedStream.forEach(System.out::println);
 - Lambda Expression provide a concise way to express functionality that can be passed around like data.
 - A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
 
-```
+```java
 
 public class HelloWorld {
     public static void main(String[] args) {
@@ -1243,7 +1247,7 @@ public class HelloWorld {
 - When a variable is marked as transient, its value will not be saved as part of the serialization process. Instead, when the object is deserialized (i.e., converted back from a stream of bytes into an object), the transient variable will be set to its default value (i.e., null for object types, 0 for numeric types, and false for boolean types).
 - Some fields of an object may not be suitable for serialization. For example, fields that contain temporary or sensitive data, or fields that are derived from other fields and can be calculated when needed, may not need to be serialized.
 
-```
+```java
 class MyClass implements Serializable {
     private transient String myTransientString;
     private String nonTransientField;
@@ -1286,7 +1290,7 @@ class MyClass implements Serializable {
 - Records are particularly useful when you need to define data objects, such as entities representing database records, configuration settings, or simple data transfer objects.
 - Records can also be used in various contexts where you need to work with data, and their concise syntax helps reduce boilerplate code, making your codebase more maintainable and easier to understand.
 
-```
+```java
 public record Person(String name, int age) {
     // You can add methods or additional constructors here
 }
@@ -1312,7 +1316,7 @@ Person person = new Person("Alice", 30);
 
   - Not Suitable for All Variables: var is primarily intended for local variables with simple initializations. It's not meant for method parameters, fields, or return types of methods.
 
-```
+```java
 var message = "Hello, World!";
 ----
 List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
@@ -1350,7 +1354,7 @@ for (var num : numbers) {
 
 - Enums are used to define collections of values that are treated as distinct types.
 
-```
+```java
 enum AnimalType {
     MAMMAL,
     REPTILE,
@@ -1426,7 +1430,7 @@ class Animal {
 - You can create threads in Java by extending the Thread class or by implementing the Runnable interface.
 - Multithreading in Java refers to the concurrent execution of multiple threads within a single Java program.
 
-```
+```java
 class MyThread extends Thread {
     public void run() {
         for (int i = 0; i < 5; i++) {
