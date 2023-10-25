@@ -93,8 +93,6 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
   }
   ```
 
----
-
 ## **Primitive**
 
 - A primitive is a data type that represents a single value and is not an object.
@@ -118,8 +116,6 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
   boolean isJavaFun = true;
 
   ```
-
----
 
 ## **Wrapper Classes**
 
@@ -148,13 +144,9 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
   ```
 
----
-
 ## **Reference Types and Primitive Types**
 
 A "reference type" refers to the data type that represents references to objects rather than the objects themselves. This is in contrast to "primitive types," which directly store the values they represent.
-
----
 
 ## **Literals**
 
@@ -186,8 +178,6 @@ A "reference type" refers to the data type that represents references to objects
 
 - Underscores in Numeric Literals (Java 7 and later): You can use underscores to improve the readability of numeric literals.
   Example: long bigNumber = 1_000_000;
-
----
 
 ## **Constructors**
 
@@ -249,8 +239,6 @@ MyClass obj = new MyClass();
 
 ```
 
----
-
 ## **Control-flow statements**
 
 - Conditional Statements:
@@ -271,8 +259,6 @@ MyClass obj = new MyClass();
 - Exception Handling:
   - try-catch: Used to catch and handle exceptions that occur within a try block.
   - try-finally: Ensures a block of code (in the finally block) is executed regardless of whether an exception occurred.
-
----
 
 ## **Iterator**
 
@@ -299,8 +285,6 @@ public class IteratorExample {
 }
 
 ```
-
----
 
 ## **super**
 
@@ -346,15 +330,11 @@ super(name);
 
 - `super` is essential to maintain the inheritance hierarchy and enabling to access the parent class members and constructors when necessary.
 
----
-
 ## **String**
 
 - `String` is a class that represents a sequence of characters. Strings are widely used in Java programming, and they are used to store and manipulate text-based data such as names, addresses, and other textual information.
 - `String` in Java are reference types, which means that they are actually objects that contain a reference to a memory location where the string's characters are stored. This is in contrast to primitive types (like int or char), which are not objects and are stored directly in memory.
 - Immutable- Java strings are immutable, meaning their content cannot be changed after they are created. When you perform operations on a string that appear to modify it, such as concatenation or substring extraction, a new string is created with the modified content. This property makes `String` thread safe.
-
----
 
 ## **`==` operator v/s `equals()` method**
 
@@ -375,16 +355,12 @@ System.out.println(str1.equals(str2));   // true - both strings have the same co
 System.out.println(str1.equals(str3));   // true - both strings have the same content
 ```
 
----
-
 ## `String str = "Hello"` v/s `String str = new String("Hello")`
 
 | String str = "Hello"                                               | String str = new String("Hello")                                                                                         |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
 | It references an existing string object in the pool if one exists. | It explicitly creates a new string object on the heap, regardless of whether an identical string is already in the pool. |
 | More memory efficient.                                             | Less memory efficient.                                                                                                   |
-
----
 
 ## **String v/s String Builder v/s String Buffer**
 
@@ -393,8 +369,6 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 | `String` objects are immutable, meaning that once a String object is created, its contents cannot be changed. Any modifications to a String object actually create a new String object with the modified content. | `StringBuilder` is a mutable class that allows you to modify a string's content without creating a new object. | `StringBuffer` is a mutable class that allows you to modify a string's content without creating a new object. |
 | This makes String objects thread-safe and secure                                                                                                                                                                  | `StringBuilder` objects are not thread-safe and should not be used in a multi-threaded environment             | `StringBuffer` objects are thread-safe and can be used in a multi-threaded environment                        |
 | Slow                                                                                                                                                                                                              | Faster than `String`                                                                                           | `StringBuffer` is thread-safe, making it ideal for multi-threaded environments                                |
-
----
 
 ## **static**
 
@@ -487,8 +461,6 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
 
 - In Java `static` keyword is used in creating constants, utility methods, and factory methods.
 
----
-
 ## **static v/s instance**
 
 | static                                                                                                | instance                                                                                                      |
@@ -506,8 +478,6 @@ System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA
 - When `final` is applied to a variable, the value of the variable cannot be changed once it is initialized.
 - When `final` is applied to a method, the method cannot be overridden in the subclasses.
 - When `final` is applied to a class, the class cannot be subclassed.
-
----
 
 ## **How to create a Custom Immutable class in java**
 
@@ -540,13 +510,9 @@ public final class ImmutablePerson {
 }
 ```
 
----
-
 ## **finally**
 
 - `finally` keyword is used to define a block of code that will be executed after a try block, whether an exception is thrown or not. It is often used to perform cleanup operations like closing a file or releasing a resource that was opened in the try block.
-
----
 
 ## **finalize()**
 
@@ -554,8 +520,6 @@ public final class ImmutablePerson {
 - The purpose of `finalize()` is to give an object a chance to perform any necessary cleanup operations before it is destroyed.
 - The `finalize()` method is defined in the Object class, so all classes in Java have a `finalize()` method inherited from Object. By default, the `finalize()` method does nothing, so if a class needs to perform cleanup operations, it should override this method.
 - `finalize()` has been deprecated since Java 9. It is recommended to use try-catch-finally or try-with resources or `Autocloseable` interface instead.
-
----
 
 ## **Exception handling**
 
@@ -578,8 +542,6 @@ try {
 }
 
 ```
-
----
 
 ## **ClassNotFoundException v/s NoClassDefFoundError**
 
@@ -606,8 +568,6 @@ public class CustomException extends Exception {
 
 ```
 
----
-
 ## **Throw**
 
 - `throw` is a keyword used to throw an exception explicitly. It is used to throw a custom or predefined exception explicitly within a method or block of code.
@@ -624,8 +584,6 @@ public void divide(int a, int b) {
 
 ```
 
----
-
 ## **Throws**
 
 - `throws` keyword is used in method signatures to declare that a method might throw certain types of checked exceptions.
@@ -638,8 +596,6 @@ public void readFromFile(String filename) throws IOException {
 }
 
 ```
-
----
 
 ## **Collection**
 
@@ -655,8 +611,6 @@ public void readFromFile(String filename) throws IOException {
 
   - `Map`: Represents a collection of key-value pairs, where each key is associated with a unique value. Class implementations include HashMap, LinkedHashMap, and TreeMap.
   - `Queue`: Represents a data structure for managing elements in a First-In-First-Out (FIFO) order, where elements are processed in the order they are added. Class implementations include PriorityQueue, ArrayDeque, and LinkedList.
-
----
 
 ## **Collection v/s Collections**
 
@@ -707,8 +661,6 @@ A dynamic array is a data structure that can grow or shrink in size as needed. I
 
 A doubly linked list is a data structure consisting of nodes, where each node contains a data element and two references (pointers) to the previous and next nodes in the list.
 
----
-
 ## **Set**
 
 - Set is an interface in the Java Collections Framework that represents a collection of unique elements, where each element can occur at most once.
@@ -718,8 +670,6 @@ A doubly linked list is a data structure consisting of nodes, where each node co
   - LinkedHashSet
   - TreeSet
   - EnumSet
-
----
 
 ## **Map**
 
@@ -750,26 +700,16 @@ linkedHashMap.put("Bob", 30);
 linkedHashMap.put("Carol", 22);
 ```
 
----
-
 ## **Concurrent Hashmap**
 
 - ConcurrentHashMap is a class in Java's that provides a thread-safe implementation of the Map interface.
 - It is designed to be used in concurrent (multi-threaded) environments where multiple threads can access and modify the map concurrently.
 
----
-
 ## **Synchronized Hashmap**
-
----
 
 ## **Queue**
 
----
-
 ## **Comparable**
-
----
 
 ## **Comparator**
 
@@ -802,8 +742,6 @@ Comparator<MonthlyStatement> comparator = null;
         Collections.sort(expenses, comparator);
 ```
 
----
-
 ## **Which collection should we use during multithreading?**
 
 - ConcurrentHashMap
@@ -811,8 +749,6 @@ Comparator<MonthlyStatement> comparator = null;
 - CopyOnWriteArrayList
 - Synchronized Collections
   - You can make existing non-thread-safe collections thread-safe by wrapping them using Collections.synchronizedCollection, Collections.synchronizedList, Collections.synchronizedSet, etc.
-
----
 
 ## **Generics**
 
@@ -851,8 +787,6 @@ public class Main {
 }
 ```
 
----
-
 ## **Interface**
 
 - An interface is a collection of abstract methods (methods without implementation) that can be used to define a contract that a class must adhere to.
@@ -861,14 +795,10 @@ public class Main {
 - Constant variable, which is implicitly public, static, and final
 - The `implements` keyword is used.
 
----
-
 ## **Abstract Class**
 
 - An abstract class is a class that cannot be instantiated directly, but can be extended by other classes. It serves as a blueprint for other classes to derive from and provides common functionality that can be inherited by its subclasses.
 - An abstract class cannot be instantiated, meaning we cannot create objects of it, but we can use it as a template for creating other classes that extend it.
-
----
 
 ## **Interface v/s Abstract Class**
 
@@ -912,20 +842,14 @@ public class Main {
 
 ```
 
----
-
 ## **Callable Interface**
 
 - The Callable interface is similar to the Runnable interface, but it allows a task to return a result and throw a checked exception. The Callable interface defines a single call() method that returns a generic type V.
-
----
 
 ## **Abstract Method**
 
 - An abstract method is a method that is declared in an abstract class or an interface but does not have an implementation.
 - It serves as a template or a contract for the derived classes or implementing classes to provide their own implementation.
-
----
 
 ## **Marker Interface**
 
@@ -933,15 +857,11 @@ public class Main {
 - It is used to mark or tag classes that implement it, indicating that they possess a certain behavior or characteristic.
 - Examples of marker interfaces in Java include `Serializable`, `Cloneable`, and `Remote`.
 
----
-
 ## **Cloneable Interface**
 
 - The Cloneable interface in Java is a marker interface.
 - It is used to indicate that an object can be cloned using the `clone()` method.
 - `clone()` method in Java creates a shallow copy of the object, which means that the cloned object will share references with the original object for its non-primitive fields. If you need to create a deep copy of an object, you would need to implement custom logic in the `clone()` method to create a completely independent copy of the object, including its non-primitive fields.
-
----
 
 ## **Serializable Interface**
 
@@ -949,15 +869,11 @@ public class Main {
 - Serializable interface in Java is used to indicate that an object's state can be converted into a stream of bytes and then be restored back into an object again.
 - This process is known as serialization and deserialization, respectively
 
----
-
 ## **Functional Interface**
 
 - Functional interface is an interface that has exactly one abstract method.
 - Functional interfaces are also known as single abstract method (SAM) interfaces.
 - They can have any number of default methods or static methods
-
----
 
 ## **Anonymous Class**
 
@@ -990,8 +906,6 @@ public class AnonymousClassDemo {
 }
 
 ```
-
----
 
 ## **Inheritance**
 
@@ -1039,8 +953,6 @@ public class Main {
 
 ```
 
----
-
 ## **public**
 
 - `public` is an access modifier that can be applied to classes, methods, and fields.
@@ -1048,8 +960,6 @@ public class Main {
 - `public` members can be inherited by subclasses.
 - `public` members are visible to all other classes and packages.
 - `public` members have no access restrictions.
-
----
 
 ## **private**
 
@@ -1059,8 +969,6 @@ public class Main {
 - `private` members are not visible to other classes or packages.
 - `private` members have the most restrictive access.
 
----
-
 ## **protected**
 
 - `protected` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as protected, it can be accessed within the same class, within subclasses, and within the same package.
@@ -1069,12 +977,10 @@ public class Main {
 - `protected` members are not visible to other classes or packages.
 - `protected` members have more access than private members, but less access than public members.
 
----
-
 ## **Default**
 
-- Default method
-- It is a method defined within an interface that provides a default implementation
+Default method
+: It is a method defined within an interface that provides a default implementation
 
 ```java
 
@@ -1086,8 +992,8 @@ public interface MyInterface {
 
 ```
 
-- Default access modifier
-- When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
+Default access modifier
+: When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
 
 ```java
 
@@ -1096,8 +1002,6 @@ class MyClass {
 }
 
 ```
-
----
 
 ## **Predicate**
 
@@ -1138,8 +1042,6 @@ List<String> filteredList = new ArrayList<>();
 
 ```
 
----
-
 ## **StreamAPI**
 
 - Stream API in Java provides a way to process collections of objects in a declarative and functional style.
@@ -1179,8 +1081,6 @@ System.out.println("Total length: " + sum); // Output: 31
 mappedStream.forEach(System.out::println);
 
 ```
-
----
 
 ## **Lambda Expression**
 
@@ -1254,8 +1154,6 @@ class MyClass implements Serializable {
 }
 ```
 
----
-
 ## **volatile**
 
 - `volatile` keyword is used as a modifier for a variable to indicate that the variable's value may be changed by multiple threads simultaneously.
@@ -1267,8 +1165,6 @@ class MyClass implements Serializable {
 
 - It's important to note that volatile does not provide a general-purpose replacement for all synchronization mechanisms. It's primarily used for simple scenarios where variables are read and written independently and not involved in compound operations that need atomicity. For more complex synchronization requirements, other mechanisms like synchronized blocks or classes from the java.util.concurrent package are typically used.
 
----
-
 ## **Atomic classes**
 
 - Atomic classes are essential for writing thread-safe and concurrent code. They eliminate the need for explicit synchronization mechanisms like locks or synchronized blocks, which can lead to performance bottlenecks and potential deadlocks in multi-threaded applications.
@@ -1279,8 +1175,6 @@ class MyClass implements Serializable {
   - AtomicReference
   - AtomicBoolean
   - AtomicIntegerArray and AtomicLongArray
-
----
 
 ## **Record**
 
@@ -1296,8 +1190,6 @@ public record Person(String name, int age) {
 }
 Person person = new Person("Alice", 30);
 ```
-
----
 
 ## **var**
 
@@ -1348,8 +1240,6 @@ for (var num : numbers) {
 }
 ```
 
----
-
 ## **Enum**
 
 - Enums are used to define collections of values that are treated as distinct types.
@@ -1382,8 +1272,6 @@ class Animal {
 }
 ```
 
----
-
 ## **Garbage Collection**
 
 - Garbage Collection is the process of automatically reclaiming unused memory by destroying unused objects.
@@ -1413,15 +1301,11 @@ class Animal {
 - Shenandoah GC
 - ZGC
 
----
-
 ## **Garbage Collection in Java 11**
 
 - One of the major changes in Java 11 is the introduction of a new garbage collector called the Z Garbage Collector (ZGC).
 - ZGC is a low-latency garbage collector that can handle heaps ranging from a few hundred megabytes to several terabytes in size, with a maximum pause time of 10ms. It is designed to reduce the impact of garbage collection on the application's performance and improve overall throughput.
 - Another change in Java 11 is the introduction of the Epsilon garbage collector. The Epsilon garbage collector is a no-op garbage collector that is intended for use in scenarios where the application does not need any garbage collection. It is designed to eliminate the overhead of garbage collection and improve the performance of applications that do not generate garbage.
-
----
 
 ## **Threads**
 
@@ -1468,8 +1352,6 @@ Thread 11: Message 4
 Thread 12: Message 4
 
 ```
-
----
 
 ## **New Features : Java**
 
