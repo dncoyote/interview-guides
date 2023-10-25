@@ -50,9 +50,8 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
 #### **JRE**
 
--The JRE is a runtime environment that is necessary for running Java applications. It includes the JVM and a set of standard class libraries that are required for executing Java programs.
--The JRE does not include development tools (e.g., compiler) or source code. It is designed for end-users who want to run Java applications.
-
+- The JRE is a runtime environment that is necessary for running Java applications. It includes the JVM and a set of standard class libraries that are required for executing Java programs.
+- The JRE does not include development tools (e.g., compiler) or source code. It is designed for end-users who want to run Java applications.
 - End-users need a JRE installed on their system to execute Java applications.
 
 #### **JDK**
