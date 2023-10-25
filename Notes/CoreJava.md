@@ -1,10 +1,16 @@
 # **Core Java**
 
-### **Java Virtual Machine Architecture**
+### **Java Architecture**
 
-#### "Write Once, Run anywhere"
+<div align="center">
+  <img alt="image" src="images/javaarchiteecture.webp" />
+</div>
 
-JVM plays a fundamental role in executing Java applications by providing a runtime environment in which they can run.
+#### JVM
+
+##### "Write Once, Run anywhere"
+
+The JVM is responsible for executing Java bytecode. The JVM is a virtual machine that executes Java bytecode. It is responsible for running Java applications on a specific platform.
 
 - VM is a virtual representation of a physical computer
 - Compile Languages
@@ -15,13 +21,13 @@ JVM plays a fundamental role in executing Java applications by providing a runti
   - Runtime Data Area
   - Execution Engine
 
-#### Class Loader
+##### Class Loader
 
 - Loading : Bootstrap Class, Extension Class Loader, Application Class Loader
 - Linking : Verification, Preparation, Resolution
 - Initialization : calling constructors, executing static block, assigning values to static variables
 
-#### Runtime Data Area
+##### Runtime Data Area
 
 - Method Area
 - Heap Area
@@ -29,18 +35,31 @@ JVM plays a fundamental role in executing Java applications by providing a runti
 - PC(Program Counter) Register
 - Native Method Stack
 
-#### Execution Engine
+##### Execution Engine
 
 - Interpreter
 - JIT Compiler : Compiles bytecode to Machine code.
 - GC (System.GC();)
 - Java Native Interface : Is a bridge that permit supporting packages for other programming languages like C/C++.
 
-#### JVM languages
+##### JVM languages
 
 - Scala
 - Groovy
 - Kotlin
+
+#### **JRE**
+
+-The JRE is a runtime environment that is necessary for running Java applications. It includes the JVM and a set of standard class libraries that are required for executing Java programs.
+-The JRE does not include development tools (e.g., compiler) or source code. It is designed for end-users who want to run Java applications.
+
+- End-users need a JRE installed on their system to execute Java applications.
+
+#### **JDK**
+
+- The JDK is a software development kit used for developing Java applications. It includes the tools, executables, and libraries needed for Java development.
+- The JDK contains the Java Compiler (javac) for compiling Java source code into bytecode, various utilities for building and packaging Java applications, and a set of libraries and APIs.
+- It also includes the JRE (Java Runtime Environment) as part of its package, so developers can run and test their Java applications during development.
 
 ---
 
@@ -128,6 +147,12 @@ JVM plays a fundamental role in executing Java applications by providing a runti
 
 ---
 
+### **Reference Types and Primitive Types**
+
+A "reference type" refers to the data type that represents references to objects rather than the objects themselves. This is in contrast to "primitive types," which directly store the values they represent.
+
+---
+
 ### **Literals**
 
 - literal is a representation of a fixed value that is expressed in the source code of a program
@@ -184,7 +209,7 @@ private double radius;
 
 ```
 
-<u>Overloading Constructors:</u>
+Overloading Constructors:
 
 - Refers to the practice of defining multiple constructors for a class with different parameter lists. Java allows you to have more than one constructor in a class, as long as they have different parameter lists.
 
@@ -204,7 +229,7 @@ private double radius;
 
 ```
 
-<u>Default Constructor:</u>
+Default Constructor:
 
 - A default constructor in Java is a constructor that is automatically provided by the Java compiler if a class does not explicitly define any constructors. It is also known as a no-argument constructor or the default no-arg constructor.
 
@@ -324,7 +349,7 @@ super(name);
 
 - `String` is a class that represents a sequence of characters. Strings are widely used in Java programming, and they are used to store and manipulate text-based data such as names, addresses, and other textual information.
 - `String` in Java are reference types, which means that they are actually objects that contain a reference to a memory location where the string's characters are stored. This is in contrast to primitive types (like int or char), which are not objects and are stored directly in memory.
-- <u>Immutable</u>- Java strings are immutable, meaning their content cannot be changed after they are created. When you perform operations on a string that appear to modify it, such as concatenation or substring extraction, a new string is created with the modified content. This property makes `String` thread safe.
+- Immutable- Java strings are immutable, meaning their content cannot be changed after they are created. When you perform operations on a string that appear to modify it, such as concatenation or substring extraction, a new string is created with the modified content. This property makes `String` thread safe.
 
 ---
 
@@ -525,6 +550,7 @@ public final class ImmutablePerson {
 - `finalize()` is a method in Java that is called by the garbage collector when an object is no longer being used and is about to be garbage collected.
 - The purpose of `finalize()` is to give an object a chance to perform any necessary cleanup operations before it is destroyed.
 - The `finalize()` method is defined in the Object class, so all classes in Java have a `finalize()` method inherited from Object. By default, the `finalize()` method does nothing, so if a class needs to perform cleanup operations, it should override this method.
+- `finalize()` has been deprecated since Java 9. It is recommended to use try-catch-finally or try-with resources or `Autocloseable` interface instead.
 
 ---
 
@@ -554,11 +580,11 @@ try {
 
 ### **ClassNotFoundException v/s NoClassDefFoundError**
 
-| ClassNotFoundException                                                                                                                                                                       | NoClassDefFoundError                                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ClassNotFoundException` is a <u>checked exception</u> that occurs at runtime when the Java ClassLoader is unable to find a class at the time of dynamic class loading.                      | `NoClassDefFoundError` is an <u>error</u> (not an exception) that occurs when a class that was present during compilation is no longer found at runtime. |
-| This exception is typically thrown when you attempt to load a class using methods like Class.forName() or ClassLoader.loadClass(), and the specified class cannot be found in the classpath. | This error typically occurs when the JVM tries to load a class that was available during compilation but is missing during runtime execution.            |
-| It often indicates a missing or incorrect class name or a missing dependency that the class depends on.                                                                                      | It indicates that the class definition was found during compilation, but at runtime, the class file is not present or cannot be located.                 |
+| ClassNotFoundException                                                                                                                                                                       | NoClassDefFoundError                                                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ClassNotFoundException` is a checked exception that occurs at runtime when the Java ClassLoader is unable to find a class at the time of dynamic class loading.                             | `NoClassDefFoundError` is an error (not an exception) that occurs when a class that was present during compilation is no longer found at runtime. |
+| This exception is typically thrown when you attempt to load a class using methods like Class.forName() or ClassLoader.loadClass(), and the specified class cannot be found in the classpath. | This error typically occurs when the JVM tries to load a class that was available during compilation but is missing during runtime execution.     |
+| It often indicates a missing or incorrect class name or a missing dependency that the class depends on.                                                                                      | It indicates that the class definition was found during compilation, but at runtime, the class file is not present or cannot be located.          |
 
 ---
 
@@ -1237,6 +1263,19 @@ class MyClass implements Serializable {
   - Atomicity: The volatile keyword guarantees atomic reads and writes for the variable. This ensures that, when a thread reads a volatile variable, it sees a complete value, and when a thread writes to a volatile variable, it writes the complete value without being interrupted by other threads.
 
 - It's important to note that volatile does not provide a general-purpose replacement for all synchronization mechanisms. It's primarily used for simple scenarios where variables are read and written independently and not involved in compound operations that need atomicity. For more complex synchronization requirements, other mechanisms like synchronized blocks or classes from the java.util.concurrent package are typically used.
+
+---
+
+### **Atomic classes**
+
+- Atomic classes are essential for writing thread-safe and concurrent code. They eliminate the need for explicit synchronization mechanisms like locks or synchronized blocks, which can lead to performance bottlenecks and potential deadlocks in multi-threaded applications.
+- They don't require explicit synchronization
+- Types
+  - AtomicInteger
+  - AtomicLong
+  - AtomicReference
+  - AtomicBoolean
+  - AtomicIntegerArray and AtomicLongArray
 
 ---
 
