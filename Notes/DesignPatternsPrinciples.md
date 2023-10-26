@@ -454,6 +454,6 @@ public class ObserverPatternExample {
     }
 }
 
-
-//In this example, the WeatherStation is the subject, and it notifies TemperatureDisplay and PhoneApp (observers) when the temperature changes. The observers implement the WeatherObserver interface, which defines the update method for responding to changes in the subject's state.
 ```
+
+- In this example, the WeatherStation is the subject, and it notifies TemperatureDisplay and PhoneApp (observers) when the temperature changes. The observers implement the WeatherObserver interface, which defines the update method for responding to changes in the subject's state.
