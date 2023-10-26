@@ -97,7 +97,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 
 - A primitive is a data type that represents a single value and is not an object.
 - There are 8 primitive datatypes in java
-  - boolean
+  - boolean(default false)
   - byte
   - short
   - int
@@ -330,6 +330,38 @@ super(name);
 
 - `super` is essential to maintain the inheritance hierarchy and enabling to access the parent class members and constructors when necessary.
 
+## **this**
+
+- `this` is used to access instance variables within a class. For example, if a method parameter has the same name as an instance variable, this can be used to access the instance variable.
+
+```java
+public class MyClass {
+    private int value;
+
+    public void setValue(int value) {
+        this.value = value; // Assign the method parameter to the instance variable
+    }
+}
+
+```
+
+- `this` keyword can be used to call one constructor from another constructor in the same class. This is known as constructor chaining.
+
+```java
+public class MyClass {
+    private int value;
+
+    public MyClass() {
+        this(0); // Calls the parameterized constructor with an initial value of 0
+    }
+
+    public MyClass(int value) {
+        this.value = value;
+    }
+}
+
+```
+
 ## **String**
 
 - `String` is a class that represents a sequence of characters. Strings are widely used in Java programming, and they are used to store and manipulate text-based data such as names, addresses, and other textual information.
@@ -543,6 +575,25 @@ try {
 
 ```
 
+## **Checked Exceptions (Compile-Time Exceptions)**
+
+- Checked exceptions are exceptions that the Java compiler requires you to handle explicitly in your code.
+- These exceptions are typically related to external factors that your code may encounter, such as file I/O, network operations, or database connections.
+- You are required to either catch and handle checked exceptions using a try-catch block or declare that your method may throw the exception using the throws clause.
+- `IOException` `SQLException` `ClassNotFoundException`
+
+## **Unchecked Exceptions (Runtime Exceptions)**
+
+- Unchecked exceptions, also known as runtime exceptions, are exceptions that the compiler does not require you to catch or declare explicitly.
+- They typically represent programming errors, such as dividing by zero, accessing an array index out of bounds, or attempting to call a method on a null object reference.
+- Unchecked exceptions are subclasses of `RuntimeException`.
+- You can catch and handle them, but it is not required by the compiler. Most of the time, they indicate bugs in your code that should be fixed.
+- `ArrayIndexOutOfBoundsException`
+
+#### Difference
+
+Checked exceptions must be either caught or declared, while unchecked exceptions do not have this requirement. It is important to handle exceptions appropriately to ensure the robustness and reliability of your Java applications.
+
 ## **ClassNotFoundException v/s NoClassDefFoundError**
 
 | ClassNotFoundException                                                                                                                                                                       | NoClassDefFoundError                                                                                                                              |
@@ -639,7 +690,7 @@ Collections.sort(myCollection);
   - Vector
   - CopyOnWriteArrayList
 
-### **ArrayList**
+#### **ArrayList**
 
 - ArrayList is an implementation of the List interface that uses a dynamic array to store its elements.
 - It provides fast random access to elements, making it suitable for scenarios where you frequently access elements by their index.
@@ -650,7 +701,7 @@ Collections.sort(myCollection);
 
 A dynamic array is a data structure that can grow or shrink in size as needed. It is implemented as a single contiguous block of memory, and elements are stored in adjacent memory locations.
 
-### **LinkedList**
+#### **LinkedList**
 
 - LinkedList is another implementation of the List interface that uses a doubly-linked list to store its elements.
 - While LinkedList supports random access, accessing elements by index is slower compared to ArrayList because it requires traversing the list from the beginning or end to reach the desired index.
@@ -670,6 +721,16 @@ A doubly linked list is a data structure consisting of nodes, where each node co
   - LinkedHashSet
   - TreeSet
   - EnumSet
+
+#### HashSet
+
+- Elements are stored in a hash table and do not maintain any specific order. You cannot rely on the order of elements in a HashSet.
+- HashSet offers constant-time performance for basic operations like adding, removing, and checking for the existence of elements. i.e., they are fast.
+
+#### LinkedHashSet
+
+- LinkedHashSet extends HashSet and maintains the order of elements by using a linked list. When you iterate over a LinkedHashSet, the elements are returned in the order they were added. This provides a predictable iteration order.
+- Operations may be slightly slower than those of a HashSet, although they are still quite efficient.
 
 ## **Map**
 
@@ -702,20 +763,61 @@ linkedHashMap.put("Carol", 22);
 
 ## **Concurrent Hashmap**
 
-- ConcurrentHashMap is a class in Java's that provides a thread-safe implementation of the Map interface.
-- It is designed to be used in concurrent (multi-threaded) environments where multiple threads can access and modify the map concurrently.
+- Concurrent HashMap is a class in Java's that provides a thread-safe implementation of the Map interface without need for synchronization.
+- Partitioning: It divides the map into smaller segments, known as "buckets." Each bucket can be independently locked, so multiple threads can access different buckets simultaneously. This minimizes contention among threads.
 
 ## **Synchronized Hashmap**
 
+- Synchronized HashMap is a class in Java's that provides a thread-safe implementation of the Map interface wrapped with synchronization to make it thread-safe.
+- Locking: Synchronized HashMap uses a single global lock that serializes access to the entire map. This can lead to contention in high-concurrency situations, making it less scalable.
+- This can lead to contention and performance issues in highly concurrent environments.
+
 ## **Queue**
+
+- Queues in Java are a fundamental data structure used to store and manage a collection of elements in a linear order. They follow the "first-in, first-out" (FIFO) principle, which means that the element added first is the one that gets removed first. Queues are typically used for tasks such as managing tasks in a job queue, implementing scheduling algorithms, or handling asynchronous processing.
+
+#### PriorityQueue
+
+- Priority queue implementation based on a binary heap. It orders elements according to their natural order or a specified comparator.
+
+#### LinkedList
+
+- A doubly-linked list that can be used as a queue.
 
 ## **Comparable**
 
-## **Comparator**
-
-- Comparator is an interface in Java is an interface that defines a way to compare two objects for ordering or sorting purposes. It allows you to define custom comparison logic for objects that may not have a natural ordering or for cases where you want to sort objects based on criteria other than their natural order.
+- Comparable is an interface in Java that is used for defining the natural ordering of objects of a class. By implementing the Comparable interface, a class specifies how its instances should be compared with each other.
+- This allows objects of that class to be sorted or ordered based on their natural characteristics.
+- Comparable interface is used to define the natural or default ordering of objects within the class itself.
+- This is suitable when there is one primary way to order objects.
 
 ```java
+public class Student implements Comparable<Student> {
+    // ...
+    @Override
+    public int compareTo(Student other) {
+        // Compare students based on their IDs
+        return Integer.compare(this.id, other.id);
+    }
+}
+```
+
+## **Comparator**
+
+- Comparator is an interface in Java that defines a way to compare two objects for ordering or sorting purposes.
+- It allows you to define custom comparison logic for objects that may not have a natural ordering or for cases where you want to sort objects based on criteria other than their natural order.
+- This is suitable when you need to provide multiple ways to compare objects or when you can't modify the class of the objects being compared.
+
+```java
+public class StudentIdComparator implements Comparator<Student> {
+    @Override
+    public int compare(Student student1, Student student2) {
+        // Compare students based on their IDs
+        return Integer.compare(student1.getId(), student2.getId);
+    }
+}
+
+-----------------------------
 Comparator<MonthlyStatement> comparator = null;
 
         switch (sortBy.toLowerCase()) {
@@ -786,6 +888,10 @@ public class Main {
     }
 }
 ```
+
+- `Box` class is defined with a generic type parameter `T`. This allows you to create `Box` objects that can hold values of different types, such as integers and strings, while maintaining type safety.
+
+- Generics are commonly used in Java when working with data structures like collections (e.g., `ArrayList<T>`) and when defining utility classes and methods that need to operate on different data types.
 
 ## **Interface**
 
@@ -977,6 +1083,11 @@ public class Main {
 - `protected` members are not visible to other classes or packages.
 - `protected` members have more access than private members, but less access than public members.
 
+## **default (Package-Private)**
+
+- `default` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as default, it can be accessed within the same class, within subclasses in same, and within the same package.
+- `default` members are inherited only within the same package
+
 ## **Default**
 
 Default method
@@ -1138,8 +1249,6 @@ public class HelloWorld {
 }
 
 ```
-
----
 
 ## **Transient**
 
@@ -1446,5 +1555,3 @@ Thread 12: Message 4
 - Sealed Classes (Final): Sealed classes feature is finalized.
 - Pattern Matching (Final): Pattern matching feature is finalized.
 - Foreign Function & Memory API (Incubator): Introduction of the Foreign Function & Memory API for native interop.
-
----
