@@ -52,3 +52,10 @@ public class ContainsDuplicate {
         System.out.println(cd.checkDuplicate(arr3));
     }
 }
+/**
+ * Output
+ * ------
+ * false
+ * true
+ * false
+ */

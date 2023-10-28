@@ -21,3 +21,7 @@ public class ReverseString {
         System.out.println(reverse);
     }
 }
+/**
+ * Output
+ * .yrtnuoc nwo s'doG sa nwonk si alareK
+ */

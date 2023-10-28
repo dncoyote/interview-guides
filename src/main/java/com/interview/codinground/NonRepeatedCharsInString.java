@@ -35,3 +35,8 @@ public class NonRepeatedCharsInString {
         System.out.println(reverse);
     }
 }
+/**
+ * output
+ * -------
+ * KelikGd'cuty.
+ */

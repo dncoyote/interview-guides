@@ -28,3 +28,11 @@ public class CountCharOccurences {
         }
     }
 }
+/**
+ * Output
+ * -------
+ * a-4
+ * e-2
+ * v-2
+ * j-2
+ */
