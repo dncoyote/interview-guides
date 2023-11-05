@@ -1085,7 +1085,7 @@ public class Main {
 
 ## **default (Package-Private)**
 
-- `default` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as default, it can be accessed within the same class, within subclasses in same, and within the same package.
+- `default` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as default, it can be accessed within the same class, within subclasses in same package, and within the same package.
 - `default` members are inherited only within the same package
 
 ## **Default**
