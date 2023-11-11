@@ -1377,6 +1377,22 @@ for (var num : numbers) {
 }
 ```
 
+## **Optional**
+
+- `Optional` is a class introduced in Java 8 to represent an optional value that may or may not be present.
+- It is designed to help eliminate null pointer exceptions and provide a more expressive and functional way of handling optional values.
+- The main idea behind Optional is to explicitly indicate the presence or absence of a value, rather than relying on null references.
+- `Optional` is especially useful in cases where a method may return a value or no value (like when searching for an element in a collection). It encourages more robust and expressive code by making it explicit when a value might be absent.
+
+```
+Optional<String> nonEmptyOptional = Optional.of("Hello");
+Optional<String> emptyOptional = Optional.empty();
+if (nonEmptyOptional.isPresent()) {
+    String value = nonEmptyOptional.get();
+    System.out.println(value);
+}
+```
+
 ## **Enum**
 
 - Enums are used to define collections of values that are treated as distinct types.
