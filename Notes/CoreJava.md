@@ -1571,3 +1571,9 @@ Thread 12: Message 4
 - Sealed Classes (Final): Sealed classes feature is finalized.
 - Pattern Matching (Final): Pattern matching feature is finalized.
 - Foreign Function & Memory API (Incubator): Introduction of the Foreign Function & Memory API for native interop.
+
+
+jax-rs vs jax-ws
+callback mechanism
+soap vs rest
+thread.wait vs thread.sleep
