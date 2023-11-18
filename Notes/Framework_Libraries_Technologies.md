@@ -17,6 +17,25 @@
 
 - A REST API (Representational State Transfer Application Programming Interface) is a type of web API that uses HTTP requests to perform operations on data.
 
+## SOAP v/s REST
+| SOAP     | REST     |
+| ------------- | ------------- |
+| Often used in enterprise-level applications. | Preferred for mobile and web applications due to its simplicity and scalability. |
+| Suitable for scenarios requiring a high level of security and ACID-compliant transactions. | Suitable for scenarios where statelessness and simplicity are critical. |
+| SOAP is a protocol, a set of rules that dictate how web services should communicate.| REST is an architectural style, not a protocol.
+| It typically uses XML as the message format. | It relies on a stateless, client-server communication model. |
+| SOAP can work over a variety of transport protocols, including HTTP, SMTP, and more. | REST primarily uses HTTP as the transport protocol. |
+
+## JAX-RS v/s JAX-WS
+| SOAP     | REST     |
+| ------------- | ------------- |
+| Suitable for building lightweight, scalable, and stateless RESTful services.
+ | Suitable for building more complex, enterprise-level web services. |
+| Preferred for web and mobile applications where simplicity and flexibility are crucial.| Preferred in scenarios where standardized messaging, security, and transaction support are necessary. |
+| SOAP is a protocol, a set of rules that dictate how web services should communicate.| REST is an architectural style, not a protocol.
+| It typically uses XML as the message format. | It relies on a stateless, client-server communication model. |
+| SOAP can work over a variety of transport protocols, including HTTP, SMTP, and more. | REST primarily uses HTTP as the transport protocol. |
+
 ## **Authentication v/s Authorization**
 
 - Authentication : Authentication is the process of verifying the identity of a user, system, or entity to ensure they are who they claim to be.

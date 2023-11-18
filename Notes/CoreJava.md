@@ -918,40 +918,6 @@ public class Main {
 
 ---
 
-## **Runnable Interface**
-
-- The Runnable interface is a functional interface in Java that defines a single abstract method run(). It is commonly used to define the code that should be executed in a new thread.
-
-```java
-
-public class MyTask implements Runnable {
-    private String message;
-
-    public MyTask(String message) {
-        this.message = message;
-    }
-
-    public void run() {
-        System.out.println(message);
-    }
-}
-
----
-
-public class Main {
-    public static void main(String[] args) {
-        MyTask task = new MyTask("Hello, world!");
-        Thread thread = new Thread(task);
-        thread.start();
-    }
-}
-
-```
-
-## **Callable Interface**
-
-- The Callable interface is similar to the Runnable interface, but it allows a task to return a result and throw a checked exception. The Callable interface defines a single call() method that returns a generic type V.
-
 ## **Abstract Method**
 
 - An abstract method is a method that is declared in an abstract class or an interface but does not have an implementation.
@@ -1263,56 +1229,6 @@ class MyClass implements Serializable {
 }
 ```
 
-## **volatile**
-
-- `volatile` keyword is used as a modifier for a variable to indicate that the variable's value may be changed by multiple threads simultaneously.
-- It ensures certain visibility and ordering guarantees for that variable's access.
-- Key properties
-
-  - Visibility: When a variable is declared as volatile, any read or write operation on that variable is guaranteed to be visible to all threads. This means that changes made by one thread to a volatile variable are immediately visible to other threads without the need for explicit synchronization.
-  - Atomicity: The volatile keyword guarantees atomic reads and writes for the variable. This ensures that, when a thread reads a volatile variable, it sees a complete value, and when a thread writes to a volatile variable, it writes the complete value without being interrupted by other threads.
-
-- It's important to note that volatile does not provide a general-purpose replacement for all synchronization mechanisms. It's primarily used for simple scenarios where variables are read and written independently and not involved in compound operations that need atomicity. For more complex synchronization requirements, other mechanisms like synchronized blocks or classes from the java.util.concurrent package are typically used.
-
-## **synchronized**
-
-- `synchronized` keyword is used to create synchronized blocks and methods, which provide a way to control access to critical sections of code, making them thread-safe. This is especially important in multi-threaded applications where multiple threads may access shared resources concurrently.
-- This keyword ensures that only one thread can execute the synchronized code block or method at a time, preventing race conditions and data corruption.
-
-#### Synchronized Blocks
-
-- Synchronized blocks are used to create critical sections within methods or code blocks.
-- They are defined using the synchronized keyword followed by an object reference, typically this or another shared object.
-
-```java
-synchronized (sharedObject) {
-    // Critical section code here
-}
-```
-
-#### Synchronized Methods
-
-- Synchronized methods provide a way to make entire methods thread-safe.
-- They are automatically synchronized on the instance of the class that owns the method.
-
-```java
-public synchronized void someMethod() {
-    // Thread-safe code here
-}
-
-```
-
-## **Atomic classes**
-
-- Atomic classes are essential for writing thread-safe and concurrent code. They eliminate the need for explicit synchronization mechanisms like locks or synchronized blocks, which can lead to performance bottlenecks and potential deadlocks in multi-threaded applications.
-- They don't require explicit synchronization
-- Types
-  - AtomicInteger
-  - AtomicLong
-  - AtomicReference
-  - AtomicBoolean
-  - AtomicIntegerArray and AtomicLongArray
-
 ## **Record**
 
 - New feature introduced in Java 16.
@@ -1463,9 +1379,10 @@ class Animal {
 ## **Threads**
 
 - Threads are a fundamental concept for concurrent programming.
-- Threads are lightweight processes within a Java application that allow it to perform multiple tasks concurrently.
+- Multithreading is the concurrent execution of two or more threads (smaller units of a process), allowing multiple tasks to be executed in overlapping time periods.
+- Threads share the same resources (like memory space), but they run independently, allowing for better utilization of system resources and improved application responsiveness.
 - You can create threads in Java by extending the Thread class or by implementing the Runnable interface.
-- Multithreading in Java refers to the concurrent execution of multiple threads within a single Java program.
+- A `thread` is the smallest unit of execution within a process.
 
 ```java
 class MyThread extends Thread {
@@ -1505,6 +1422,224 @@ Thread 11: Message 4
 Thread 12: Message 4
 
 ```
+### Features
+
+#### Thread States
+- Threads can be in different states, such as NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, and TERMINATED.
+- The Thread class provides methods like start(), sleep(), and join() to control thread states.
+
+#### Thread Synchronization
+- When multiple threads access shared resources concurrently, synchronization is required to avoid data inconsistencies.
+- Java provides the synchronized keyword and the Lock interface for thread synchronization.
+
+#### Thread Priority:
+- Thread priority is used to decide the order of thread execution in case multiple threads are ready to run.
+- Thread priorities range from Thread.MIN_PRIORITY to Thread.MAX_PRIORITY.
+
+#### Thread Communication
+Threads can communicate and coordinate their activities using methods like wait(), notify(), and notifyAll().
+
+#### Thread Deadlock
+- A deadlock occurs when two or more threads are blocked forever, each waiting for the other to release a resource.
+- Careful synchronization and resource allocation strategies are essential to avoid deadlocks.
+
+#### Thread Pooling:
+- Thread pooling involves reusing a fixed number of threads to execute tasks, improving efficiency compared to creating a new thread for each task.
+- The ExecutorService and ThreadPoolExecutor classes are used for thread pooling.
+
+#### `wait()`
+- `wait()` is a method defined in the Object class and is used for inter-thread communication.
+- It must be called from within a synchronized context (inside a synchronized block or method).
+- It makes the current thread wait until another thread invokes the notify() or notifyAll() method for the same object.
+- `wait()` releases the lock on the object, allowing other threads to acquire it.
+- `wait()` is typically used for coordinating activities between threads, where one thread waits for a condition to be met by another thread. 
+
+#### `sleep()`
+- `sleep()` is a method defined in the Thread class and is used to pause the execution of the current thread.
+- It is used to introduce a delay in the execution of the current thread, without releasing any locks.
+- `sleep()` does not release any locks, and the thread retains any locks it holds.
+
+
+## **Runnable Interface**
+
+- The Runnable interface is a functional interface in Java that defines a single abstract method `run()`. It is commonly used to define the code that should be executed in a new thread.
+
+```java
+
+public class MyTask implements Runnable {
+    private String message;
+
+    public MyTask(String message) {
+        this.message = message;
+    }
+
+    public void run() {
+        System.out.println(message);
+    }
+}
+
+---
+
+public class Main {
+    public static void main(String[] args) {
+        MyTask task = new MyTask("Hello, world!");
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+}
+
+```
+
+## **Callable Interface**
+
+- The Callable interface is similar to the Runnable interface, but it allows a task to return a result and throw a checked exception. The Callable interface defines a single call() method that returns a generic type V.
+
+
+## **volatile**
+
+- `volatile` keyword is used as a modifier for a variable to indicate that the variable's value may be changed by multiple threads simultaneously.
+- It ensures certain visibility and ordering guarantees for that variable's access.
+- Key properties
+
+  - Visibility: When a variable is declared as volatile, any read or write operation on that variable is guaranteed to be visible to all threads. This means that changes made by one thread to a volatile variable are immediately visible to other threads without the need for explicit synchronization.
+  - Atomicity: The volatile keyword guarantees atomic reads and writes for the variable. This ensures that, when a thread reads a volatile variable, it sees a complete value, and when a thread writes to a volatile variable, it writes the complete value without being interrupted by other threads.
+
+- It's important to note that volatile does not provide a general-purpose replacement for all synchronization mechanisms. It's primarily used for simple scenarios where variables are read and written independently and not involved in compound operations that need atomicity. For more complex synchronization requirements, other mechanisms like synchronized blocks or classes from the java.util.concurrent package are typically used.
+
+## **synchronized**
+
+- `synchronized` keyword is used to create synchronized blocks and methods, which provide a way to control access to critical sections of code, making them thread-safe. This is especially important in multi-threaded applications where multiple threads may access shared resources concurrently.
+- This keyword ensures that only one thread can execute the synchronized code block or method at a time, preventing race conditions and data corruption.
+
+#### Synchronized Blocks
+
+- Synchronized blocks are used to create critical sections within methods or code blocks.
+- They are defined using the synchronized keyword followed by an object reference, typically this or another shared object.
+
+```java
+synchronized (sharedObject) {
+    // Critical section code here
+}
+```
+
+#### Synchronized Methods
+
+- Synchronized methods provide a way to make entire methods thread-safe.
+- They are automatically synchronized on the instance of the class that owns the method.
+
+```java
+public synchronized void someMethod() {
+    // Thread-safe code here
+}
+
+```
+
+## **Atomic classes**
+
+- Atomic classes are essential for writing thread-safe and concurrent code. They eliminate the need for explicit synchronization mechanisms like locks or synchronized blocks, which can lead to performance bottlenecks and potential deadlocks in multi-threaded applications.
+- They don't require explicit synchronization
+- Types
+  - AtomicInteger
+  - AtomicLong
+  - AtomicReference
+  - AtomicBoolean
+  - AtomicIntegerArray and AtomicLongArray
+
+## Callback Mechanism
+
+- A callback mechanism is a programming pattern where a function or method (known as a callback function) is passed as an argument to another function or method. 
+- This allows the receiving function to execute the provided callback function at a specific point in its execution or in response to a certain event. 
+- Callbacks are commonly used in asynchronous programming, event handling, and situations where customizable behavior or extensibility is required.
+
+Function as an Argument
+ : In a callback mechanism, a function (callback) is passed as a parameter to another function. The receiving function can then invoke the callback function during its execution.
+
+Event-Driven Programming
+ : Callbacks are often used in event-driven programming, where actions or responses are triggered by events such as user input, system notifications, or external changes.
+
+Asynchronous Operations
+ : Callbacks are frequently employed in asynchronous programming to handle tasks that may take some time to complete. The callback is executed once the asynchronous operation is finished.
+
+ ```java
+ / Callback interface
+interface Callback {
+    void onComplete(String result);
+}
+
+// DataService class
+class DataService {
+    // Method to fetch data asynchronously
+    void fetchData(String url, Callback callback) {
+        // Simulate fetching data in a new thread
+        new Thread(() -> {
+            // Simulate time-consuming operation
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // Simulate data retrieval
+            String data = "Some data from " + url;
+
+            // Notify the callback with the result
+            callback.onComplete(data);
+        }).start();
+    }
+}
+
+// Example usage
+public class CallbackExample {
+    public static void main(String[] args) {
+        // Create an instance of DataService
+        DataService dataService = new DataService();
+
+        // Define a callback implementation
+        Callback callback = new Callback() {
+            @Override
+            public void onComplete(String result) {
+                System.out.println("Data received: " + result);
+            }
+        };
+
+        // Trigger data fetching with the callback
+        dataService.fetchData("https://example.com/api/data", callback);
+
+        // The main thread can continue its work while data fetching is in progress
+        System.out.println("Main thread continues its work...");
+
+        // Simulate other operations
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main thread completed.");
+    }
+}
+
+Output
+------
+Main thread continues its work...
+Data received: Some data from https://example.com/api/data
+Main thread completed.
+ ```
+
+- This example demonstrates how the callback mechanism allows the main thread to continue its work while the asynchronous data fetching operation is ongoing. Once the data fetching is complete, the callback is invoked, and the received data is processed. This is a common pattern in scenarios where responsiveness and parallelism are crucial, such as in user interfaces or network communication.
+
+Callback Interface (Callback)
+: Defines a simple callback interface with a method onComplete that takes a result as a parameter.
+
+DataService Class
+: Contains a method fetchData that simulates asynchronous data fetching in a new thread.
+Accepts a callback as a parameter and notifies it when the data fetching operation is complete.
+
+Example Usage (CallbackExample)
+: Creates an instance of DataService.
+Defines a callback implementation that prints the received data.
+Calls the fetchData method with the callback.
+The main thread can continue its work while data fetching is in progress.
 
 ## **New Features : Java**
 
@@ -1571,9 +1706,3 @@ Thread 12: Message 4
 - Sealed Classes (Final): Sealed classes feature is finalized.
 - Pattern Matching (Final): Pattern matching feature is finalized.
 - Foreign Function & Memory API (Incubator): Introduction of the Foreign Function & Memory API for native interop.
-
-
-jax-rs vs jax-ws
-callback mechanism
-soap vs rest
-thread.wait vs thread.sleep
