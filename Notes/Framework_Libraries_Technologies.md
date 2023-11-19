@@ -423,8 +423,6 @@ public class MyPrototypeBean {
 
 `@Autowired` annotation is used in Spring Framework to automatically inject dependencies into a Spring bean. It tells Spring's dependency injection container to provide the required dependencies (beans) to the annotated field, constructor, or method parameter. Essentially, it helps in achieving the Inversion of Control (IoC) principle by letting Spring manage and wire the dependencies for you.
 
-## **Microservices**
-
 ## **API Gateway**
 
 - API Gateway is a server or service that acts as an entry point for a collection of microservices or backend services in a distributed computing environment.
@@ -438,12 +436,6 @@ public class MyPrototypeBean {
 ## **@FeignClient**
 
 ## **Transactional**
-
-## **Docker**
-
-## **Docker file contents**
-
-## **Kubernetes**
 
 ## **Queueing Libraries**
 
@@ -490,12 +482,147 @@ public class MyPrototypeBean {
 - <u>Least Privilege Principle</u>: Ensure that database users used by your application have the least privileges necessary to perform their tasks. Restrict the permissions granted to database accounts to only the required operations and limit access to sensitive data or system functionality.
 
 ## **MVC Pattern**
-
 - MVC (Model-View-Controller) Pattern: Separates the application logic into three interconnected components - Model (data), View (user interface), and Controller (handles user input).
 
-## **Microservices Architecture**
 
-- Event driven architecture
+## **Microservices**
+- Microservices architecture is an approach to developing software systems that emphasizes the creation of small, independent services that communicate with each other to form a complete application. 
+- This architectural style aims to enhance the agility and scalability of software development.
+
+### Principles
+#### Service Independence
+- Microservices are independent entities that can be developed, deployed, and scaled independently. 
+- Each service is a self-contained module with its own data storage and business logic.
+#### Single Responsibility
+- Each microservice should have a single responsibility or function. 
+- This helps maintain simplicity, clarity, and ease of development.
+#### Decentralized Data Management
+- Microservices often have their own database, enabling them to manage their data independently. 
+- This avoids dependencies on a centralized database, enhancing scalability and isolation.
+#### Inter-Process Communication
+- Microservices communicate with each other through well-defined APIs, often using lightweight protocols such as HTTP/REST or message queues. 
+- This allows them to work together to fulfill business requirements.
+#### Resilience
+- Microservices should be designed to handle failures gracefully. 
+- This involves incorporating techniques such as circuit breakers, retries, and fallback mechanisms to maintain system stability.
+#### Scalability
+- Individual microservices can be scaled independently based on specific needs. 
+- This allows for efficient resource utilization and responsiveness to varying workloads.
+#### Continuous Delivery and Deployment
+- Microservices are conducive to continuous integration and continuous deployment (CI/CD) practices. 
+- Each service can be developed, tested, and deployed independently, enabling faster and more frequent releases.
+
+### Practices
+#### Containerization
+- Microservices are often deployed within containers (e.g., Docker). 
+- Containerization provides consistency across development, testing, and deployment environments, making it easier to manage dependencies.
+#### Orchestration
+- Tools like Kubernetes are commonly used for orchestrating and managing the deployment, scaling, and operation of microservices. 
+- They automate tasks like load balancing, scaling, and rolling updates.
+#### API Gateway
+- An API gateway is used to aggregate and manage the APIs of various microservices.
+- It provides a single entry point for clients and handles tasks such as authentication, authorization, and routing.
+#### Event-Driven Architecture
+- Microservices can communicate through events and asynchronous messaging. 
+- This promotes loose coupling, allowing services to evolve independently.
+#### Monitoring and Logging
+- Comprehensive monitoring and logging are crucial for diagnosing issues, analyzing performance, and ensuring the overall health of the microservices ecosystem.
+#### Automated Testing
+- Automated testing, including unit tests, integration tests, and end-to-end tests, is essential for ensuring the reliability and correctness of individual microservices and their interactions.
+#### Database Per Service
+- Each microservice often has its own database, aligned with the service's specific data requirements. 
+- This helps prevent data coupling between services.
+#### DevOps Culture
+- Microservices development often involves a strong DevOps culture, where development and operations teams collaborate closely. 
+- Automation and collaboration are key elements in achieving successful microservices deployments.
+#### Versioning and Contract Testing
+- Effective versioning of APIs and contract testing are essential to manage changes in microservices without disrupting other services that depend on them.
+
+## **Microservices Architecture**
+#### Microservices:
+- Pattern: Decompose the application into a set of small, independent services that can be developed, deployed, and scaled independently.
+- Use Case Scenario: In an e-commerce system, separate services for user management, order processing, and inventory management.
+#### Service Discovery:
+- Pattern: Automatically detect and register microservices in the system, allowing them to locate and communicate with each other.
+- Use Case Scenario: A new instance of a microservice registers itself with a service registry, and other microservices dynamically discover its location for communication.
+#### API Gateway:
+- Pattern: Use a centralized entry point to manage and route API requests to appropriate microservices. It handles tasks like authentication, authorization, and load balancing.
+- Use Case Scenario: An API gateway manages incoming requests from clients and routes them to relevant microservices based on the request path.
+#### Circuit Breaker:
+- Pattern: Prevent cascading failures by detecting and handling faults in microservices. If a service repeatedly fails, the circuit breaker opens, redirecting traffic to a fallback mechanism.
+- Use Case Scenario: In an online payment system, if the payment processing microservice consistently fails, the circuit breaker opens, and requests are redirected to a cached payment status.
+
+## **Docker**
+- Docker is a platform that enables developers to automate the deployment of applications within lightweight, portable containers. 
+- Containers package an application and its dependencies, ensuring consistency across different environments, from development to testing and production.
+- Docker provides tools and a platform for building, shipping, and running applications in containers, making it easier to deploy and scale applications in a consistent manner.
+
+#### Isolation
+- Principle: Containers encapsulate applications and their dependencies, providing a level of isolation from the underlying system and other containers.
+- Practice: Use containers to create isolated environments, preventing conflicts between dependencies and ensuring consistency across different stages of the development lifecycle.
+#### Portability:
+- Principle: Containers are lightweight and portable, making it easy to run applications consistently across various environments, including different operating systems and cloud platforms.
+- Practice: Develop and test applications in containers locally and deploy the same containerized application in production, reducing the "it works on my machine" problem.
+#### Resource Efficiency:
+- Principle: Containers share the host OS kernel, which reduces the overhead compared to traditional virtualization. This leads to more efficient resource utilization.
+- Practice: Run multiple containers on a single host, optimizing resource usage and enabling better scalability.
+#### Consistency Across Environments:
+- Principle: Containers package an application along with its dependencies, ensuring that the application runs consistently across different environments.
+- Practice: Use the same container image for development, testing, and production, minimizing the risk of issues caused by environmental differences.
+#### Versioning and Reproducibility:
+- Principle: Container images can be versioned, providing a way to track changes and ensuring that applications can be reproduced with the same dependencies.
+- Practice: Tag container images with version numbers and use version control for Dockerfiles to track changes over time.
+#### Microservices Architecture Support:
+- Principle: Containers align well with microservices architecture, allowing for the development and deployment of small, independent services.
+- Practice: Package each microservice into its own container, enabling easier management, scaling, and maintenance of microservices-based applications.
+#### Orchestration:
+- Principle: Orchestration tools, such as Kubernetes and Docker Swarm, automate the deployment, scaling, and management of containerized applications.
+- Practice: Use orchestration tools to define and manage the deployment and scaling of containers, ensuring high availability and ease of management.
+#### DevOps Integration:
+Principle: Containers facilitate the integration of development and operations workflows, supporting the DevOps culture.
+Practice: Implement CI/CD pipelines that build, test, and deploy containerized applications automatically, enabling rapid and reliable software delivery.
+#### Immutable Infrastructure:
+Principle: Treat containers as immutable, meaning that once a container is created, it should not be modified. Updates are handled by creating new containers.
+Practice: Avoid making changes to running containers. Instead, update the container image and redeploy to ensure consistency and traceability.
+
+## **docker-compose files**
+- A Docker Compose file is a YAML configuration file used to define and configure multi-container Docker applications.
+- It allows you to define the services, networks, and volumes for an application, along with their configurations and relationships.
+- Docker Compose simplifies the process of managing and orchestrating multiple Docker containers that work together to form a complete application.
+- Docker Compose enables you to define the entire application stack and its dependencies in a single, easy-to-read file.
+- This simplifies the deployment and management of complex applications with multiple interconnected services.
+
+#### Services:
+Containers that run different components of your application. Each service is defined with its configuration, including the Docker image to use, ports to expose, environment variables, and more.
+#### Networks:
+Defines how containers communicate with each other. Docker Compose automatically creates a default network for your services, but you can define custom networks with specific configurations.
+#### Volumes:
+Manages data persistence by defining volumes to store and share data between containers. Volumes can be used to store databases, configuration files, or any other data that needs to persist beyond the lifespan of a container.
+#### Environment Variables:
+Allows you to set environment variables for each service, specifying configurations that can be customized without changing the application code.
+#### Dependencies:
+Specifies dependencies between services, ensuring that certain services start before others. This is useful when one service relies on the availability of another.
+
+```yaml
+version: '3'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: examplepassword
+      MYSQL_DATABASE: exampledb
+```
+- In this example, there are two services defined (web and db). The web service uses the Nginx image and exposes port 80. The db service uses the MySQL image and sets some environment variables for MySQL configuration. Docker Compose automatically creates a network for these services, allowing them to communicate with each other.
+- To use a Docker Compose file, save it as docker-compose.yml in the project directory and run docker-compose up in the terminal. 
+- This command reads the configuration from the file and starts the defined services, creating a multi-container environment for your application.
+
+## **Kubernetes**
 
 ## **JavaEE/J2EE**
 Java EE, which stands for Java Platform, Enterprise Edition, is a set of specifications that extends the Java SE (Standard Edition) platform to provide a comprehensive enterprise computing infrastructure. Originally known as J2EE (Java 2 Platform, Enterprise Edition), it underwent a rebranding and is now referred to as Jakarta EE. Jakarta EE is the latest evolution of the enterprise Java platform.
