@@ -466,3 +466,140 @@ public class MyPrototypeBean {
 ## **Microservices Architecture**
 
 - Event driven architecture
+
+## **JavaEE/J2EE**
+Java EE, which stands for Java Platform, Enterprise Edition, is a set of specifications that extends the Java SE (Standard Edition) platform to provide a comprehensive enterprise computing infrastructure. Originally known as J2EE (Java 2 Platform, Enterprise Edition), it underwent a rebranding and is now referred to as Jakarta EE. Jakarta EE is the latest evolution of the enterprise Java platform.
+
+Java EE/J2EE provides a set of APIs (Application Programming Interfaces) and runtime environments for developing and running large-scale, distributed, and multi-tiered enterprise applications. These applications typically run on servers and involve components that handle various aspects of business logic, data persistence, messaging, and web presentation.
+
+- Key components
+  - Servlets and JSP (JavaServer Pages):
+Servlets are Java classes that handle HTTP requests and responses.
+JSP allows embedding Java code in HTML pages, making it easier to develop dynamic web applications.
+  - Enterprise JavaBeans (EJB):
+EJB provides a component-based architecture for building distributed enterprise applications. It includes session beans, entity beans, and message-driven beans.
+  - JDBC (Java Database Connectivity):
+JDBC is a Java-based API for interacting with relational databases, enabling developers to execute SQL queries and updates from Java applications.
+  - JMS (Java Message Service):
+JMS is a messaging API that allows Java EE applications to communicate asynchronously by sending and receiving messages.
+  - JTA (Java Transaction API):
+JTA is used for managing distributed transactions in Java applications, ensuring consistency and reliability across multiple operations.
+  - JCA (Java Connector Architecture):
+JCA provides a standard architecture for connecting the Java EE platform to heterogeneous enterprise information systems.
+  - JPA (Java Persistence API):
+JPA is a Java framework for managing relational data in enterprise applications, offering a standardized way to interact with databases.
+  - JavaMail API:
+JavaMail API provides a platform-independent and protocol-independent framework to build mail and messaging applications.
+  - Security APIs:
+Java EE includes security APIs for implementing authentication, authorization, and secure communication in enterprise applications.
+  - Web Services (JAX-RS and JAX-WS):
+JAX-RS is for building RESTful web services, while JAX-WS is for SOAP-based web services.
+  - Annotations:
+Annotations are used for metadata and configuration in Java EE applications, reducing the need for extensive XML configuration files.
+
+## **Servlets**
+- Servlets are Java classes that extend the capabilities of servers to enhance the functionality of a web server. 
+- They provide a way to generate dynamic content and handle requests and responses programmatically. 
+- Servlets are part of the Java EE (Enterprise Edition) specification and are commonly used for building web applications.
+- Key Features
+  - Server-Side Processing:
+Servlets are executed on the server side, handling requests from web clients and generating responses.
+  - Lifecycle:
+Servlets follow a lifecycle with methods like init(), service(), and destroy() that are invoked at different stages.
+  - HTTP Protocol:
+Servlets are particularly designed to work with the HTTP protocol, handling HTTP requests and responses.
+  - Java EE Integration:
+Servlets are part of the Java EE specification and can be deployed on Java EE-compliant servers like Tomcat, Jetty, or WildFly.
+  - Example Use Case:
+Servlets are used to process form submissions, handle user authentication, and generate dynamic content based on user input.
+
+```java
+@WebServlet("/HelloServlet")
+public class HelloServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        response.getWriter().println("Hello, Servlet!");
+    }
+}
+```
+
+## **JSP**
+- JSP is a technology that simplifies the process of developing web pages that include dynamic content. 
+- It allows embedding Java code directly into HTML pages, making it easier to create dynamic web content. 
+- JSP pages are converted into servlets during runtime.
+-  Key Features
+    - HTML Integration:
+JSP allows embedding Java code within HTML pages, providing a way to dynamically generate content within the HTML structure.
+    - Extension of Servlets:
+JSP is often considered an extension of servlets as JSP pages are ultimately compiled into servlets before execution.
+    - Tag Libraries:
+JSP provides tag libraries, such as JavaServer Pages Standard Tag Library (JSTL), to simplify common tasks like iteration and conditionals.
+    - Separation of Concerns:
+JSP encourages a separation of concerns by allowing designers to work on HTML structure while developers focus on Java code embedded within the pages.
+    - Expression Language (EL):
+JSP includes Expression Language (EL), a simplified way to access data stored in JavaBeans or other objects.
+    - Example Use Case:
+JSP pages are used to create dynamic web pages with mixed HTML and Java code, making it easier to generate content dynamically.
+
+```html
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSP Example</title>
+</head>
+<body>
+    <%
+        String message = "Hello, JSP!";
+        out.println(message);
+    %>
+</body>
+</html>
+```
+#### Integration of Servlets and JSP:
+- Servlets and JSP are often used together in web applications.
+- Servlets handle the logic, processing user input and managing business logic.
+- JSP pages are used for the presentation layer, allowing designers to work on the HTML structure.
+
+## **EJB**
+
+- Enterprise JavaBeans (EJB) is a specification within the Java Platform, Enterprise Edition (Java EE).
+- It defines a set of server-side, distributed components. 
+- These components are designed to simplify the development of large-scale, enterprise-level applications by providing a standardized architecture and set of services.
+- Key components
+  - Component Model:
+EJB provides a component model where business logic is encapsulated in reusable and deployable components. These components are known as Enterprise Beans.
+  - Distributed Computing:
+EJB supports distributed computing, allowing enterprise beans to be deployed on different machines in a network. This promotes scalability and load balancing.
+  - Transaction Management:
+EJB offers built-in support for transaction management. It allows developers to define methods that participate in transactions, ensuring data consistency and reliability.
+  - Security:
+EJB provides a security model that allows developers to define access controls and permissions for enterprise beans. This ensures that only authorized clients can access certain functionalities.
+  - Concurrency Control:
+EJB supports concurrency control, allowing multiple clients to access and use enterprise beans simultaneously. It manages the synchronization and locking mechanisms to prevent data corruption.
+  - Persistence:
+EJB supports the Java Persistence API (JPA) for database interaction. This allows enterprise beans to persist and retrieve data from databases seamlessly.
+  - Lifecycle Management:
+EJB components have a well-defined lifecycle, including methods like ejbCreate, ejbRemove, and others, which are invoked at different stages of the component's existence.
+  - Types of Enterprise Beans:
+Session Beans: Represent business logic and can be stateful or stateless.
+Entity Beans: Represent persistent data stored in a database.
+Message-Driven Beans: Handle asynchronous messaging.
+
+## **Beans**
+-  Beans are components designed to encapsulate business logic in a distributed, scalable, and transactional manner.
+
+## **Stateless Beans**
+- No Client State: Stateless beans do not maintain any conversational state between client invocations. Each method call is independent of previous calls.
+- Stateless beans are designed for maximum reuse. They can be used by multiple clients concurrently.
+- Scalability: Because there is no state to maintain, stateless beans are generally more scalable and suitable for applications with a large number of clients.
+- Useful when the business logic is stateless and doesn't depend on previous interactions and when scalability and performance are critical requirements.
+
+
+## **Stateful Beans**
+- Client State: Stateful beans maintain a conversational state with a specific client across multiple method invocations. They remember the state of the client.
+- Dedicated to a Client: A stateful bean is dedicated to a specific client during its lifecycle. The state is retained between method calls for that client.
+- Complex Conversations: Useful for scenarios where a sequence of method calls must be maintained in a conversation with the client.
+- Useful when conversational state needs to be maintained across multiple method calls for a specific client and
+the application requires complex interactions with a client.
