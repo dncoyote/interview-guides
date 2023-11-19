@@ -17,6 +17,41 @@
 
 - A REST API (Representational State Transfer Application Programming Interface) is a type of web API that uses HTTP requests to perform operations on data.
 
+## **SOAP**
+- SOAP, stands for Simple Object Access Protocol.
+- It is a protocol for exchanging structured information in web services. 
+- It is a messaging protocol that allows programs running on different operating systems to communicate with each other over a network.   
+- SOAP is often used in combination with XML for the message format.
+
+```xml
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" 
+               xmlns:web="http://www.example.com/webservice">
+    <soap:Header>
+        <!-- Optional header information -->
+    </soap:Header>
+    <soap:Body>
+        <web:GetStockPrice>
+            <web:StockName>ABC</web:StockName>
+        </web:GetStockPrice>
+    </soap:Body>
+</soap:Envelope>
+```
+- In this example, the SOAP message is a request to a web service (GetStockPrice) with a parameter (StockName). The web service would respond with a SOAP message containing the stock price information.
+- The Envelope element is the root element and contains Header and Body elements.
+- The Header element is optional and may contain additional information such as security details or application-specific data.
+- The Body element contains the main content of the message, including the actual data being exchanged.
+- Key components
+  - Protocol:
+SOAP is a protocol, not a programming language or platform. It defines a set of rules for structuring messages and communicating between applications.
+  - Messaging Format:
+SOAP messages are typically XML documents. The structure of the XML document adheres to the SOAP specification, defining elements for the header, body, and optional fault information.
+  - Transport Independence:
+SOAP messages can be transported using various protocols, including HTTP, SMTP, and more. The choice of transport protocol is independent of the SOAP protocol itself.
+  - Language Neutrality:
+SOAP is designed to be language-neutral, allowing applications written in different programming languages to communicate with each other.
+  - Extensibility:
+The SOAP specification is extensible, meaning that additional features can be added to meet specific requirements. Extensions are often implemented using SOAP headers.
+
 ## SOAP v/s REST
 | SOAP     | REST     |
 | ------------- | ------------- |
@@ -26,15 +61,10 @@
 | It typically uses XML as the message format. | It relies on a stateless, client-server communication model. |
 | SOAP can work over a variety of transport protocols, including HTTP, SMTP, and more. | REST primarily uses HTTP as the transport protocol. |
 
-## JAX-RS v/s JAX-WS
-| SOAP     | REST     |
-| ------------- | ------------- |
-| Suitable for building lightweight, scalable, and stateless RESTful services.
- | Suitable for building more complex, enterprise-level web services. |
-| Preferred for web and mobile applications where simplicity and flexibility are crucial.| Preferred in scenarios where standardized messaging, security, and transaction support are necessary. |
-| SOAP is a protocol, a set of rules that dictate how web services should communicate.| REST is an architectural style, not a protocol.
-| It typically uses XML as the message format. | It relies on a stateless, client-server communication model. |
-| SOAP can work over a variety of transport protocols, including HTTP, SMTP, and more. | REST primarily uses HTTP as the transport protocol. |
+## RPC
+- RPC stands for Remote Procedure Call.
+- It is a protocol that allows a program to cause a procedure (subroutine) to execute in another address space (commonly on another machine).
+- In an RPC, a client program initiates a procedure call that is executed on a remote server. The client and server can be written in different programming languages and can run on different operating systems. RPC abstracts the communication details between the client and the server, making it appear as if the client is calling a procedure locally.
 
 ## **Authentication v/s Authorization**
 
@@ -603,3 +633,68 @@ Message-Driven Beans: Handle asynchronous messaging.
 - Complex Conversations: Useful for scenarios where a sequence of method calls must be maintained in a conversation with the client.
 - Useful when conversational state needs to be maintained across multiple method calls for a specific client and
 the application requires complex interactions with a client.
+
+## JAX-RS v/s JAX-WS
+| SOAP     | REST     |
+| ------------- | ------------- |
+| Suitable for building lightweight, scalable, and stateless RESTful services.
+ | Suitable for building more complex, enterprise-level web services. |
+| Preferred for web and mobile applications where simplicity and flexibility are crucial.| Preferred in scenarios where standardized messaging, security, and transaction support are necessary. |
+| SOAP is a protocol, a set of rules that dictate how web services should communicate.| REST is an architectural style, not a protocol.
+| It typically uses XML as the message format. | It relies on a stateless, client-server communication model. |
+| SOAP can work over a variety of transport protocols, including HTTP, SMTP, and more. | REST primarily uses HTTP as the transport protocol. |
+
+
+## JAX-RS (Java API for RESTful Web Services)
+- JAX-RS is designed for building RESTful web services, where communication is based on the principles of Representational State Transfer (REST).
+- Key Features:
+
+  - Annotations such as @Path, @GET, @POST, etc., are used to define the URI paths and HTTP methods for resource endpoints.
+  - Supports the creation of resource classes that represent entities in a RESTful architecture.
+  - Provides support for content negotiation, allowing clients to request different representations (JSON, XML, etc.) of the same resource.
+
+```java
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+@Path("/hello")
+public class HelloWorldResource {
+
+    @GET
+    @Produces("text/plain")
+    public String sayHello() {
+        return "Hello, World!";
+    }
+}
+```
+- We have to use JAX-RS for building RESTful web services where resources are identified by URIs, and data is typically represented in formats like JSON or XML.
+- JAX-RS focuses on resource-oriented architecture and uses HTTP methods for communication.
+- JAX-RS allows multiple representations (JSON, XML, etc.) of the same resource.
+
+## JAX-WS (Java API for XML Web Services)
+- JAX-WS is designed for building web services that use XML as the data format for communication. It is often associated with SOAP (Simple Object Access Protocol) web services.
+- Key Features:
+
+  - Annotations such as @WebService, @WebMethod, etc., are used to define the service interface and methods.
+  - Supports the generation of WSDL (Web Services Description Language) documents, which describe the service and its operations.
+  - Provides a programming model for building both server-side (provider) and client-side (consumer) components of a web service.
+
+
+```java
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+
+@WebService
+public class HelloWorldService {
+
+    @WebMethod
+    public String sayHello(String name) {
+        return "Hello, " + name + "!";
+    }
+}
+```
+- We have to use JAX-WS for building SOAP-based web services that use XML for communication and provide a standardized protocol for interoperability.
+- JAX-WS is often associated with RPC (Remote Procedure Call) style communication using SOAP.
+- JAX-WS primarily uses XML for communication and is often associated with the WS-* stack for additional features like security and transactions.   
+
