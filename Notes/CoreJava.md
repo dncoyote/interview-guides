@@ -1706,3 +1706,10 @@ The main thread can continue its work while data fetching is in progress.
 - Sealed Classes (Final): Sealed classes feature is finalized.
 - Pattern Matching (Final): Pattern matching feature is finalized.
 - Foreign Function & Memory API (Incubator): Introduction of the Foreign Function & Memory API for native interop.
+
+stack overflow error
+RMI
+Java Reflections
+second highest value sql
+composite primary key
+triggers
