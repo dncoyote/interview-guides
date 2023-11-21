@@ -647,6 +647,11 @@ public void readFromFile(String filename) throws IOException {
 }
 
 ```
+## **Stack Overflow Error**
+- Stack Overflow typically refers to a specific runtime error that occurs when the call stack of a program exceeds its allocated size.
+- The call stack is a region of memory used to manage function/method calls and local variables in a program. Each time a method is called, a new frame is added to the call stack, and when the method completes, its frame is removed.
+- When a method calls itself (recursion), and the recursion is not properly bounded or limited, it can lead to a situation where the call stack becomes full, resulting in a StackOverflowError.
+- A stack overflow in Java is often associated with infinite or excessively deep recursion.
 
 ## **Collection**
 
@@ -1707,9 +1712,6 @@ The main thread can continue its work while data fetching is in progress.
 - Pattern Matching (Final): Pattern matching feature is finalized.
 - Foreign Function & Memory API (Incubator): Introduction of the Foreign Function & Memory API for native interop.
 
-stack overflow error
 RMI
 Java Reflections
-second highest value sql
-composite primary key
 triggers

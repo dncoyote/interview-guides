@@ -218,7 +218,7 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
 - `GROUP BY` clause is used to group rows that have the same values in specified columns into summary rows.
 - Data Aggregation
 
-```
+```sql
 SELECT product_category, SUM(sales_amount) as total_sales
 FROM sales
 GROUP BY product_category;
@@ -226,7 +226,7 @@ GROUP BY product_category;
 
 - Data Summarization
 
-```
+```sql
 SELECT DATE(order_date), SUM(order_total) as daily_total
 FROM orders
 GROUP BY DATE(order_date);
@@ -234,7 +234,7 @@ GROUP BY DATE(order_date);
 
 - Data Cleansing
 
-```
+```sql
 SELECT email, COUNT(*) as count
 FROM customers
 GROUP BY email
@@ -243,7 +243,7 @@ HAVING count > 1;
 
 - Data Segmentation
 
-```
+```sql
 SELECT CASE
           WHEN total_purchases >= 10 THEN 'Frequent Buyer'
           ELSE 'Occasional Buyer'
@@ -255,11 +255,26 @@ GROUP BY buyer_segment;
 
 - Statistical Analysis
 
-```
+```sql
 SELECT FLOOR(value/10)*10 as bin, COUNT(*) as frequency
 FROM data_values
 GROUP BY bin;
 ```
+
+## **SQL query to fetch second highest value**
+
+```sql
+SELECT MAX(column_name) AS second_highest
+FROM table_name
+WHERE column_name < (SELECT MAX(column_name) FROM table_name);
+```
+```sql
+SELECT column_name AS second_highest
+FROM table_name
+ORDER BY column_name DESC
+LIMIT 1 OFFSET 1;
+```
+
 
 ## **Hibernate**
 
