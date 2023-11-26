@@ -1715,3 +1715,6 @@ The main thread can continue its work while data fetching is in progress.
 RMI
 Java Reflections
 triggers
+sql vs nosql
+Java 8 main features + code(lambda, streamsapi )
+Hibernate + jpql 
