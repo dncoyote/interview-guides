@@ -766,6 +766,13 @@ linkedHashMap.put("Bob", 30);
 linkedHashMap.put("Carol", 22);
 ```
 
+##### **Connection between HashMap and HashSet**
+- They both use hash tables to achieve their functionality efficiently. 
+- A HashSet is essentially a HashMap where the elements are the keys, and the values associated with those keys are a constant (PRESENT in the case of HashSet) indicating that the key is present.
+- A HashSet is backed by a HashMap where the elements are the keys, and the values are a constant (usually PRESENT).
+- When you add an element to a HashSet, it is essentially being added as a key in the underlying HashMap.
+- When you perform operations like contains on a HashSet, it is utilizing the HashMap operations.
+
 ## **Concurrent Hashmap**
 
 - Concurrent HashMap is a class in Java's that provides a thread-safe implementation of the Map interface without need for synchronization.
