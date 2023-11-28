@@ -1160,13 +1160,12 @@ List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
 
 Collections.sort(names, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
 ```
-## **Default**
 
-Default method
-: It is a method defined within an interface that provides a default implementation
-    - Default methods support the evolution of interfaces over time. As the requirements of an interface change, new methods can be added with default implementations, allowing for a more flexible and extensible design.
-    - Default methods can provide sensible default behavior for methods that don't need to be implemented by every implementing class.
-    - Default methods enable a form of multiple inheritance in Java interfaces. If a class implements multiple interfaces that have conflicting method signatures, the class must provide an implementation for the conflicting methods. However, if one of the conflicting methods is a default method, the conflict is resolved, and the class inherits the default implementation.
+## **Default method**
+- It is a method defined within an interface that provides a default implementation
+- Default methods support the evolution of interfaces over time. As the requirements of an interface change, new methods can be added with default implementations, allowing for a more flexible and extensible design.
+- Default methods can provide sensible default behavior for methods that don't need to be implemented by every implementing class.
+- Default methods enable a form of multiple inheritance in Java interfaces. If a class implements multiple interfaces that have conflicting method signatures, the class must provide an implementation for the conflicting methods. However, if one of the conflicting methods is a default method, the conflict is resolved, and the class inherits the default implementation.
 
 ```java
 
@@ -1178,8 +1177,8 @@ public interface MyInterface {
 
 ```
 
-Default access modifier
-: When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
+## **Default access modifier**
+- When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
 
 ```java
 
@@ -1191,11 +1190,13 @@ class MyClass {
 
 ## **Predicate**
 
-- `Predicate` is a functional interface introduced in the Java 8 release as part of the java.util.function package. It represents a single argument function that takes an input and returns a boolean value, indicating whether the input satisfies a certain condition.
+- `Predicate` is a functional interface introduced in the Java 8 release as part of the `java.util.function` package.
+- `Predicate` interface represents a boolean-valued function that takes an argument and returns a boolean result.
 - The Predicate interface is commonly used for filtering or testing elements based on a specific criterion.
 
 ```java
-
+Example 1
+----------
 public class PredicateExample {
 public static void main(String[] args) {
 List<String> words = Arrays.asList("apple", "banana", "orange", "grape", "watermelon");
@@ -1223,6 +1224,23 @@ List<String> filteredList = new ArrayList<>();
 
       return filteredList;
 
+    }
+}
+
+Example 2
+----------
+
+public class PredicateExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        // Creating a Predicate to filter even numbers
+        Predicate<Integer> isEven = num -> num % 2 == 0;
+
+        // Filtering the list using the Predicate
+        numbers.stream()
+               .filter(isEven)
+               .forEach(System.out::println);
     }
 }
 
