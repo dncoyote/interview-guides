@@ -1718,3 +1718,4 @@ triggers
 sql vs nosql
 Java 8 main features + code(lambda, streamsapi )
 Hibernate + jpql 
+Agile
