@@ -1253,6 +1253,105 @@ public class PredicateExample {
 
 ```
 
+## **Method Reference**
+- The `::` notation in Java is called the Method Reference operator.
+- It provides a shorthand syntax for creating lambda expressions that directly invoke a method or constructor.
+- It is a way to make your code more concise, especially when the lambda expression is simply calling an existing method.
+
+```java
+
+import java.util.Arrays;
+import java.util.List;
+
+class Person {
+    private String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public void printDetails() {
+        System.out.println("Person: " + name);
+    }
+}
+
+public class MethodReferenceExample {
+    public static void main(String[] args) {
+        List<Person> people = Arrays.asList(
+                new Person("Alice"),
+                new Person("Bob"),
+                new Person("Charlie")
+        );
+
+        // Using lambda expression
+        System.out.println("Lambda Expression\n");
+        people.forEach(person -> person.printDetails());
+
+        // Using method reference
+        System.out.println("Method Reference\n");
+        people.forEach(Person::printDetails);
+
+        // Using traditional approach
+        System.out.println("Tradition\n");
+        for (Person person : people) {
+            person.printDetails();
+        }
+    }
+}
+
+```
+##### Static method reference
+
+```java
+ClassName::staticMethodName
+Example:
+
+
+// Lambda expression
+list.forEach(item -> System.out.println(item));
+
+// Method reference
+list.forEach(System.out::println);
+```
+
+##### Instance method reference of a particular object
+
+```java
+instance::instanceMethodName
+
+// Lambda expression
+list.forEach(item -> System.out.println(item.length()));
+
+// Method reference
+list.forEach(String::length);
+```
+
+##### Instance method reference of an arbitrary object of a particular type
+
+```java
+ClassName::instanceMethodName
+
+// Lambda expression
+list.sort((s1, s2) -> s1.compareToIgnoreCase(s2));
+
+// Method reference
+list.sort(String::compareToIgnoreCase);
+```
+
+##### Constructor reference
+
+```java
+ClassName::new
+Example:
+
+
+// Lambda expression
+Supplier<List<String>> listSupplier = () -> new ArrayList<>();
+
+// Constructor reference
+Supplier<List<String>> listSupplier = ArrayList::new;
+```
+
 ## **StreamAPI**
 
 - Stream API in Java provides a way to process collections of objects in a declarative and functional style.
