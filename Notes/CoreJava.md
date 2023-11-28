@@ -950,7 +950,323 @@ public class Main {
 
 - Functional interface is an interface that has exactly one abstract method.
 - Functional interfaces are also known as single abstract method (SAM) interfaces.
-- They can have any number of default methods or static methods
+- They are used to support the lambda expressions and functional programming style
+- They can have any number of default methods or static methods.
+- It's a good practice to annotate a functional interface with `@FunctionalInterface`. This annotation serves as a marker, and if a developer accidentally adds more than one abstract method, the compiler will generate an error.
+
+```java
+
+@FunctionalInterface
+interface MyFunctionalInterface {
+    // Abstract method
+    void myMethod();
+
+    // Default method
+    default void myDefaultMethod() {
+        System.out.println("Default method implementation");
+    }
+
+    // Static method
+    static void myStaticMethod() {
+        System.out.println("Static method implementation");
+    }
+}
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        // Lambda expression for the abstract method
+        MyFunctionalInterface myFunction = () -> System.out.println("Lambda expression for myMethod");
+
+        // Calling the abstract method using the lambda expression
+        myFunction.myMethod();
+
+        // Calling the default method
+        myFunction.myDefaultMethod();
+
+        // Calling the static method
+        MyFunctionalInterface.myStaticMethod();
+    }
+}
+
+
+//Output
+Lambda expression for myMethod
+Default method implementation
+Static method implementation
+```
+## **Lambda Expression**
+
+- Lambda Expression allow you to express instances of single-method interfaces (functional interfaces) more concisely. Lambda expressions make your code more readable and expressive, especially when working with functional programming constructs.
+- A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
+- Lambda expressions are particularly useful in scenarios where you need to pass behavior as an argument, such as in the case of functional interfaces. 
+- They lead to more concise and expressive code, making your Java programs more readable and maintainable.
+
+```
+(parameters) -> expression
+
+ //or
+
+(parameters) -> {
+    // code block
+    // multiple statements
+    return result;
+}
+
+```
+
+```java
+
+@FunctionalInterface
+interface MyFunction {
+    void myMethod(String message);
+}
+
+public class LambdaExample {
+    public static void main(String[] args) {
+        // Lambda expression implementation
+        MyFunction myFunction = (message) -> System.out.println("Hello, " + message);
+
+        // Calling the method using the lambda expression
+        myFunction.myMethod("World");
+    }
+}
+
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        Runnable hello = () -> System.out.println("Hello, world!");
+        hello.run();
+    }
+}
+
+---
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        IntBinaryOperator add = (a, b) -> a + b;
+        int result = add.applyAsInt(3, 5);
+        System.out.println("3 + 5 = " + result);
+    }
+}
+
+---
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        Function<String, Integer> length = s -> s.length();
+        int stringLength = length.apply("Hello, world!");
+        System.out.println("Length of string: " + stringLength);
+    }
+}
+
+---
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        List<String> strings = Arrays.asList("Hello", "world", "!");
+        List<Integer> lengths = strings.stream()
+        .map(s -> s.length())
+        .collect(Collectors.toList());
+        System.out.println("Lengths: " + lengths);
+    }
+}
+
+---
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        Runnable hello = System.out::println;
+        hello.run("Hello, world!");
+    }
+}
+
+```
+## **Examples of Lambda Expression**
+-  List Iteration
+    - The forEach method is part of the Iterable interface, and it takes a Consumer as an argument.
+    - The lambda expression `(number -> System.out.println(number))` represents the Consumer interface's accept method.
+```java
+//Before Lambda
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+for (Integer number : numbers) {
+    System.out.println(number);
+}
+
+//With Lambda
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+numbers.forEach(number -> System.out.println(number));
+```
+
+-  Filter List
+    - The stream method is called on the list, converting it into a stream of elements.
+    - The filter method is used to keep only the elements that satisfy the specified condition.
+    - The lambda expression `(name -> name.startsWith("A"))` is the predicate used for filtering.
+```java
+//Before Lambda
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+List<String> filteredNames = new ArrayList<>();
+for (String name : names) {
+    if (name.startsWith("A")) {
+        filteredNames.add(name);
+    }
+}
+
+//With Lambda
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+List<String> filteredNames = names.stream()
+                                  .filter(name -> name.startsWith("A"))
+                                  .collect(Collectors.toList());
+```
+
+-  Runnable Interface
+    - The Runnable interface is a functional interface with a single run method.
+    - The lambda expression `( ) -> System.out.println("Task is running in a new thread.")` is used to provide an implementation for the run method.
+```java
+//Before Lambda
+Runnable myRunnable = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Task is running in a new thread.");
+    }
+};
+
+new Thread(myRunnable).start();
+
+//With Lambda
+Runnable myRunnable = () -> System.out.println("Task is running in a new thread.");
+new Thread(myRunnable).start();
+```
+
+-  Comparator for Sorting
+    - The sort method takes a Comparator as an argument.
+    - The lambda expression `(s1, s2) -> Integer.compare(s1.length(), s2.length())` represents the compare method of the Comparator interface.
+```java
+//Before Lambda
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+Collections.sort(names, new Comparator<String>() {
+    @Override
+    public int compare(String s1, String s2) {
+        return Integer.compare(s1.length(), s2.length());
+    }
+});
+
+//With Lambda
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+Collections.sort(names, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
+```
+## **Default**
+
+Default method
+: It is a method defined within an interface that provides a default implementation
+    - Default methods support the evolution of interfaces over time. As the requirements of an interface change, new methods can be added with default implementations, allowing for a more flexible and extensible design.
+    - Default methods can provide sensible default behavior for methods that don't need to be implemented by every implementing class.
+    - Default methods enable a form of multiple inheritance in Java interfaces. If a class implements multiple interfaces that have conflicting method signatures, the class must provide an implementation for the conflicting methods. However, if one of the conflicting methods is a default method, the conflict is resolved, and the class inherits the default implementation.
+
+```java
+
+public interface MyInterface {
+    default void myMethod() {
+        System.out.println("This is a default method.");
+    }
+}
+
+```
+
+Default access modifier
+: When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
+
+```java
+
+class MyClass {
+    int myVariable; // default access modifier
+}
+
+```
+
+## **Predicate**
+
+- `Predicate` is a functional interface introduced in the Java 8 release as part of the java.util.function package. It represents a single argument function that takes an input and returns a boolean value, indicating whether the input satisfies a certain condition.
+- The Predicate interface is commonly used for filtering or testing elements based on a specific criterion.
+
+```java
+
+public class PredicateExample {
+public static void main(String[] args) {
+List<String> words = Arrays.asList("apple", "banana", "orange", "grape", "watermelon");
+
+      // Create a Predicate to filter words with length greater than 5
+      Predicate<String> lengthGreaterThan5 = word -> word.length() > 5;
+
+      // Filter the list based on the Predicate
+      List<String> filteredList = filterList(words, lengthGreaterThan5);
+
+      System.out.println("Filtered List: " + filteredList); // [banana, orange, watermelon]
+
+}
+
+public static List<String> filterList(List<String> list, Predicate<String> predicate) {
+// Create a new list to store the filtered elements
+List<String> filteredList = new ArrayList<>();
+
+      // Iterate over the list and apply the Predicate to each element
+      for (String element : list) {
+          if (predicate.test(element)) {
+              filteredList.add(element);
+          }
+      }
+
+      return filteredList;
+
+    }
+}
+
+```
+
+## **StreamAPI**
+
+- Stream API in Java provides a way to process collections of objects in a declarative and functional style.
+- It is part of the Java Collections Framework.
+- It provides a set of operations that can be performed on streams, such as filtering, mapping, sorting, and reducing.
+
+```java
+
+List<String> list = Arrays.asList("apple", "banana", "cherry", "date");
+
+// create a stream from the list
+Stream<String> stream = list.stream();
+
+// filter the stream to only include elements starting with "a"
+Stream<String> filteredStream = stream.filter(s -> s.startsWith("a"));
+//find element using filter
+String firstLongFruit = fruits.stream()
+.filter(fruit -> fruit.length() > 6)
+.findFirst()
+.orElse("No long fruit found");
+
+// map the filtered stream to uppercase strings
+Stream<String> mappedStream = filteredStream.map(String::toUpperCase);
+// Map elements
+List<Integer> fruitLengths = fruits.stream()
+.map(String::length)
+.toList();
+System.out.println("Fruit lengths: " + fruitLengths); // Output: [5, 6, 6, 4, 10]
+
+//Reduce elements
+int sum = fruits.stream()
+.mapToInt(String::length)
+.sum();
+System.out.println("Total length: " + sum); // Output: 31
+
+// print the mapped stream to the console
+mappedStream.forEach(System.out::println);
+
+```
 
 ## **Anonymous Class**
 
@@ -1058,168 +1374,6 @@ public class Main {
 
 - `default` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as default, it can be accessed within the same class, within subclasses in same package, and within the same package.
 - `default` members are inherited only within the same package
-
-## **Default**
-
-Default method
-: It is a method defined within an interface that provides a default implementation
-
-```java
-
-public interface MyInterface {
-    default void myMethod() {
-        System.out.println("This is a default method.");
-    }
-}
-
-```
-
-Default access modifier
-: When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
-
-```java
-
-class MyClass {
-    int myVariable; // default access modifier
-}
-
-```
-
-## **Predicate**
-
-- `Predicate` is a functional interface introduced in the Java 8 release as part of the java.util.function package. It represents a single argument function that takes an input and returns a boolean value, indicating whether the input satisfies a certain condition.
-- The Predicate interface is commonly used for filtering or testing elements based on a specific criterion.
-
-```java
-
-public class PredicateExample {
-public static void main(String[] args) {
-List<String> words = Arrays.asList("apple", "banana", "orange", "grape", "watermelon");
-
-      // Create a Predicate to filter words with length greater than 5
-      Predicate<String> lengthGreaterThan5 = word -> word.length() > 5;
-
-      // Filter the list based on the Predicate
-      List<String> filteredList = filterList(words, lengthGreaterThan5);
-
-      System.out.println("Filtered List: " + filteredList); // [banana, orange, watermelon]
-
-}
-
-public static List<String> filterList(List<String> list, Predicate<String> predicate) {
-// Create a new list to store the filtered elements
-List<String> filteredList = new ArrayList<>();
-
-      // Iterate over the list and apply the Predicate to each element
-      for (String element : list) {
-          if (predicate.test(element)) {
-              filteredList.add(element);
-          }
-      }
-
-      return filteredList;
-
-    }
-}
-
-```
-
-## **StreamAPI**
-
-- Stream API in Java provides a way to process collections of objects in a declarative and functional style.
-- It is part of the Java Collections Framework.
-- It provides a set of operations that can be performed on streams, such as filtering, mapping, sorting, and reducing.
-
-```java
-
-List<String> list = Arrays.asList("apple", "banana", "cherry", "date");
-
-// create a stream from the list
-Stream<String> stream = list.stream();
-
-// filter the stream to only include elements starting with "a"
-Stream<String> filteredStream = stream.filter(s -> s.startsWith("a"));
-//find element using filter
-String firstLongFruit = fruits.stream()
-.filter(fruit -> fruit.length() > 6)
-.findFirst()
-.orElse("No long fruit found");
-
-// map the filtered stream to uppercase strings
-Stream<String> mappedStream = filteredStream.map(String::toUpperCase);
-// Map elements
-List<Integer> fruitLengths = fruits.stream()
-.map(String::length)
-.toList();
-System.out.println("Fruit lengths: " + fruitLengths); // Output: [5, 6, 6, 4, 10]
-
-//Reduce elements
-int sum = fruits.stream()
-.mapToInt(String::length)
-.sum();
-System.out.println("Total length: " + sum); // Output: 31
-
-// print the mapped stream to the console
-mappedStream.forEach(System.out::println);
-
-```
-
-## **Lambda Expression**
-
-- Lambda Expression provide a concise way to express functionality that can be passed around like data.
-- A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
-
-```java
-
-public class HelloWorld {
-    public static void main(String[] args) {
-        Runnable hello = () -> System.out.println("Hello, world!");
-        hello.run();
-    }
-}
-
----
-
-public class HelloWorld {
-    public static void main(String[] args) {
-        IntBinaryOperator add = (a, b) -> a + b;
-        int result = add.applyAsInt(3, 5);
-        System.out.println("3 + 5 = " + result);
-    }
-}
-
----
-
-public class HelloWorld {
-    public static void main(String[] args) {
-        Function<String, Integer> length = s -> s.length();
-        int stringLength = length.apply("Hello, world!");
-        System.out.println("Length of string: " + stringLength);
-    }
-}
-
----
-
-public class HelloWorld {
-    public static void main(String[] args) {
-        List<String> strings = Arrays.asList("Hello", "world", "!");
-        List<Integer> lengths = strings.stream()
-        .map(s -> s.length())
-        .collect(Collectors.toList());
-        System.out.println("Lengths: " + lengths);
-    }
-}
-
----
-
-public class HelloWorld {
-    public static void main(String[] args) {
-        Runnable hello = System.out::println;
-        hello.run("Hello, world!");
-    }
-}
-
-```
 
 ## **Transient**
 
