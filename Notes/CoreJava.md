@@ -1244,10 +1244,14 @@ public class PredicateExample {
         // Creating a Predicate to filter even numbers
         Predicate<Integer> isEven = num -> num % 2 == 0;
 
-        // Filtering the list using the Predicate
+        // Filtering the list using the Predicate and method reference
         numbers.stream()
                .filter(isEven)
                .forEach(System.out::println);
+        // Filtering the list using the Predicate
+        numbers.stream()
+               .filter(isEven)
+               .forEach(num -> System.out.println(num));
     }
 }
 
