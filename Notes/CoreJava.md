@@ -179,6 +179,129 @@ A "reference type" refers to the data type that represents references to objects
 - Underscores in Numeric Literals (Java 7 and later): You can use underscores to improve the readability of numeric literals.
   Example: long bigNumber = 1_000_000;
 
+## **Class**
+- A class is a fundamental building block of object-oriented programming (OOP).
+- It serves as a blueprint or template for creating objects. 
+- A class defines the properties (fields or attributes) and behaviors (methods) that objects of that class will have.
+- Key features
+    - Fields
+    - Methods
+    - Constructors
+    - Access modifiers
+    - Encapsulation
+    ```
+    public class MyClass {
+    private int intValue;  // Encapsulated field
+
+    public void setIntValue(int value) {
+        this.intValue = value;
+    }
+
+    public int getIntValue() {
+        return intValue;
+    }
+    }
+    ```
+    - Inheritance
+    ```
+    public class SubClass extends SuperClass {
+    // ...
+    }
+    ```
+    - Polymorphism
+    ```
+    SuperClass myObject = new SubClass();
+    ```
+
+## **Object**
+- Object is an instance of a class.
+- Object is a key concept in object-oriented programming (OOP).
+- A class serves as a blueprint or template for creating objects, and an object is a concrete instantiation of that class.
+- Objects have a lifecycle that includes creation, usage, and eventually garbage collection when they are no longer referenced.
+
+## **Object Initialization**
+- Using Constructors
+
+```java
+MyClass obj = new MyClass();  // Default constructor
+MyClass objWithParameters = new MyClass(param1, param2);  // Parameterized constructor
+
+```
+
+- Object Initialization Block:
+    - An instance initializer block is a block of code within a class that is executed each time an instance of the class is created.
+
+```java
+public class MyClass {
+    {
+        // Instance initializer block
+        // Code for initialization
+    }
+
+    // Other members of the class
+}
+
+```
+
+
+- Initialization Through Method:
+    - You can create methods in your class that perform initialization tasks and then call these methods after creating an object.
+
+```java
+    MyClass obj = new MyClass();
+    obj.initialize();  // Custom initialization method
+
+```
+
+
+- Using Static Factory Methods:
+    - Static factory methods are static methods that return an instance of the class. They are not constructors, but they can be used for object creation and initialization.
+
+```java
+public class MyClass {
+    private MyClass() {
+        // Private constructor
+    }
+
+    public static MyClass createInstance() {
+        MyClass obj = new MyClass();
+        // Additional initialization code
+        return obj;
+    }
+}
+
+```
+
+- Using Builder Pattern:
+    - The builder pattern involves using a separate builder class to construct an object with a fluent and readable syntax.
+
+```java
+MyClass obj = new MyClass.Builder()
+                        .setParameter1(value1)
+                        .setParameter2(value2)
+                        .build();
+```
+
+- Initialization in Declaration:
+    - You can initialize an object when it is declared, either directly or using an initializer block.
+```java
+MyClass obj = new MyClass() {
+    // Anonymous class initializer block
+    {
+        // Code for initialization
+    }
+};
+```
+
+- Using Object Cloning
+    - The clone() method in Java allows you to create a new object by copying an existing object.
+
+```java
+MyClass original = new MyClass();
+MyClass cloned = (MyClass) original.clone();
+```
+
+
 ## **Constructors**
 
 - Constructors in Java are special methods that are used to create objects of a class.
@@ -1395,7 +1518,45 @@ System.out.println("Total length: " + sum); // Output: 31
 mappedStream.forEach(System.out::println);
 
 ```
+##### map 
+- The `map` operation is used to transform each element in a stream based on a provided function.
+- It applies the function to each element and produces a new stream of the transformed elements.
 
+```java
+List<String> words = Arrays.asList("apple", "banana", "cherry");
+
+List<String> uppercaseWords = words.stream()
+                                  .map(String::toUpperCase)
+                                  .collect(Collectors.toList());
+
+// Result: ["APPLE", "BANANA", "CHERRY"]
+
+```
+- In this example, `String::toUpperCase` is a function that converts a string to uppercase, and map applies this function to each element in the stream.
+- `map` produces a one-to-one mapping of elements, where each input element corresponds to one output element.
+- `map` is suitable for simple transformations on each element.
+
+##### flatmap
+- The `flatMap` operation is used when each element in the stream can be mapped to multiple elements, possibly from a nested stream or collection. 
+- It "flattens" the result, producing a single stream of the concatenated results.
+
+```java
+List<List<Integer>> numbers = Arrays.asList(
+    Arrays.asList(1, 2, 3),
+    Arrays.asList(4, 5, 6),
+    Arrays.asList(7, 8, 9)
+);
+
+List<Integer> flattenedNumbers = numbers.stream()
+                                       .flatMap(List::stream)
+                                       .collect(Collectors.toList());
+
+// Result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+```
+- In this example, `flatMap(List::stream)` converts each list in the stream into a stream of its elements, and then flattens these streams into a single stream of integers.
+- `flatMap` can produce a one-to-many mapping, where each input element can be transformed into multiple output elements.
+- `flatMap` is useful when dealing with nested structures or scenarios where each input element can expand into multiple elements.
 ## **Anonymous Class**
 
 - An anonymous class is a type of inner class that is defined and instantiated at the same time without explicitly declaring a class name.
@@ -2001,4 +2162,4 @@ sql vs nosql
 Java 8 main features + code(lambda, streamsapi )
 Hibernate + jpql 
 Agile
-connection between hashset and hashmap
+cap theorem
