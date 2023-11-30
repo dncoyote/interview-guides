@@ -169,6 +169,9 @@ The SOAP specification is extensible, meaning that additional features can be ad
   ```
 
 ## **Spring Stereotype annotation**
+- Stereotype annotations are a set of annotations used to indicate the roles of annotated classes. 
+- These annotations help Spring Boot understand the purpose of the annotated class and how it should be treated within the application context. 
+- Stereotype annotations are part of the broader Spring Framework, and they provide a way to define components, services, configurations, and more.
 
 ## **OAuth 2.0**
 
