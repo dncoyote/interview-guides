@@ -1518,6 +1518,47 @@ System.out.println("Total length: " + sum); // Output: 31
 mappedStream.forEach(System.out::println);
 
 ```
+##### stream 
+- The `stream()` method is used to obtain a sequential stream from a collection or other data source.
+- Operations on a sequential stream are performed in a single-threaded manner.
+- Use a sequential stream when the order of processing is important, and the data size is not large.
+
+```java
+myList.stream()
+       .filter(s -> s.startsWith("c"))
+       .forEach(System.out::println);
+```
+##### parallelStream
+- The `parallelStream()` method is used to obtain a parallel stream from a collection or other data source.
+- A parallel stream is designed to execute operations concurrently.
+- Use a parallel stream when dealing with large datasets or when operations can be performed independently, and parallelism can lead to performance improvements.
+
+```java
+myList.parallelStream()
+       .filter(s -> s.startsWith("c"))
+       .forEach(System.out::println);
+```
+
+##### filter
+- `filter` operation is used to eliminate elements from a stream based on a given condition.
+```java
+List<Integer> evenNumbers = numbersArray.stream()
+                                          .filter(n -> n % 2 == 0)
+                                          .collect(Collectors.toList());
+```
+
+##### collect
+- `collect` operation is used to transform the elements of a stream into a different form, usually a collection like a List, Set, or Map.
+
+##### reduce
+- `reduce` operation in Java Streams is used to combine the elements of a stream into a single result.
+```java
+List<Integer> numbers = Arrays.asList(2, 3, 4, 5);
+
+        // Using reduce to calculate the product of numbers
+        int product = numbers.stream().reduce(1, (n1, n2) -> n1 * n2);
+```
+
 ##### map 
 - The `map` operation is used to transform each element in a stream based on a provided function.
 - It applies the function to each element and produces a new stream of the transformed elements.
@@ -2159,7 +2200,14 @@ RMI
 Java Reflections
 triggers
 sql vs nosql
-Java 8 main features + code(lambda, streamsapi )
 Hibernate + jpql 
 Agile
 cap theorem
+Code to sort employee object based on salary
+Spring boot basics(annotations, rest controller)
+Arrays
+Strings
+Serverless Compute
+Docker
+Service-Oriented Architecture (SOA)
+Event-Based Architecture
