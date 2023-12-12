@@ -2199,7 +2199,6 @@ The main thread can continue its work while data fetching is in progress.
 RMI
 Java Reflections
 triggers
-sql vs nosql
 Hibernate + jpql 
 Agile
 cap theorem

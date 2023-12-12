@@ -4,6 +4,23 @@
 
 SQL, which stands for Structured Query Language, is a domain-specific programming language used for managing and manipulating relational databases. It provides a standardized way to interact with relational database management systems (RDBMS) to perform tasks such as querying data, updating data, inserting data, and managing database structures.
 
+## **SQL v/s NoSQL**
+
+#### SQL
+- SQL databases are relational databases.
+- Data is structured in tables with fixed schema.
+- Vertical Scaling is often achieved by upgrading hardware (adding more power to existing machines)..
+- SQL is used to query relational databases.
+- Well-suited for applications with complex queries and transactions.
+- Commonly used in traditional business applications, financial systems, and systems where data relationships are well-defined.
+
+#### NoSQL
+- NoSQL databases are non-relational or distributed databases.
+- NoSQL databases are schema-less or have a dynamic schema.
+- Horizontal scalability is common (adding more servers to a database).
+- Well-suited for applications with evolving data requirements, large amounts of unstructured data, and scalability needs.
+- Commonly used in web applications, real-time big data, and systems with dynamic or flexible schemas.
+
 ## **Primary key v/s Unique key v/s Foreign key**
 
 #### Primary key
