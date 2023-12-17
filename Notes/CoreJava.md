@@ -2214,22 +2214,18 @@ OOPS
 SQL
 DBMS and RDBMS
 Solid principles and to write sample for Dependency inversion
-fibonacci series
-identify prime numbers within a range
 linkedlist
 Reverse a string with out using lambda expression
 What is the need for spring boot when we have MVC
 how will you create a simple project which connects to the database and fetches the data.
 What are the components of microservice
-Sort array, palindrome, biggest of 3 numbers
+Sort array
+biggest of 3 numbers
 custom exception
 join
-How to find Missing elements in arrays? Number of occurrences of an element in an array
-arrays
+How to find Missing elements in arrays?
 second largest among three numbers.
-program of 5 factorial
 Intermediate and terminal operation in stream, functional interface, dispatcher servlet, then coding questions, algorithm data structure, spring boot, microservices, jpa, hibernate, react js , javascript
-Factorial, max in an array
 To swap 2 numbers without using third variable
 to check even or odd
 Pattern programming
