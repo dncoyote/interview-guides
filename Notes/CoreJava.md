@@ -1126,8 +1126,8 @@ Static method implementation
 ```
 ## **Lambda Expression**
 
-- Lambda Expression allow you to express instances of single-method interfaces (functional interfaces) more concisely. Lambda expressions make your code more readable and expressive, especially when working with functional programming constructs.
 - A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
+- Lambda Expression allow you to express instances of single-method interfaces (functional interfaces) more concisely. Lambda expressions make your code more readable and expressive, especially when working with functional programming constructs.
 - Lambda expressions are particularly useful in scenarios where you need to pass behavior as an argument, such as in the case of functional interfaces. 
 - They lead to more concise and expressive code, making your Java programs more readable and maintainable.
 
