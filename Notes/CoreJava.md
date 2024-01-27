@@ -1128,6 +1128,7 @@ Static method implementation
 - It is a method defined within an interface that provides a default implementation
 - Default methods support the evolution of interfaces over time. As the requirements of an interface change, new methods can be added with default implementations, allowing for a more flexible and extensible design.
 - Default methods can provide sensible default behavior for methods that don't need to be implemented by every implementing class.
+- When new default methods are introduced in an interface, existing classes implementing the interface won't be affected. They can still use the default method if needed. 
 - Default methods enable a form of multiple inheritance in Java interfaces. If a class implements multiple interfaces that have conflicting method signatures, the class must provide an implementation for the conflicting methods. However, if one of the conflicting methods is a default method, the conflict is resolved, and the class inherits the default implementation.
 
 ```java
