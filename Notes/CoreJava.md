@@ -1124,6 +1124,32 @@ Lambda expression for myMethod
 Default method implementation
 Static method implementation
 ```
+## **Default method**
+- It is a method defined within an interface that provides a default implementation
+- Default methods support the evolution of interfaces over time. As the requirements of an interface change, new methods can be added with default implementations, allowing for a more flexible and extensible design.
+- Default methods can provide sensible default behavior for methods that don't need to be implemented by every implementing class.
+- Default methods enable a form of multiple inheritance in Java interfaces. If a class implements multiple interfaces that have conflicting method signatures, the class must provide an implementation for the conflicting methods. However, if one of the conflicting methods is a default method, the conflict is resolved, and the class inherits the default implementation.
+
+```java
+
+public interface MyInterface {
+    default void myMethod() {
+        System.out.println("This is a default method.");
+    }
+}
+
+```
+
+## **Default access modifier**
+- When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
+
+```java
+
+class MyClass {
+    int myVariable; // default access modifier
+}
+
+```
 ## **Lambda Expression**
 
 - A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
@@ -1289,33 +1315,6 @@ Collections.sort(names, new Comparator<String>() {
 List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
 
 Collections.sort(names, (s1, s2) -> Integer.compare(s1.length(), s2.length()));
-```
-
-## **Default method**
-- It is a method defined within an interface that provides a default implementation
-- Default methods support the evolution of interfaces over time. As the requirements of an interface change, new methods can be added with default implementations, allowing for a more flexible and extensible design.
-- Default methods can provide sensible default behavior for methods that don't need to be implemented by every implementing class.
-- Default methods enable a form of multiple inheritance in Java interfaces. If a class implements multiple interfaces that have conflicting method signatures, the class must provide an implementation for the conflicting methods. However, if one of the conflicting methods is a default method, the conflict is resolved, and the class inherits the default implementation.
-
-```java
-
-public interface MyInterface {
-    default void myMethod() {
-        System.out.println("This is a default method.");
-    }
-}
-
-```
-
-## **Default access modifier**
-- When a class, method, or variable is declared with no access modifier, it has "default" or "package-private" access. This means that it can only be accessed by classes within the same package.
-
-```java
-
-class MyClass {
-    int myVariable; // default access modifier
-}
-
 ```
 
 ## **Predicate**
