@@ -1123,6 +1123,29 @@ public class LambdaExample {
 Lambda expression for myMethod
 Default method implementation
 Static method implementation
+
+// Functional interface implementation without lambda expression
+interface MyFunctionalInterface {
+    void myMethod();
+}
+
+// Concrete class implementing the interface
+class MyImplementation implements MyFunctionalInterface {
+    @Override
+    public void myMethod() {
+        System.out.println("Implementation of myMethod");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create an instance of the concrete class
+        MyImplementation myObject = new MyImplementation();
+
+        // Call the implemented method
+        myObject.myMethod();  // Output: Implementation of myMethod
+    }
+}
 ```
 ## **Default method**
 - It is a method defined within an interface that provides a default implementation
