@@ -296,7 +296,7 @@ MyClass obj = new MyClass() {
 ```
 
 - Using Object Cloning
-    - The clone() method in Java allows you to create a new object by copying an existing object.
+    - The `clone()` method in Java allows you to create a new object by copying an existing object.
 
 ```java
 MyClass original = new MyClass();
