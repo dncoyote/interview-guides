@@ -302,7 +302,14 @@ MyClass obj = new MyClass() {
 MyClass original = new MyClass();
 MyClass cloned = (MyClass) original.clone();
 ```
+## **Shallow cloning v/s Deep cloning **
 
+#### Shallow cloning
+- Shallow cloning creates a new object but does not create new instances of objects referenced by the original object. Instead, it copies references to the objects.
+- Changes made to the nested objects in the clone will affect the original object and vice versa since they share references to the same nested objects.
+#### Deep cloning
+- Deep cloning creates a new object and recursively copies all the objects referenced by the original object, creating new instances for each nested object
+- Changes made to the nested objects in the clone do not affect the original object, and vice versa.
 
 ## **Constructors**
 
@@ -491,7 +498,9 @@ public class MyClass {
 
 - `String` is a class that represents a sequence of characters. Strings are widely used in Java programming, and they are used to store and manipulate text-based data such as names, addresses, and other textual information.
 - `String` in Java are reference types, which means that they are actually objects that contain a reference to a memory location where the string's characters are stored. This is in contrast to primitive types (like int or char), which are not objects and are stored directly in memory.
-- Immutable- Java strings are immutable, meaning their content cannot be changed after they are created. When you perform operations on a string that appear to modify it, such as concatenation or substring extraction, a new string is created with the modified content. This property makes `String` thread safe.
+
+## **Strings are immutable**
+- Java strings are immutable, meaning their content cannot be changed after they are created. When you perform operations on a string that appear to modify it, such as concatenation or substring extraction, a new string is created with the modified content. This property makes `String` thread safe.
 
 ## **`==` operator v/s `equals()` method**
 
