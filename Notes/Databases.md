@@ -43,6 +43,20 @@ SQL, which stands for Structured Query Language, is a domain-specific programmin
 - Foreign key in a child table typically references the primary key in the parent table, it helps maintain data consistency and prevent orphaned data.
   Eg: studentId in DepartmentTable
 
+## Indexing 
+
+- An index is a database object that improves the speed of data retrieval operations on a database table. Indexes can be created on one or more columns of a table, and they provide a quick lookup mechanism to find rows that match a certain condition.
+
+- Single Column Index
+```sql
+CREATE INDEX idx_column_name ON table_name(column_name);
+```
+
+- Composite Index
+```sql
+CREATE INDEX idx_multi_columns ON table_name(column1, column2);
+```
+
 ## **GROUP BY**
 
 - `GROUP BY` clause is used to group rows that have the same values in specified columns into summary rows.

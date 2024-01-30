@@ -248,6 +248,10 @@ class Switch {
 
   ```
 
+## **Builder Pattern**
+- Builder Pattern is a creational design pattern.
+- It separates the construction of a complex object from its representation and allows the same construction process to create different representations.
+
 ## **Factory Method Pattern**
 
 - Factory Method Pattern is a creational design pattern.

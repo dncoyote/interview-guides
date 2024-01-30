@@ -12,9 +12,11 @@
 
 The JVM is responsible for executing Java bytecode. The JVM is a virtual machine that executes Java bytecode. It is responsible for running Java applications on a specific platform.
 
-- VM is a virtual representation of a physical computer
+-  One of the key features of the JVM is its ability to provide platform independence. Since Java applications are compiled into bytecode, which is then executed by the JVM, the same bytecode can run on any system with a compatible JVM, regardless of the underlying hardware and operating system.
 - Compile Languages
+  - In a compiled language, the source code is translated into machine code or an intermediate code by a compiler before it is executed.
 - Interpreted Languages
+  - In an interpreted language, the source code is not translated into machine code before execution. Instead, an interpreter reads and executes the code line by line or statement by statement at runtime.
 - Java programs are compiled into byte code that can run in the JVM, objects are created in the heap space.
 - JVM Components
   - Class Loader
@@ -22,25 +24,25 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
   - Execution Engine
 
 ##### Class Loader
-
-- Loading : Bootstrap Class, Extension Class Loader, Application Class Loader
-- Linking : Verification, Preparation, Resolution
-- Initialization : calling constructors, executing static block, assigning values to static variables
+- Loads Java classes into memory as they are referenced by the program.
+    - Loading : Bootstrap Class, Extension Class Loader, Application Class Loader
+    - Linking : Verification, Preparation, Resolution
+    - Initialization : calling constructors, executing static block, assigning values to static variables
 
 ##### Runtime Data Area
-
-- Method Area
-- Heap Area
-- Stack Area
-- PC(Program Counter) Register
-- Native Method Stack
+- Each area serve a specific purpose in memory management
+    - Method Area
+    - Heap Area
+    - Stack Area
+    - PC(Program Counter) Register
+    - Native Method Stack
 
 ##### Execution Engine
-
-- Interpreter
-- JIT Compiler : Compiles bytecode to Machine code.
-- GC (System.GC();)
-- Java Native Interface : Is a bridge that permit supporting packages for other programming languages like C/C++.
+- Interprets or compiles bytecode into native machine code for execution.
+    - Interpreter
+    - JIT Compiler : Compiles bytecode to Machine code.
+    - GC (System.GC();)
+    - Java Native Interface : Is a bridge that permit supporting packages for other programming languages like C/C++.
 
 ###### JVM languages
 
