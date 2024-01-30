@@ -302,7 +302,7 @@ MyClass obj = new MyClass() {
 MyClass original = new MyClass();
 MyClass cloned = (MyClass) original.clone();
 ```
-## **Shallow cloning v/s Deep cloning **
+## **Shallow cloning v/s Deep cloning**
 
 #### Shallow cloning
 - Shallow cloning creates a new object but does not create new instances of objects referenced by the original object. Instead, it copies references to the objects.
