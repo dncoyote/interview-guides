@@ -433,7 +433,7 @@ class Parent{
 class Child extends Parent{
     void display(){
         super.display();
-        System.out.println("Parent");
+        System.out.println("Child");
     }
 }
 
