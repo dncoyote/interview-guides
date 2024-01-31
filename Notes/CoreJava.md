@@ -955,39 +955,39 @@ public class Student implements Comparable<Student> {
 - This is suitable when you need to provide multiple ways to compare objects or when you can't modify the class of the objects being compared.
 
 ```java
-public class StudentIdComparator implements Comparator<Student> {
-    @Override
-    public int compare(Student student1, Student student2) {
-        // Compare students based on their IDs
-        return Integer.compare(student1.getId(), student2.getId);
+public class ComparatorDemo {
+    public static void main(String[] args) {
+        List<Person> people = new ArrayList<>();
+        people.add(new Person("Jabbar", 1));
+        people.add(new Person("Alice", 30));
+        people.add(new Person("Bob", 25));
+        people.add(new Person("Charlie", 35));
+
+        // Collections.sort(people, new AgeComparator());
+
+        // Sorting using a Comparator
+        people.sort(Comparator.comparingInt(Person::getAge));
+        System.out.println("Age");
+        people.forEach(person -> System.out.println(person.getName() + " - " + person.getAge()));
+
+        people.sort(Comparator.comparing(Person::getName));
+        System.out.println("Name");
+        people.forEach(person -> System.out.println(person.getName() + " - " + person.getAge()));
     }
 }
 
------------------------------
-Comparator<MonthlyStatement> comparator = null;
-
-        switch (sortBy.toLowerCase()) {
-            case "category":
-                comparator = Comparator.comparing(MonthlyStatement::getCategory);
-                break;
-            case "type":
-                comparator = Comparator.comparing(MonthlyStatement::getType);
-                break;
-            case "amount":
-                comparator = Comparator.comparing(MonthlyStatement::getAmount);
-                break;
-            case "date":
-                comparator = Comparator.comparing(MonthlyStatement::getDate);
-                break;
-            default:
-                comparator = Comparator.comparing(MonthlyStatement::getDate);
-                break;
-        }
-
-        if (sortOrder.equalsIgnoreCase("desc")) {
-            comparator.reversed();
-        }
-        Collections.sort(expenses, comparator);
+Output
+------
+Age
+Jabbar - 1
+Bob - 25
+Alice - 30
+Charlie - 35
+Name
+Alice - 30
+Bob - 25
+Charlie - 35
+Jabbar - 1
 ```
 
 ## **Which collection should we use during multithreading?**
