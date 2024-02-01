@@ -933,9 +933,11 @@ linkedHashMap.put("Carol", 22);
 ## **Comparable**
 
 - Comparable is an interface in Java that is used for defining the natural ordering of objects of a class. By implementing the Comparable interface, a class specifies how its instances should be compared with each other.
-- This allows objects of that class to be sorted or ordered based on their natural characteristics.
-- Comparable interface is used to define the natural or default ordering of objects within the class itself.
-- This is suitable when there is one primary way to order objects.
+- If a class implements the Comparable interface, it must implement the `compareTo` method, which compares the object with another object of the same type.
+- The `compareTo` method returns an integer value:
+  - Negative value: if the current object is less than the specified object.
+  - Zero: if the current object is equal to the specified object.
+  - Positive value: if the current object is greater than the specified object.
 
 ```java
 public class Student implements Comparable<Student> {
