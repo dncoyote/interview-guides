@@ -991,6 +991,66 @@ Bob - 25
 Charlie - 35
 Jabbar - 1
 ```
+## **Example using Comparable and Comparator**
+
+```java
+// Person class implementing Comparable for natural ordering
+class Person implements Comparable<Person> {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public int compareTo(Person otherPerson) {
+        // Compare based on age for natural ordering
+        return Integer.compare(this.age, otherPerson.age);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+
+public class SortingExample {
+    public static void main(String[] args) {
+        List<Person> people = new ArrayList<>();
+        people.add(new Person("Alice", 30));
+        people.add(new Person("Bob", 25));
+        people.add(new Person("Charlie", 35));
+
+        System.out.println("Before sorting:");
+        System.out.println(people);
+
+        // Sorting using Comparable (natural order)
+        Collections.sort(people);
+        System.out.println("\nAfter natural order sorting (by age):");
+        System.out.println(people);
+
+        // Sorting using Comparator (custom order by name)
+        Comparator<Person> nameComparator = Comparator.comparing(Person::getName);
+        Collections.sort(people, nameComparator);
+        System.out.println("\nAfter sorting by name using Comparator:");
+        System.out.println(people);
+    }
+}
+
+```
 
 ## **Which collection should we use during multithreading?**
 
