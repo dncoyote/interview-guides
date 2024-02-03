@@ -252,6 +252,28 @@ class Switch {
 - Builder Pattern is a creational design pattern.
 - It separates the construction of a complex object from its representation and allows the same construction process to create different representations.
 - The key idea is to separate the construction of a complex object from its representation.
+- This pattern extract the object construction code out of its own class and move it to separate objects called `builders`.
+- If we don't use Builder pattern we will have to create many parameterized constructors that leads to ugly code depending on the number of objects.
+- Product class - `Car.java`
+    - Represents a car with various attributes like brand, model, color, etc.
+    - It's the final product that we want to build using the Builder pattern.
+- Builder Interface - `Builder.java`
+    - Declares a set of methods that concrete builders must implement to construct a complex object step by step.
+    - It acts as a contract, ensuring that any class implementing it knows how to build different parts of the final object.
+- ProductBuilder(Concrete Builder) Class - `CarBuilder.java`
+    - Implements the Builder interface to build a Product object.
+    - Keeps track of the details of the car being constructed. Each method (like brand, model, etc.) sets a specific attribute of the car, and the build method creates the final `Car` object.
+- ProductSchema Class - `CarSchema.java`
+    - Represents a different type of object with a similar structure to a product.
+    - Illustrates that the Builder pattern is flexible and can be used to build various types of objects with a similar construction process.
+- ProductSchemaBuilder(Concrete Builder) Class - `CarSchemaBuilder.java`
+    - Implements the Builder interface to build a `ProductSchema` object.
+    - Similar to `CarBuilder`, but it constructs a different type of object (CarSchema). It sets attributes specific to CarSchema.
+- Director Class - `Director.java`
+    - Guides the construction process by calling the builder methods in a specific order.
+    - Acts as a supervisor, providing a set of predefined steps to construct different types of objects. It abstracts the building process from the client.
+- MainApp Class
+    - Demonstrates how to use the Builder pattern to construct objects.
 
 ## **Factory Method Pattern**
 
