@@ -2327,3 +2327,8 @@ to check even or odd
 Pattern programming
 She told me to reverse that patten programming output
 jar and war
+failsafe fail fast iterator
+can static methods be overriden, can they be overloaded
+class C should inherit both class A and class B
+method hiding
+dynamic method
