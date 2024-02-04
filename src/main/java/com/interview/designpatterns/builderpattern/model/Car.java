@@ -1,14 +1,14 @@
 package com.interview.designpatterns.builderpattern.model;
 
 public class Car {
-    
-    private final int id;
-    private final int height;
-    private final String brand;
-    private final String model;
-    private final String color;
-    private final String engine;
-    private final int nbrOfDoors;
+
+    private int id;
+    private int height;
+    private String brand;
+    private String model;
+    private String color;
+    private String engine;
+    private int nbrOfDoors;
 
     Car(int id, String brand, String model, String color, int height, String engine, int nbrOfDoors) {
         this.id = id;
