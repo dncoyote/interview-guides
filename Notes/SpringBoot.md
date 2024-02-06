@@ -11,11 +11,22 @@
     - Logging
 
 ## Spring v/s Spring Boot
--  Spring Framework provides a wide range of features and flexibility for building Java applications, Spring Boot focuses on simplifying and streamlining the development process by providing opinionated defaults and automatic configuration.
-- 
+#### Spring
+- Spring Framework is a comprehensive framework for building enterprise Java applications.
+- It provides support for various functionalities such as dependency injection, aspect-oriented programming, transaction management, data access, and more.
+- Spring Framework requires explicit configuration through XML or Java-based configuration classes.
+- Developers need to configure and manage various components such as servlets, application context, dispatcher servlets, etc., manually.
+
+#### Spring Boot
+- Spring Boot is an opinionated framework designed to simplify the process of building and deploying Spring-based applications.
+- It provides defaults for configurations and automatically configures many aspects of the application based on sensible conventions.
+- Developers can create standalone, production-grade Spring-based applications with minimal configuration.
+- It includes embedded servers (like Tomcat, Jetty, or Undertow) by default, so there's no need to deploy the application to an external server.
+- Spring Boot includes tools for building, packaging, and running Spring applications, such as the Spring Boot CLI, Spring Boot Starter projects, and Spring Boot Actuator for monitoring and managing applications.
+- Spring Boot applications can be easily deployed as executable JAR files, making them easy to manage and deploy. 
 
 ## Deploying a Spring Boot Web Application
-- Traditionally, we package a web application as a WAR file and then deploy it into an external server. Doing this allows us to arrange multiple applications on the same server. 
+- Traditionally, we package a web application as a WAR(Web ARchive) file and then deploy it into an external server. Doing this allows us to arrange multiple applications on the same server. 
 - When CPU and memory were scarce, this was a great way to save resources.
 - But things have changed. Computer hardware is fairly cheap now, and the attention has turned to server configuration. A small mistake in configuring the server during deployment may lead to catastrophic consequences.
 - Spring tackles this problem by providing a plugin, namely `spring-boot-maven-plugin`, to package a web application as an executable JAR. To include this plugin, just add a plugin element to `pom.xml`.
@@ -26,6 +37,25 @@
     <artifactId>spring-boot-maven-plugin</artifactId>
 </plugin>
 ```
+- This JAR contains all the necessary dependencies, including an embedded server. So, we no longer need to worry about configuring an external server. We can then run the application just like we would an ordinary executable JAR.
+
+## JAR v/s WAR
+#### JAR (Java ARchive)
+- In Spring Boot, a JAR file typically packages the entire application, including embedded servers (like Tomcat, Jetty, or Undertow) and all dependencies into a single executable file.
+- Spring Boot applications packaged as JAR files are standalone and can be executed directly using the `java -jar` command.
+- JAR files are suitable for microservices and standalone applications that require self-contained deployment units.
+- Spring Boot encourages the use of JAR packaging for its simplicity and ease of deployment.
+- JAR packaging is preferred for standalone applications.
+- `mvn clean package` will generate both JAR and WAR file.
+
+#### WAR (Web ARchive)
+- A WAR file, on the other hand, is a packaging format commonly used for deploying Java web applications to servlet containers like Apache Tomcat, Jetty, or JBoss.
+- Spring Boot can also package applications as WAR files for deployment to external servlet containers.
+- WAR files contain web application resources such as HTML, JSP, CSS, JavaScript files, along with compiled Java classes, configuration files, and libraries.
+- Unlike JAR files, WAR files are not standalone executables; they require a servlet container to deploy and run the application.
+- WAR packaging is suitable for traditional web applications deployed to external servlet containers.
+- `mvn clean package` will generate both JAR and WAR file.
+
 
 ## External Configuration
 -  We can use properties files, YAML files, environment variables, system properties and command-line option arguments to specify configuration properties.
@@ -217,3 +247,59 @@ public class MyPrototypeBean {
   - `metrics` shows metrics information
   - `loggers` shows and modifies the configuration of loggers in the application
   - `mappings` displays a list of all @RequestMapping paths
+
+## Spring Boot Security
+- Spring Boot Security is a powerful module provided by the Spring framework that enables developers to easily add security features to their Spring Boot applications
+### AuthenticationController.java:
+- This is a REST controller responsible for handling registration and authentication requests.
+
+### AuthenticationRequest.java and AuthenticationResponse.java:
+- These classes define the request and response structures for authentication.
+
+### AuthenticationService.java:
+- This service class handles user registration and authentication.
+- It interacts with the UserRepository, PasswordEncoder, JwtService, and AuthenticationManager.
+- In register, it saves a new user, encodes their password, generates a JWT token, and returns it in the response.
+- In authenticate, it authenticates a user, generates a JWT token, and returns it in the response.
+
+### RegisterRequest.java:
+- A data class used for registering new users.
+
+### UserRepository.java:
+- A Spring Data JPA repository for managing user data.
+
+### ApplicationConfig.java:
+- This configuration class defines several beans.
+- `userDetailsService()`: Defines a custom user details service.
+- `authenticationProvider()`: Configures an authentication provider using DaoAuthenticationProvider.
+- `authenticationManager()`: Creates an AuthenticationManager.
+- `passwordEncoder()`: Configures a password encoder (BCrypt in this case).
+
+### JwtAuthenticationFilter.java:
+- This filter checks for JWT tokens in incoming requests and handles token-based authentication.
+- It interacts with the JwtService and UserDetailsService.
+- It validates JWT tokens, loads user details, and sets up Spring Security's Authentication object.
+
+### JwtService.java:
+- This service class is responsible for JWT token-related operations.
+- It generates, validates, and extracts claims from JWT tokens.
+- The generateToken method creates a token with an expiration time.
+- The `isTokenValid` method checks if a token is valid.
+
+### SecurityConfiguration.java:
+- This configuration class is responsible for configuring Spring Security.
+- It defines the SecurityFilterChain and interacts with the JwtAuthenticationFilter and AuthenticationProvider.
+- It configures routes, authentication, session management, and filters.
+- Routes under `/api/v1/auth` are permitted without authentication. All other routes require authentication.
+- It sets the SessionCreationPolicy to STATELESS, ensuring no session management.
+- The JwtAuthenticationFilter is applied before the standard UsernamePasswordAuthenticationFilter.
+
+### Overall Code Flow:
+- When a user registers or authenticates, the AuthenticationController delegates the work to the AuthenticationService.
+- The AuthenticationService interacts with the database via the UserRepository to save or fetch user details.
+- The AuthenticationService uses the PasswordEncoder to hash passwords securely.
+- JWT tokens are generated and returned as part of the AuthenticationResponse.
+- When a user makes a request, the JwtAuthenticationFilter checks for a JWT token in the request header.
+- If a valid token is found, it uses the JwtService to validate the token and fetch user details.
+- If the token is valid, it sets up Spring Security's Authentication object, allowing access to protected resources.
+- The code achieves secure user authentication and authorization using JWT tokens, and it ensures that only authenticated users can access protected routes. If a user is not authenticated or provides an invalid token, they are denied access.
