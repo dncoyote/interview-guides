@@ -1580,6 +1580,10 @@ Supplier<List<String>> listSupplier = ArrayList::new;
 - Stream API in Java provides a way to process collections of objects in a declarative and functional style.
 - It is part of the Java Collections Framework.
 - It provides a set of operations that can be performed on streams, such as filtering, mapping, sorting, and reducing.
+- Stream operations can be divided into two categories
+    - Intermediate operations such as `filter`, `map`, `flatMap`, `distinct`, `sorted`, etc. transform the elements of a stream and return a new stream.
+    - Terminal operations such as `forEach`, `collect`, `reduce`, `count`, `min`, `max`, `anyMatch`, `allMatch`, `noneMatch`, etc. produce a result or side-effect and terminate the stream.
+- Streams rely heavily on functional interfaces such as `Predicate`, `Function`, `Consumer`, `Supplier`, and `Comparator`, which enable the use of lambda expressions and method references to specify behavior.
 
 ```java
 
@@ -2299,7 +2303,6 @@ Hibernate + jpql
 Agile
 cap theorem
 Code to sort employee object based on salary
-Spring boot basics(annotations, rest controller)
 Arrays
 Strings
 Serverless Compute
@@ -2326,9 +2329,9 @@ To swap 2 numbers without using third variable
 to check even or odd
 Pattern programming
 She told me to reverse that patten programming output
-jar and war
 failsafe fail fast iterator
 can static methods be overriden, can they be overloaded
 class C should inherit both class A and class B
 method hiding
 dynamic method
+Function keyword in java
