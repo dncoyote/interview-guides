@@ -10,6 +10,10 @@
     - Security
     - Logging
 
+## Auto-configuration
+- Auto-configuration in Spring Boot is a powerful feature that automatically configures the Spring application context based on the dependencies and properties detected in the classpath. 
+- It aims to minimize the amount of boilerplate configuration code required by developers, allowing them to quickly bootstrap and run Spring Boot applications with minimal effort.
+
 ## Spring v/s Spring Boot
 #### Spring
 - Spring Framework is a comprehensive framework for building enterprise Java applications.
@@ -210,7 +214,6 @@ public class MyPrototypeBean {
     <artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 ```
-
 - It provides endpoints and tools for monitoring and managing a Spring Boot application. Spring Boot Actuator provides several features, including:
   - `env` exposes environment properties
   - `health` shows application health information
