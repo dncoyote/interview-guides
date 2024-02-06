@@ -37,8 +37,7 @@ public class StreamApiDemo {
         System.out.println("\n Filtering Data:");
         List<String> names = Arrays.asList("Alice", "Jabbar", "Bob", "Anna");
         List<String> filtered = names.stream().filter(name -> name.startsWith("A")).collect(Collectors.toList());
-        for (String name : filtered)
-            System.out.println(name);
+        filtered.forEach(value -> System.out.println(value));
         System.out.println("\n Filtering Data");
 
         // Transforming data
