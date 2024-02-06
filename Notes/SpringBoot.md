@@ -12,6 +12,10 @@
 
 ## Auto-configuration
 - Auto-configuration in Spring Boot is a powerful feature that automatically configures the Spring application context based on the dependencies and properties detected in the classpath. 
+- Auto-configuration in Spring Boot simplifies the setup process by automatically configuring your application based on the libraries you use and the settings you provide, allowing you to focus more on developing your application logic rather than worrying about infrastructure setup.
+    - Spring Boot looks at the libraries (dependencies) your application is using.
+    - It also checks for any configuration properties or settings available.
+    - With this information, Spring Boot automatically configures your application's components and features. For example, if it finds a database library in your dependencies and the required database connection properties, it will automatically set up a database connection for you.
 - It aims to minimize the amount of boilerplate configuration code required by developers, allowing them to quickly bootstrap and run Spring Boot applications with minimal effort.
 
 ## Spring v/s Spring Boot
@@ -86,6 +90,17 @@
 - Stereotype annotations are a set of annotations used to indicate the roles of annotated classes. 
 - These annotations help Spring Boot understand the purpose of the annotated class and how it should be treated within the application context. 
 - Stereotype annotations are part of the broader Spring Framework, and they provide a way to define components, services, configurations, and more.
+- `@Component` Marks a class as a generic Spring-managed component. It indicates that the annotated class is a candidate for auto-detection and bean registration within the application context.
+
+- `@Controller` Used to annotate classes that serve as Spring MVC controllers. These classes handle HTTP requests, process user input, and return appropriate responses. They are typically used in web applications to implement the presentation layer.
+
+- `@Service` Identifies classes that contain business logic and service functionality. Service classes encapsulate application-specific logic and are often used to perform operations such as data manipulation, validation, and business rule enforcement.
+
+- `@Repository` Marks classes as repositories, typically used in the data access layer of an application. Repository classes are responsible for interacting with a database or other data sources to perform CRUD (Create, Read, Update, Delete) operations on persistent entities.
+
+- `@Configuration` Indicates that a class is a configuration class responsible for defining bean configurations and other application settings. Configuration classes often contain bean definitions, property sources, and other configuration elements required to bootstrap the Spring application context.
+
+- `@RestController` A specialized version of @Controller used to build RESTful web services. Classes annotated with @RestController combine the functionality of @Controller and @ResponseBody, allowing them to handle REST requests and directly serialize response data to the HTTP response body.
 
 ## **DispatcherServlet**
 
