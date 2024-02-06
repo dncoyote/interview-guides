@@ -64,6 +64,62 @@
 - WAR packaging is suitable for traditional web applications deployed to external servlet containers.
 - `mvn clean package` will generate both JAR and WAR file.
 
+## Spring Boot Embedded Servers
+- In Spring Boot, embedded servers are lightweight servers that are packaged with your application. 
+- These servers allow you to run your Spring Boot application as a standalone executable JAR file without needing to deploy it to a separate application server like Tomcat or Jetty.
+- Spring Boot supports several embedded servers out of the box.
+    - Tomcat (default) 
+    - Jetty
+    - Undertow
+- You can choose which embedded server to use by adding the appropriate dependencies to your `pom.xml` or `build.gradle` file
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+</dependency>
+
+//or
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jetty</artifactId>
+</dependency>
+
+```
+
+## Deploying to other servers
+- Build the Application, i.e., build the WAR.
+- Configure the Application: Ensure that your Spring Boot application is configured properly for deployment to an external server. This may include configuring database connections, external service URLs, logging settings, and any other environment-specific configurations.
+- Choose the Server (Apache Tomcat, IBM WebSphere, Red Hat JBoss).
+- Set up the environment on the chosen server to host your Spring Boot application. This may involve installing the necessary Java Runtime Environment (JRE), configuring server settings, creating deployment directories, and ensuring that any required dependencies (such as database drivers) are available.
+- Deploy the Application: Transfer the executable JAR or WAR file of your Spring Boot application to the server. This can be done manually by copying the file to the server's deployment directory, or you can use deployment tools and scripts to automate the process.
+
+## Spring Boot Deployment
+#### Executable JAR File:
+One common deployment method for Spring Boot applications is to package the application as an executable JAR (Java ARchive) file.
+To create an executable JAR, you can use Maven or Gradle build tools. These tools automatically include all the necessary dependencies and resources in the JAR file.
+Once the JAR file is built, you can deploy it to a server or run it locally by executing the java -jar command.
+Spring Boot includes an embedded servlet container (like Tomcat, Jetty, or Undertow), so the application can run standalone without requiring an external servlet container.
+
+#### WAR File Deployment:
+Alternatively, you can package your Spring Boot application as a WAR (Web ARchive) file if you need to deploy it to an external servlet container like Apache Tomcat or Jetty.
+To create a WAR file, you need to configure your Spring Boot application to extend the SpringBootServletInitializer class and override the configure method.
+Once the WAR file is built, you can deploy it to a servlet container like any other web application.
+
+#### Containerized Deployment:
+Another popular deployment approach for Spring Boot applications is containerization using tools like Docker or Kubernetes.
+You can create a Docker image containing your Spring Boot application and its dependencies, then deploy and run the image on any Docker-compatible environment.
+Containerization provides benefits such as portability, scalability, and consistency across different environments.
+
+#### Cloud Deployment:
+Spring Boot applications can also be deployed to cloud platforms like AWS, Azure, or Google Cloud Platform.
+Many cloud providers offer services specifically designed for hosting and running Java applications, such as AWS Elastic Beanstalk, Azure App Service, or Google App Engine.
+You can deploy your Spring Boot application to these platforms using their respective deployment tools or APIs.
+
+#### Traditional Deployment:
+In some cases, you may still deploy Spring Boot applications to traditional server environments with manually configured servlet containers.
+This approach involves installing and configuring a servlet container (such as Apache Tomcat or Jetty) on a server, then deploying the WAR file to the container. 
 
 ## External Configuration
 -  We can use properties files, YAML files, environment variables, system properties and command-line option arguments to specify configuration properties.
@@ -196,30 +252,6 @@ public class MyPrototypeBean {
 - For example, we might be using an embedded H2 database for Dev, but Prod could have the proprietary Oracle or DB2.
 - Spring has the provision of profiles to help separate the configuration for each environment. 
 - Instead of maintaining this programmatically, the properties can be kept in separate files such as `application-dev.properties` and `application-prod.properties`. The default `application.properties` points to the currently active profile using `spring.profiles.active` so that the correct configuration is picked up.
-
-## Spring Boot Embedded Servers
-- In Spring Boot, embedded servers are lightweight servers that are packaged with your application. 
-- These servers allow you to run your Spring Boot application as a standalone executable JAR file without needing to deploy it to a separate application server like Tomcat or Jetty.
-- Spring Boot supports several embedded servers out of the box.
-    - Tomcat (default) 
-    - Jetty
-    - Undertow
-- You can choose which embedded server to use by adding the appropriate dependencies to your `pom.xml` or `build.gradle` file
-
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-tomcat</artifactId>
-</dependency>
-
-//or
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-jetty</artifactId>
-</dependency>
-
-```
 
 ## **Spring Boot Actuator**
 - Actuator brings Spring Boot applications to life by enabling production-ready features. These features allow us to monitor and manage applications when they’re running in production.
