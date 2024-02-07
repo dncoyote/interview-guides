@@ -114,6 +114,37 @@ public class StreamAPIQuestions {
         Map<Integer, List<String>> resultList8 = stringList7.stream().collect(Collectors.groupingBy(String::length));
 
         System.out.println(resultList8);
+
+        /**
+         * Find Average of Integers: Given a list of integers, find the average of all
+         * the integers.
+         * 
+         * Check if All Integers are Positive: Given a list of integers, check if all
+         * the integers are positive.
+         * 
+         * Concatenate Strings: Given a list of strings, concatenate all the strings
+         * into a single string.
+         * 
+         * Find Maximum Length String: Given a list of strings, find the string with the
+         * maximum length.
+         * 
+         * Filter Even Numbers: Given a list of integers, filter out all the even
+         * numbers.
+         * 
+         * Convert String List to Uppercase and Concatenate: Given a list of strings,
+         * convert each string to uppercase and concatenate them into a single string.
+         * 
+         * Remove Null Values: Given a list of strings which may contain null values,
+         * remove all the null values.
+         * 
+         * Find Sum of Squares of Even Numbers: Given a list of integers, find the sum
+         * of squares of all the even numbers.
+         * 
+         * Group Integers by Even and Odd: Given a list of integers, group them into two
+         * lists based on whether they are even or odd.
+         * 
+         * Find the Longest Word: Given a list of strings, find the longest word.
+         */
     }
 
 }
