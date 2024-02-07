@@ -528,6 +528,22 @@ System.out.println(str1.equals(str3));   // true - both strings have the same co
 | It references an existing string object in the pool if one exists. | It explicitly creates a new string object on the heap, regardless of whether an identical string is already in the pool. |
 | More memory efficient.                                             | Less memory efficient.                                                                                                   |
 
+## **String s = new String("Hi")**
+- The string literal "Hi" creates one object in the string pool (if it doesn't already exist). This object represents the string "Hi".
+- The new String("Hi") expression explicitly creates another string object (outside the string pool) with the value "Hi". This object is separate from the one created in the string pool.
+
+## **String Constant Pool**
+- The string pool, also known as the string constant pool, is a special area of memory in the Java heap that stores unique string literals. 
+- When you create a string literal in Java, such as "Hello", "world", or any other string literal, Java checks if the string already exists in the pool. If it does, the new variable points to the existing string object in the pool. If not, a new string object is created in the pool, and the variable points to it.
+- The string pool exists to conserve memory by ensuring that only one copy of each unique string literal is stored in memory. This helps optimize memory usage, especially when dealing with a large number of string variables with the same value.
+
+```java
+String s1 = "Hello"; // Creates a string object "Hello" in the string pool
+String s2 = "Hello"; // Points to the same string object "Hello" in the string pool
+String s3 = new String("Hello"); // Creates a new string object "Hello" outside the pool
+
+```
+
 ## **String v/s String Builder v/s String Buffer**
 
 | String                                                                                                                                                                                                            | String Builder                                                                                                 | String Buffer                                                                                                 |
