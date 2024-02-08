@@ -2,13 +2,23 @@
 
 ## Spring Boot
 - Spring Boot is essentially a framework for rapid application development built on top of the Spring Framework.
-- It is popular due to features such as auto-configuration and embedded application server support.
+- It is popular due to features such as spring-boot-starter, auto-configuration and embedded application server support.
 - Key features
     - Starters
     - Auto-configuration
     - Actuator
     - Security
     - Logging
+
+## `spring-boot-starter`
+- `spring-boot-starter` is a set of dependency management libraries provided by the Spring Boot framework to simplify and streamline the process of setting up and configuring Spring Boot applications. 
+- These starter libraries encapsulate commonly used dependencies and configurations for specific functionalities or components within a Spring Boot application.
+- Each spring-boot-starter library is focused on a particular aspect of application development, such as web applications, data access, security, messaging, etc. They typically include the necessary dependencies, configurations, and auto-configuration classes to enable the corresponding functionality out of the box.
+- By including these starter dependencies in a Spring Boot project's build configuration file, developers can quickly bootstrap their applications and focus on writing business logic rather than managing dependencies and configurations.
+- Examples
+    - `spring-boot-starter-web`: Includes dependencies for building web applications using Spring MVC, embedded Tomcat server, and other related components.
+    - `spring-boot-starter-data-jpa`: Provides dependencies for working with relational databases using Spring Data JPA.
+    - `spring-boot-starter-security`: Authentication and Authorisation
 
 ## Auto-configuration
 - Auto-configuration in Spring Boot is a powerful feature that automatically configures the Spring application context based on the dependencies and properties detected in the classpath. 
