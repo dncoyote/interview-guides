@@ -6,10 +6,10 @@ Object Oriented Programming is the programming paradigm that uses classes and ob
 
 - Objects are always called instances of a class which are created from a class in java or any other language. They have states and behaviour.
 
-  ```
-  Public class Mybook {
+  ```java
+  public class Mybook {
     int x=10;
-  Public static void main (String args []) {
+  public static void main (String args []) {
     Mybook myobj= new Mybook ();
     System.out.println(myobj.x);
     }
@@ -24,7 +24,7 @@ Object Oriented Programming is the programming paradigm that uses classes and ob
 - Abstraction is a process which displays only the information needed and hides the unnecessary information. We can say that the main purpose of abstraction is data hiding.
 - In Java, abstraction is achieved by interfaces and abstract classes.
 
-  ```
+  ```java
   abstract class Bank{
     private String bankName;
     public abstract Integer calculateROI();
