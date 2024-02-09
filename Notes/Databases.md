@@ -56,6 +56,43 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 ```sql
 CREATE INDEX idx_multi_columns ON table_name(column1, column2);
 ```
+## **JOIN Queries**
+#### INNER JOIN
+- Returns records that have matching values in both tables.
+- We can use `INNER JOIN` or `JOIN`.
+
+```sql
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+#### LEFT JOIN (or LEFT OUTER JOIN)
+- Returns all records from the left table (table1) and the matched records from the right table (table2). The result is NULL from the right side if there is no match.
+
+```sql
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+LEFT JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+#### RIGHT JOIN (or RIGHT OUTER JOIN)
+- Returns all records from the right table (table2) and the matched records from the left table (table1). The result is NULL from the left side if there is no match.
+
+```sql
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+RIGHT JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
+
+#### FULL JOIN (or FULL OUTER JOIN)
+- Returns all records when there is a match in either left (table1) or right (table2) table.
+
+```sql
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+FULL JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+```
 
 ## **GROUP BY**
 
