@@ -2351,3 +2351,20 @@ class C should inherit both class A and class B
 method hiding
 dynamic method
 Function keyword in java
+---
+What is Statelessness in restful api design?
+What is API Versioning
+Difference between OAuth and Basic Authentication
+What to do when DDOS attack happens in RestAPI
+What is Hibernate proxy
+get() and load() in hibernate
+opensession() and getCurrentSession()
+components of hibernate configuration object
+how to see hibernate generated query in console
+how to create primary key in hibernate
+hibernate caching
+String.valueOf
+How to check if Optional have data or not
+convert array to stream
+difference between findFirst() and findAny()
+difference between map() and flatmap()
