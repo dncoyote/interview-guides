@@ -280,6 +280,16 @@ public class MyPrototypeBean {
   - `loggers` shows and modifies the configuration of loggers in the application
   - `mappings` displays a list of all @RequestMapping paths
 
+## Annotations
+### @RequestParam
+### @PathVariable
+### @RequestBody
+### @ResponseBOdy
+### @Component
+### @Bean
+### @Configuration
+### @RestControllerAdvice
+
 ## Spring Boot Security
 - Spring Boot Security is a powerful module provided by the Spring framework that enables developers to easily add security features to their Spring Boot applications
 
