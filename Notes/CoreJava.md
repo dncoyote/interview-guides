@@ -2225,7 +2225,7 @@ public class CallbackExample {
 }
 
 Output
-------
+------ 
 Main thread continues its work...
 Data received: Some data from https://example.com/api/data
 Main thread completed.
@@ -2368,3 +2368,9 @@ How to check if Optional have data or not
 convert array to stream
 difference between findFirst() and findAny()
 difference between map() and flatmap()
+--
+How to automate deploy and monitor
+Service Discovery
+Centralized Config Servcer
+Distributed Tracing
+API Gateway
