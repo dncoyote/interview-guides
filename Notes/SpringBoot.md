@@ -135,23 +135,6 @@ This approach involves installing and configuring a servlet container (such as A
 -  We can use properties files, YAML files, environment variables, system properties and command-line option arguments to specify configuration properties.
 - We can then gain access to those properties using the `@Value` annotation, a bound object via the `@ConfigurationProperties` annotation, or the Environment abstraction.
 
-## **ControllerAdvice**
-
-- `@ControllerAdvice` is an annotation used to define global exception handlers that are applied to all controllers in an application.
-- When an exception occurs during the execution of a controller method, Spring Boot looks for an appropriate exception handler to handle the exception. If no specific exception handler is found, Spring Boot looks for a global exception handler defined using the `@ControllerAdvice` annotation.
-- This can be useful for handling common exceptions such as NullPointerException, IllegalArgumentException, or IllegalStateException.
-
-  ```java
-  @ControllerAdvice
-  public class GlobalExceptionHandler {
-
-    @ExceptionHandler(value = {NullPointerException.class, IllegalArgumentException.class})
-    public ResponseEntity<Object> handleException(Exception ex) {
-        return new ResponseEntity<>("An error occurred: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-  ```
-
 ## **Spring Stereotype annotation**
 - Stereotype annotations are a set of annotations used to indicate the roles of annotated classes. 
 - These annotations help Spring Boot understand the purpose of the annotated class and how it should be treated within the application context. 
@@ -167,6 +150,109 @@ This approach involves installing and configuring a servlet container (such as A
 - `@Configuration` Indicates that a class is a configuration class responsible for defining bean configurations and other application settings. Configuration classes often contain bean definitions, property sources, and other configuration elements required to bootstrap the Spring application context.
 
 - `@RestController` A specialized version of @Controller used to build RESTful web services. Classes annotated with @RestController combine the functionality of @Controller and @ResponseBody, allowing them to handle REST requests and directly serialize response data to the HTTP response body.
+
+## Annotations
+### `@RequestParam`
+- `@RequestParam` is an annotation used to bind HTTP request parameters to method parameters in a controller handler method. 
+- When a client sends an HTTP request with parameters in the URL (such as http://example.com/api/users?id=123&name=John), `@RequestParam` allows you to extract those parameters and use them within your controller method.
+
+```java
+@GetMapping("/users")
+public ResponseEntity<User> getUserById(@RequestParam("id") Long userId) {
+    User user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
+}
+```
+### `@PathVariable`
+-` @PathVariable` is an annotation used to extract values from the URI path of a request and map them to method parameters in a controller handler method. 
+- It allows you to define dynamic parts of the URL path and use them as method parameters in your controller methods.
+```java
+//http://localhost:8080/users/1
+@GetMapping("/users/{userId}")
+public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+    User user = userService.getUserById(userId);
+        return ResponseEntity.ok(user);
+}
+```
+### `@RequestBody`
+- `@RequestBody` is an annotation used to bind the HTTP request body to a Java object in method parameters. 
+- It is typically used in controller methods to handle POST and PUT requests where the client sends data in the request body.
+```java
+@PostMapping("/add")
+public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
+    return ResponseEntity.ok("Employee added successfully");
+}
+
+```
+### `@ResponseBody`
+- `@ResponseBody` annotation is used to indicate that the return value of a controller method should be serialized directly to the HTTP response body.
+```java
+@GetMapping("/employee")
+    @ResponseBody
+    public Employee getEmployee() {
+        Employee employee = service.getEmployee();
+        return employee;
+    }
+
+    //when you access the /employee endpoint, Spring Boot will automatically serialize the Employee object to JSON format and write it directly to the HTTP response body.
+```
+### `@Component`
+- `@Component` is a generic stereotype annotation used to annotate classes as Spring components. 
+- These components are automatically detected and registered by Spring's component scanning mechanism, making them available for dependency injection and other Spring features.
+```java
+@Component
+public class MyComponent {
+    // Class implementation
+}
+```
+- In this example, `MyComponent` is annotated with `@Component`, indicating that it is a Spring-managed component. Spring will automatically detect and register this component during the application context initialization.
+- `@Component` is used as a stereotype annotation for any Spring-managed component, including service classes, repository classes, and utility classes.
+
+### `@Bean`
+- `@Bean` is a method-level annotation used to explicitly declare a Spring bean. Unlike `@Component`, which is a class-level annotation, `@Bean` is applied to methods within a configuration class to explicitly configure and provide instances of beans managed by the Spring container.
+```java
+@Bean
+    public MyBean myBean() {
+        return new MyBean();
+    }
+```
+### `@Configuration`
+- `@Configuration` is a class-level annotation used to declare a configuration class. Configuration classes are a way to provide configuration metadata to the Spring container, defining how beans should be created and wired together.
+- When a class is annotated with `@Configuration`, it indicates to the Spring framework that it contains bean definitions and other configuration options. Spring will then process the class and use its methods to generate the bean definitions and wire the beans together.
+
+### `@ControllerAdvice`
+- `@ControllerAdvice` is an annotation used to define global exception handlers that are applied to all controllers in an application.
+- When an exception occurs during the execution of a controller method, Spring Boot looks for an appropriate exception handler to handle the exception. If no specific exception handler is found, Spring Boot looks for a global exception handler defined using the `@ControllerAdvice` annotation.
+- This can be useful for handling common exceptions such as NullPointerException, IllegalArgumentException, or IllegalStateException.
+
+  ```java
+  @ControllerAdvice
+  public class GlobalExceptionHandler {
+
+    @ExceptionHandler(value = {NullPointerException.class, IllegalArgumentException.class})
+    public ResponseEntity<Object> handleException(Exception ex) {
+        return new ResponseEntity<>("An error occurred: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+  ```
+### `@RestControllerAdvice`
+- `@RestControllerAdvice` is a combination of `@ControllerAdvice` and `@ResponseBody`.
+- `@RestControllerAdvice` allows you to handle exceptions in a centralized manner for all RESTful controllers in your application, providing consistent error handling for your RESTful API endpoints.
+
+### `@ModelAttribute`
+- `@ModelAttribute` is an annotation in Spring MVC that binds a method parameter or method return value to a model attribute. 
+- It can be used to populate data into the model before rendering a view or handling a request.
+
+```java
+ @GetMapping("/employee")
+    public String getEmployee(@RequestParam Long id, @ModelAttribute("employee") Employee employee) {
+        // Retrieve employee data from the database based on the provided ID
+        // Populate the employee object with the retrieved data
+        return "employee-view";
+    }
+```
+- `@ModelAttribute("employee")` annotation binds the employee parameter to a model attribute named `employee`. 
+- If the `employee` attribute doesn't exist in the model, it will be created. The method is then responsible for populating data into this attribute.
 
 ## **DispatcherServlet**
 
@@ -253,7 +339,6 @@ public class MyPrototypeBean {
   ```
 
 ## **@Autowired**
-
 `@Autowired` annotation is used in Spring Framework to automatically inject dependencies into a Spring bean. It tells Spring's dependency injection container to provide the required dependencies (beans) to the annotated field, constructor, or method parameter. Essentially, it helps in achieving the Inversion of Control (IoC) principle by letting Spring manage and wire the dependencies for you.
 
 ## Spring Profiles
@@ -279,16 +364,6 @@ public class MyPrototypeBean {
   - `metrics` shows metrics information
   - `loggers` shows and modifies the configuration of loggers in the application
   - `mappings` displays a list of all @RequestMapping paths
-
-## Annotations
-### @RequestParam
-### @PathVariable
-### @RequestBody
-### @ResponseBOdy
-### @Component
-### @Bean
-### @Configuration
-### @RestControllerAdvice
 
 ## Spring Boot Security
 - Spring Boot Security is a powerful module provided by the Spring framework that enables developers to easily add security features to their Spring Boot applications
