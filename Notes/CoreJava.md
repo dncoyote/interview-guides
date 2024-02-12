@@ -2374,3 +2374,7 @@ Service Discovery
 Centralized Config Servcer
 Distributed Tracing
 API Gateway
+--
+triggers
+views
+hibernate states
