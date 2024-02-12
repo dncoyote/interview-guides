@@ -21,7 +21,7 @@ SQL, which stands for Structured Query Language, is a domain-specific programmin
 - Well-suited for applications with evolving data requirements, large amounts of unstructured data, and scalability needs.
 - Commonly used in web applications, real-time big data, and systems with dynamic or flexible schemas.
 
-## **Primary key v/s Unique key v/s Foreign key**
+## **Primary key v/s Unique key v/s Foreign key v/s Composite key**
 
 #### Primary key
 
@@ -42,6 +42,12 @@ SQL, which stands for Structured Query Language, is a domain-specific programmin
 - Foreign keys are used to create relationships between tables, allowing you to retrieve related data from different tables through JOIN operations.
 - Foreign key in a child table typically references the primary key in the parent table, it helps maintain data consistency and prevent orphaned data.
   Eg: studentId in DepartmentTable
+
+#### Composite key
+
+ - Composite key is a combination of two or more columns that uniquely identifies each row in a database table. 
+ - They are unlike a single-column primary key, which consists of only one column, a composite key involves multiple columns.
+ Eg: studentId and DepartmentId in SchoolTable
 
 ## Indexing 
 
@@ -155,6 +161,52 @@ FROM table_name
 ORDER BY column_name DESC
 LIMIT 1 OFFSET 1;
 ```
+
+## View
+- View is a virtual table derived from one or more tables or other views. 
+- It represents a set of rows and columns, just like a real table, but its contents are dynamically generated based on the definition of the view. 
+- Views do not store data themselves; instead, they retrieve data from the underlying tables or views whenever they are queried.
+- Views are a powerful tool for organizing and presenting data in SQL databases, offering flexibility, security, and abstraction capabilities.
+
+```sql
+CREATE VIEW EmployeeView AS
+SELECT EmployeeID, FirstName, LastName, Department
+FROM Employees
+WHERE Department = 'IT';
+
+SELECT * FROM EmployeeView;
+```
+## Procedure
+- Procedure is a group of SQL statements that perform a specific task or set of tasks. 
+- Procedures are stored in the database and can be executed by invoking their name. 
+- They are often used to encapsulate frequently executed sequences of SQL statements, implement business logic, or perform data manipulation tasks.
+
+```sql
+CREATE PROCEDURE GetEmployeeInfo(IN emp_id INT)
+BEGIN
+    SELECT * FROM employees WHERE employee_id = emp_id;
+END;
+```
+
+## Triggers
+- Triggers in SQL are special types of stored procedures that automatically execute in response to specific events or actions performed on a database table. 
+- These events can include INSERT, UPDATE, or DELETE operations on the table. 
+- Triggers are useful for enforcing data integrity constraints, auditing changes, or automating certain tasks based on database events.
+
+```sql
+CREATE TRIGGER update_timestamp
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    SET NEW.last_updated = CURRENT_TIMESTAMP;
+END;
+```
+
+## Functions
+- Functions are named, reusable code blocks that perform a specific task or computation and return a single value. 
+- Functions can accept parameters, perform calculations or manipulations on data, and return a result. 
+- They are commonly used to encapsulate logic that needs to be executed repeatedly within SQL queries or statements.
+
 
 ## **One-Many Relationship**
 - In a one-to-many relationship, one record in the first table (parent table) can be associated with multiple records in the second table (child table), but each record in the second table is associated with only one record in the first table.
