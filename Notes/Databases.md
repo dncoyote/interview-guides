@@ -206,7 +206,9 @@ END;
 - Functions are named, reusable code blocks that perform a specific task or computation and return a single value. 
 - Functions can accept parameters, perform calculations or manipulations on data, and return a result. 
 - They are commonly used to encapsulate logic that needs to be executed repeatedly within SQL queries or statements.
-
+```sql
+SELECT SQUARE(5);
+```
 
 ## **One-Many Relationship**
 - In a one-to-many relationship, one record in the first table (parent table) can be associated with multiple records in the second table (child table), but each record in the second table is associated with only one record in the first table.
