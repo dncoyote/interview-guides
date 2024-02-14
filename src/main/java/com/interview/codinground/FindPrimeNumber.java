@@ -2,28 +2,24 @@ package com.interview.codinground;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
+import java.util.stream.IntStream;
 
 public class FindPrimeNumber {
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-        // Predicate to check if a number is prime
-        Predicate<Integer> isPrime = num -> num > 1 && isDivisibleOnlyByOneAndItself(num);
-
-        // Filtering and printing prime numbers
-        numbers.stream()
-               .filter(isPrime)
-               .forEach(System.out::println);
+        numbers.forEach(number -> {
+            boolean isPrime = isPrime(number);
+            if (isPrime) {
+                System.out.println(number + " is a prime number.");
+            } else {
+                System.out.println(number + " is not a prime number.");
+            }
+        });
     }
 
-    // Helper method to check if a number is divisible only by 1 and itself
-    private static boolean isDivisibleOnlyByOneAndItself(int num) {
-        for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) {
-                return false;
-            }
-        }
-        return true;
+    public static boolean isPrime(int number) {
+        return number > 1 && IntStream.range(2, number)
+                .noneMatch(i -> number % i == 0);
     }
 }
