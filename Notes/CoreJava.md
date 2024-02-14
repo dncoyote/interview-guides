@@ -191,7 +191,7 @@ A "reference type" refers to the data type that represents references to objects
     - Constructors
     - Access modifiers
     - Encapsulation
-    ```
+    ```java
     public class MyClass {
     private int intValue;  // Encapsulated field
 
@@ -205,13 +205,13 @@ A "reference type" refers to the data type that represents references to objects
     }
     ```
     - Inheritance
-    ```
+    ```java
     public class SubClass extends SuperClass {
     // ...
     }
     ```
     - Polymorphism
-    ```
+    ```java
     SuperClass myObject = new SubClass();
     ```
 

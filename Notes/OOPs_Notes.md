@@ -1,12 +1,29 @@
 # **Object Oriented Programming**
 
-Object Oriented Programming is the programming paradigm that uses classes and objects to structure their code.
+- Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data, in the form of fields (attributes or properties), and code, in the form of procedures (methods or functions). 
+- OOP emphasizes the organization of software as a collection of objects that interact with each other to perform tasks.
 
-## **Objects & Classes**
 
-- Objects are always called instances of a class which are created from a class in java or any other language. They have states and behaviour.
+## **Class**
+- A class is a fundamental building block of object-oriented programming (OOP).
+- It serves as a blueprint or template for creating objects. 
+- A class defines the properties (fields or attributes) and behaviors (methods) that objects of that class will have.
+- Key features
+    - Fields
+    - Methods
+    - Constructors
+    - Access modifiers
+    - Encapsulation
+    - Inheritance  
+    - Polymorphism
 
-  ```java
+## **Objects**
+- Object is an instance of a class.
+- Object is a key concept in object-oriented programming (OOP).
+- A class serves as a blueprint or template for creating objects, and an object is a concrete instantiation of that class.
+- Objects have a lifecycle that includes creation, usage, and eventually garbage collection when they are no longer referenced.
+
+```java
   public class Mybook {
     int x=10;
   public static void main (String args []) {
@@ -14,13 +31,9 @@ Object Oriented Programming is the programming paradigm that uses classes and ob
     System.out.println(myobj.x);
     }
   }
-  ```
-
-- The collection of objects is said to be a class.
-- Class is also called a template of an object. Classes have members which can be fields, methods and constructors
+```
 
 ## **Abstraction**
-
 - Abstraction is a process which displays only the information needed and hides the unnecessary information. We can say that the main purpose of abstraction is data hiding.
 - In Java, abstraction is achieved by interfaces and abstract classes.
 
@@ -68,26 +81,77 @@ Object Oriented Programming is the programming paradigm that uses classes and ob
 
 ## **Polymorphism**
 
-- Polymorphism as the ability of a message to be displayed in more than one form.
+- Polymorphism means the ability of objects to take on multiple forms. 
 - Polymorphism allows us to perform a single action in different ways
 - Types
+  - Compile time Polymorphism (method overloading)
+    - This occurs when multiple methods in the same class have the same name but different parameters.
+    - The Java compiler determines which method to invoke based on the number, type, and order of the method's parameters
 
-  - Compile time Polymorphism
-  - Runtime Polymorphism
+```java
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
 
-  ```
-  code
-  ```
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+```
+  - Runtime Polymorphism (method overriding)
+    - This occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. 
+    - The subclass method must have the same name, return type, and parameters as the superclass method. 
+    - During runtime, the JVM determines which method to invoke based on the actual object type. Here's an example:
+
+```java
+  class Animal {
+    public void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+```
 
 ## **Encapsulation**
-
-- It is the process that binds together the data and code into a single unit and keeps both from being safe from outside interference and misuse.
+- Encapsulation is the bundling of data and methods that operate on the data into a single unit or class. It hides the internal state of an object and only exposes the necessary operations.
 - The data is hidden from other classes and can be accessed only through the current class’s methods.
 - Encapsulation acts as a protective wrapper that prevents the code and data from being accessed by outsiders.
-- Encapsulation is achieved by declaring the variables as private and providing public setter and getter methods to modify and view the variable values.
+- Encapsulation is achieved by declaring the variables as `private` and providing `public` setter and getter methods to modify and view the variable values.
 
-  ```
-  code
+  ```java
+  public class Student {
+    // Private fields
+    private String name;
+    private int age;
+
+    // Public methods to access and modify the private fields
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age >= 0) {
+            this.age = age;
+        } else {
+            System.out.println("Age cannot be negative.");
+        }
+    }
+  }
   ```
 
 ## **Advantages**
@@ -96,7 +160,7 @@ Object Oriented Programming is the programming paradigm that uses classes and ob
 
 | Object Oriented Programming                                        | Procedure Oriented Programming                                                                                           |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| It references an existing string object in the pool if one exists. | It explicitly creates a new string object on the heap, regardless of whether an identical string is already in the pool. |
-| More memory efficient.                                             | Less memory efficient.                                                                                                   |
+|  |  |
+|                                    |                                                                  |
 
 ---
