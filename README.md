@@ -6,5 +6,6 @@
 4. [Design Patterns & Principles](Notes/DesignPatternsPrinciples.md)
 5. [Framework, Libraries & Technologies](Notes/Framework_Libraries_Technologies.md)
 6. [Database & SQL](Notes/Databases.md)
-7. [Practical Core Java](src/main/java/com/interview/corejava)
-8. [Coding Round](src/main/java/com/interview/codinground)
+7. [OOPs](Notes/OOPs_Notes.md)
+8. [Practical Core Java](src/main/java/com/interview/corejava)
+9. [Coding Round](src/main/java/com/interview/codinground)
