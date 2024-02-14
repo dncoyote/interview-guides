@@ -80,6 +80,10 @@
 
 ## Distributed Tracing
 
+Distributed tracing is a method used to monitor and debug distributed systems, particularly in modern microservices architectures. It involves tracking and logging the flow of requests as they traverse through multiple services or components in a distributed system.
+
+In a distributed tracing system, each service or component involved in processing a request generates and propagates a unique identifier known as a trace or span ID. As the request moves through various services, these identifiers are passed along, allowing the tracing system to link together all the individual spans to form a complete trace of the request's journey through the system.
+
 ## @FeignClient
 
 How to automate deploy and monitor
