@@ -1125,10 +1125,84 @@ public class Main {
 - Constant variable, which is implicitly public, static, and final
 - The `implements` keyword is used.
 
+```java
+interface Drawable {
+    void draw();
+}
+
+class Shape implements Drawable {
+    public void draw() {
+        System.out.println("Drawing a shape...");
+    }
+}
+
+class Text implements Drawable {
+    public void draw() {
+        System.out.println("Drawing text...");
+    }
+}
+
+public class InterfaceExample {
+    public static void drawShapes(Drawable[] shapes) {
+        for (Drawable shape : shapes) {
+            shape.draw();
+        }
+    }
+
+    public static void main(String[] args) {
+        Shape circle = new Shape();
+        Text message = new Text();
+
+        Drawable[] drawings = {circle, message};
+        drawShapes(drawings);
+    }
+}
+
+```
+
 ## **Abstract Class**
 
 - An abstract class is a class that cannot be instantiated directly, but can be extended by other classes. It serves as a blueprint for other classes to derive from and provides common functionality that can be inherited by its subclasses.
 - An abstract class cannot be instantiated, meaning we cannot create objects of it, but we can use it as a template for creating other classes that extend it.
+
+```java
+abstract class Shape {
+    abstract double calculateArea();
+
+    void draw() {
+        System.out.println("Drawing a shape...");
+    }
+}
+
+class Circle extends Shape {
+    double radius;
+
+    @Override
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    double length, width;
+
+    @Override
+    double calculateArea() {
+        return length * width;
+    }
+}
+
+public class AbstractClassExample {
+    public static void main(String[] args) {
+        Circle circle = new Circle(5);
+        Rectangle rectangle = new Rectangle(4, 3);
+
+        System.out.println("Circle area: " + circle.calculateArea());
+        System.out.println("Rectangle area: " + rectangle.calculateArea());
+    }
+}
+
+```
 
 ## **Interface v/s Abstract Class**
 
@@ -1745,53 +1819,166 @@ public class AnonymousClassDemo {
 }
 
 ```
-
 ## **Inheritance**
-
 - Inheritance allows one class to inherit properties and methods from another class.
 - The class that is being inherited from is called the superclass or parent class, and the class that inherits is called the subclass or child class.
 - Inheritance is achieved using the keyword `extends` and then the subclass can access the non-private fields and methods of its superclass as if they were its own.
-
+#### **Key features**
+- Avoids rewriting code for common functionalities, saving time and effort.
+- Changes made in the superclass automatically apply to its subclasses, simplifying code maintenance.
+- Subclasses can add new features without modifying the superclass, promoting modularity and flexibility
 ```java
+// Superclass: Vehicle
+class Vehicle {
+    String color;
+    int numWheels;
 
-class Animal {
-protected String name;
-
-      public Animal(String name) {
-          this.name = name;
-      }
-
-      public void speak() {
-          System.out.println("I am an animal.");
-      }
-
+    void move() {
+        System.out.println("Vehicle is moving...");
+    }
 }
 
-class Cat extends Animal {
-    public Cat(String name) {
-    super(name);
+// Subclass: Car inherits from Vehicle
+class Car extends Vehicle {
+    String model;
+
+    void startEngine() {
+        System.out.println("Car engine started...");
+    }
 }
 
-      public void speak() {
-          System.out.println("I am a cat.");
-      }
-
-}
-
-public class Main {
+public class InheritanceExample {
     public static void main(String[] args) {
-        Animal animal1 = new Animal("Generic Animal");
-        Animal cat1 = new Cat("Fluffy");
+        Car myCar = new Car();
+        myCar.color = "Red";
+        myCar.numWheels = 4;
+        myCar.model = "Sedan";
 
-          animal1.speak(); // Output: I am an animal.
-          cat1.speak(); // Output: I am a cat.
-          dog1.speak(); // Output: I am a dog.
-      }
-
+        myCar.move(); // Inherited from Vehicle
+        myCar.startEngine(); // Specific to Car
+    }
 }
 
 ```
+### **Single Inheritance**
+- A subclass inherits from only one superclass.
+```java
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating...");
+    }
+}
 
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking...");
+    }
+}
+
+public class SingleInheritanceExample {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.eat(); // Inherited from Animal
+        myDog.bark(); // Specific to Dog
+    }
+}
+```
+
+### **Multilevel Inheritance**
+- A subclass inherits from another subclass, which in turn inherits from another, and so on.
+```java
+class Vehicle {
+    void move() {
+        System.out.println("Vehicle is moving...");
+    }
+}
+
+class Car extends Vehicle {
+    void startEngine() {
+        System.out.println("Car engine started...");
+    }
+}
+
+class SportsCar extends Car {
+    void accelerate() {
+        System.out.println("SportsCar is accelerating...");
+    }
+}
+
+public class MultilevelInheritanceExample {
+    public static void main(String[] args) {
+        SportsCar mySportsCar = new SportsCar();
+        mySportsCar.move(); // Inherited from Vehicle
+        mySportsCar.startEngine(); // Inherited from Car
+        mySportsCar.accelerate(); // Specific to SportsCar
+    }
+}
+```
+
+### **Hierarchical Inheritance**
+- Multiple subclasses inherit from a single superclass.
+```java
+class Shape {
+    void calculateArea() {
+        System.out.println("Calculating shape area...");
+    }
+}
+
+class Circle extends Shape {
+    void drawCircle() {
+        System.out.println("Drawing circle...");
+    }
+}
+
+class Rectangle extends Shape {
+    void drawRectangle() {
+        System.out.println("Drawing rectangle...");
+    }
+}
+
+public class HierarchicalInheritanceExample {
+    public static void main(String[] args) {
+        Circle myCircle = new Circle();
+        Rectangle myRectangle = new Rectangle();
+
+        myCircle.calculateArea(); // Inherited from Shape
+        myCircle.drawCircle(); // Specific to Circle
+
+        myRectangle.calculateArea(); // Inherited from Shape
+        myRectangle.drawRectangle(); // Specific to Rectangle
+    }
+}
+```
+### **Multiple Inheritance**
+- A subclass inherits from multiple superclasses directly.
+- Java doesn't directly support this due to potential ambiguity issues.
+```java
+interface Drawable {
+    void draw();
+}
+
+interface Movable {
+    void move();
+}
+
+class Shape implements Drawable, Movable {
+    public void draw() {
+        System.out.println("Drawing the shape...");
+    }
+
+    public void move() {
+        System.out.println("Moving the shape...");
+    }
+}
+
+public class InterfaceInheritanceExample {
+    public static void main(String[] args) {
+        Shape myShape = new Shape();
+        myShape.draw();
+        myShape.move();
+    }
+}
+```
 ## **public**
 
 - `public` is an access modifier that can be applied to classes, methods, and fields.
