@@ -2294,6 +2294,23 @@ public class Main {
     }
 }
 
+//using java 8
+public class Main {
+    public static void main(String[] args) {
+        // Creating a Thread using a Runnable lambda expression
+        Runnable myRunnable = () -> {
+            // Task to be performed by the thread
+            System.out.println("Task is running in a new thread.");
+        };
+
+        // Creating a Thread with the Runnable lambda expression
+        Thread thread = new Thread(myRunnable);
+
+        // Starting the thread
+        thread.start();
+    }
+}
+
 ```
 
 ## **Callable Interface**
