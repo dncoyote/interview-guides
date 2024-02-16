@@ -2594,3 +2594,16 @@ Distributed Tracing
 API Gateway
 --
 hibernate states
+---
+fail safe and fail fast iterator
+working of hashmap
+difference between hashmap and hashtable
+can we add a object as a key in hm
+what happens when duplicate key is added in hm
+diff between arraylist and vector
+diff between run and start
+can we run already running thread
+can we start already started thread
+lifecycle of thread
+can synchronised be added for static method
+is parallel stream good for sort operation
