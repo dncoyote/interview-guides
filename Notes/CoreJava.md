@@ -938,6 +938,13 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 - Key-value pairs are stored based on the hash code of the keys, making the retrieval of values efficient.
 - The order of elements in a HashMap is not guaranteed and may change over time as the map is modified. This means that the elements are not stored in a specific order.
 
+#### Features
+- HashMap stores data as key-value pairs, where each key is associated with exactly one value. Both keys and values can be of any reference type, including `null`. Key-value pairs are added, retrieved, and updated using the `put()` and `get()` methods.
+- Each key in a HashMap must be unique. Duplicate keys are not allowed. If you attempt to add a duplicate key, the existing value associated with that key will be replaced with the new value.
+- HashMap allows `null` keys and values. You can have at most one `null` key and multiple `null` values.
+- HashMap does not guarantee the order of its elements. The iteration order of the elements may change over time, especially when the HashMap is modified (e.g., adding or removing elements).
+- HashMap provides constant-time performance for the basic operations (addition, removal, and retrieval of key-value pairs) on average, making it suitable for most scenarios where quick access to data is required.
+
 #### LinkedHashMap
 
 - LinkedHashMap is another implementation of the Map interface, but it maintains the order of elements based on the order in which they were added.
