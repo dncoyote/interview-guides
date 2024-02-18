@@ -392,32 +392,6 @@ MyClass obj = new MyClass();
   - try-catch: Used to catch and handle exceptions that occur within a try block.
   - try-finally: Ensures a block of code (in the finally block) is executed regardless of whether an exception occurred.
 
-## **Iterator**
-
-- Iterator is an interface that belongs to the Java Collections Framework. It provides a way to traverse or iterate over elements in a collection (such as a List, Set, or Map) without exposing the underlying data structure.
-- Iterators are commonly used to access and manipulate the elements in a collection, and they are especially useful when you need to sequentially process the elements.
-
-```java
-public class IteratorExample {
-    public static void main(String[] args) {
-        List<String> names = new ArrayList<>();
-        names.add("Alice");
-        names.add("Bob");
-        names.add("Charlie");
-
-        // Get an iterator for the list
-        Iterator<String> iterator = names.iterator();
-
-        // Iterate over the list using the iterator
-        while (iterator.hasNext()) {
-            String name = iterator.next();
-            System.out.println(name);
-        }
-    }
-}
-
-```
-
 ## **super**
 
 - `super` can be used to refer immediate parent class instance variable.
@@ -959,6 +933,49 @@ linkedHashMap.put("Carol", 22);
 #### LinkedList
 
 - A doubly-linked list that can be used as a queue.
+
+## **Iterator**
+
+- Iterator is an interface that belongs to the Java Collections Framework. It provides a way to traverse or iterate over elements in a collection (such as a List, Set, or Map) without exposing the underlying data structure.
+- Iterators are commonly used to access and manipulate the elements in a collection, and they are especially useful when you need to sequentially process the elements.
+
+```java
+public class IteratorExample {
+    public static void main(String[] args) {
+        List<String> names = new ArrayList<>();
+        names.add("Alice");
+        names.add("Bob");
+        names.add("Charlie");
+
+        // Get an iterator for the list
+        Iterator<String> iterator = names.iterator();
+
+        // Iterate over the list using the iterator
+        while (iterator.hasNext()) {
+            String name = iterator.next();
+            System.out.println(name);
+        }
+    }
+}
+
+```
+
+## **Fail-fast Iterator v/s Fail-safe Iterator**
+Fail-fast Iterator & Fail-safe Iterator are two different approaches used by iterators in Java to handle concurrent modification of collections while iterating over them.
+
+#### Fail-fast Iterator
+- Fail-fast iterators, throw a `ConcurrentModificationException` if the underlying collection is structurally modified (i.e., if elements are added, removed, or modified) after the iterator is created.
+- This behavior ensures that the iterator fails quickly and explicitly when concurrent modification occurs, rather than risking unpredictable behavior or data corruption.
+- Fail-fast iterators are typically used in the collections framework classes such as `ArrayList`, `HashMap`, `HashSet`, etc.
+- Generally more efficient since it doesn't need to create a copy.
+- Generally used in single-threaded environments.
+
+#### Fail-safe Iterator
+- Fail-safe iterators, do not throw a `ConcurrentModificationException` if the underlying collection is modified during iteration. Instead, they work on a copy of the collection's elements at the time the iterator was created.
+- This approach ensures that the original collection remains unaffected by concurrent modifications during iteration, but it may not reflect the latest changes made to the collection.
+- Fail-safe iterators are commonly used in concurrent collections or in situations where concurrent modifications are expected, such as in multi-threaded environments. Eg: `CopyOnWriteArrayList`, `CopyOnWriteArraySet` etc.
+- May be less efficient due to creating a copy.
+- Commonly used in concurrent or multi-threaded environments.
 
 ## **Comparable**
 
