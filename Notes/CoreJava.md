@@ -526,56 +526,53 @@ String s3 = new String("Hello"); // Creates a new string object "Hello" outside 
 | This makes String objects thread-safe and secure                                                                                                                                                                  | `StringBuilder` objects are not thread-safe and should not be used in a multi-threaded environment             | `StringBuffer` objects are thread-safe and can be used in a multi-threaded environment                        |
 | Slow                                                                                                                                                                                                              | Faster than `String`                                                                                           | `StringBuffer` is thread-safe, making it ideal for multi-threaded environments                                |
 
-## **static**
+## **`static`**
 
 - `static` keyword is used to create variables, methods, and nested classes that belong to the class rather than to any specific instance of the class.
 
-- Static variables: Also known as class variables, they are shared by all instances of a class. They are initialized only once when the class is loaded, and any changes to them are reflected across all instances of the class.
-
-- Static fields cannot be serialized as they belong to the class and not to a specific instance of class.
-
-```java
-
-public class Counter {
-private static int count = 0;
-
-      public Counter() {
-          count++;
-      }
-
-      public static int getCount() {
-          return count;
-      }
-
-}
-
-// Usage:
-Counter c1 = new Counter();
-Counter c2 = new Counter();
-System.out.println(Counter.getCount()); // Prints 2
-```
-
-- Static methods: They belong to the class rather than to any instance of the class. They can be called without creating an object of the class and can access only static variables and methods of the class.
+#### Static Variables
+- They are also known as Class Variables, they are shared by all instances of a class. 
+- They are initialized only once when the class is loaded, and any changes to them are reflected across all instances of the class.
 
 ```java
-
-public class MathUtils {
-public static int add(int a, int b) {
-return a + b;
+public class MyClass {
+    public static int count = 0; // Static variable
 }
-
-      public static double square(double x) {
-          return x * x;
-      }
-
-}
-
-// Usage:
-int sum = MathUtils.add(2, 3);
-double result = MathUtils.square(4.0);
 
 ```
+#### Static Methods
+- A static method is a method that belongs to the class rather than to any specific instance of the class.
+- Static methods can be called directly on the class without the need to create an instance of the class.
 
+```java
+public class MyClass {
+    public static void printMessage() { // Static method
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+#### Static Blocks
+- Static blocks are used to initialize static variables or perform any other static initialization tasks.
+- They are executed only once, when the class is loaded into memory.
+- Static blocks are enclosed within curly braces and preceded by the `static` keyword.
+
+```java
+public class MyClass {
+    static {
+        System.out.println("Static block executed.");
+    }
+}
+
+```
+#### Static Final Fields (Compile-Time Constants): 
+- Static final fields are constants that are initialized at compile time and cannot be changed thereafter. 
+- They are typically used for defining constants
+```java
+public static final double PI = 3.14159;
+```
+
+#### Static nested classes
 - Static nested classes: They are declared as static when they are nested inside another class. They are like regular nested classes, but they do not have access to the instance variables of the enclosing class.
 
 ```java
@@ -614,8 +611,57 @@ Person person = new Person("John Doe", "123 Main St", "Anytown", "CA");
 System.out.println(person.getFullAddress()); // Prints "123 Main St, Anytown, CA"
 
 ```
-
+##### Features
+- Static variables are not serialized along with the object state. When an object is serialized, only the instance variables and their values are serialized, not the static variables. When the object is deserialized, static variables are initialized to their default values.
+- Static methods and blocks can be synchronized, just like instance methods and blocks. However, the synchronization is at the class level, not at the instance level. This means that only one thread can execute a static synchronized method or block for a given class at a time.
+- Static methods can be overloaded in the same way as instance methods. Overloading is the ability to define multiple methods in the same class with the same name but with different parameter lists.
+- Static methods cannot be overridden in Java. When you declare a static method in a subclass with the same signature as a static method in the superclass, it hides the superclass method rather than overriding it.
 - In Java `static` keyword is used in creating constants, utility methods, and factory methods.
+
+```java
+public class StaticExample {
+    public static final double PI = 3.14159;
+
+    public static int add(int a, int b) {
+        return PI * a + b;
+    }
+
+    public static int multiply(int a, int b) {
+        return PI * a * b;
+    }
+}
+
+```
+
+```java
+public class StaticExample {
+    // Static variable
+    public static int count;
+
+    // Static block
+    static {
+        System.out.println("Static block executed.");
+        count = 0; // Initialize static variable
+    }
+
+    // Static method
+    public static void incrementCount() {
+        count++;
+    }
+
+    public static void main(String[] args) {
+        // Accessing static variable and method
+        System.out.println("Initial count: " + count); // Output: Initial count: 0
+        incrementCount(); // Increment count
+        System.out.println("Updated count: " + count); // Output: Updated count: 1
+    }
+}
+
+//Output
+// Static block executed.
+// Initial count: 0
+// Updated count: 1
+```
 
 ## **static v/s instance**
 
@@ -938,6 +984,8 @@ linkedHashMap.put("Carol", 22);
 
 - Iterator is an interface that belongs to the Java Collections Framework. It provides a way to traverse or iterate over elements in a collection (such as a List, Set, or Map) without exposing the underlying data structure.
 - Iterators are commonly used to access and manipulate the elements in a collection, and they are especially useful when you need to sequentially process the elements.
+- Iterators are commonly used behind the scenes in both for-each loops and traditional for loops to iterate over collections.
+- Under the hood, the compiler translates the enhanced for loop into an equivalent loop using an iterator.
 
 ```java
 public class IteratorExample {
@@ -947,6 +995,9 @@ public class IteratorExample {
         names.add("Bob");
         names.add("Charlie");
 
+        for(String name: names){
+            System.out.println(name);
+        }
         // Get an iterator for the list
         Iterator<String> iterator = names.iterator();
 
@@ -2612,7 +2663,6 @@ API Gateway
 --
 hibernate states
 ---
-fail safe and fail fast iterator
 working of hashmap
 difference between hashmap and hashtable
 can we add a object as a key in hm
