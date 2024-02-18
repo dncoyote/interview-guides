@@ -2090,6 +2090,44 @@ public class InterfaceInheritanceExample {
 - `default` is an access modifier that can be applied to classes, methods, and fields. When a class, method, or field is marked as default, it can be accessed within the same class, within subclasses in same package, and within the same package.
 - `default` members are inherited only within the same package
 
+## Method hiding
+- Method hiding in Java occurs when a subclass declares a static method with the same signature as a static method in its superclass. 
+- This hides the superclass method, meaning that the subclass method is invoked instead of the superclass method when called from within the subclass or its subclasses.
+```java
+class Parent {
+    static void display() {
+        System.out.println("Parent's static display() method");
+    }
+}
+
+class Child extends Parent {
+    static void display() {
+        System.out.println("Child's static display() method");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Parent.display(); // Invokes Parent's static display() method
+        Child.display(); // Invokes Child's static display() method
+        Parent parent = new Child();
+        parent.display(); // Invokes Parent's static display() method (not overridden)
+    }
+}
+
+//Output
+// Parent's static display() method
+// Child's static display() method
+// Parent's static display() method
+```
+- If both `display()` methods were not static, the behavior would change, and method overriding would occur instead of method hiding.
+```java
+//Output
+// Parent's display() method
+// Child's display() method
+// Child's display() method
+```
+
 ## **Transient**
 
 - `transient` keyword is used to mark a class variable as not being serialized during object serialization. Serialization is the process of converting an object into a stream of bytes, so that it can be saved to a file or sent over a network.
@@ -2605,7 +2643,6 @@ Hibernate + jpql
 Agile
 cap theorem
 Code to sort employee object based on salary
-Arrays
 Strings
 Serverless Compute
 Docker
@@ -2631,10 +2668,7 @@ To swap 2 numbers without using third variable
 to check even or odd
 Pattern programming
 She told me to reverse that patten programming output
-failsafe fail fast iterator
-can static methods be overriden, can they be overloaded
 class C should inherit both class A and class B
-method hiding
 dynamic method
 Function keyword in java
 ---
@@ -2672,5 +2706,4 @@ diff between run and start
 can we run already running thread
 can we start already started thread
 lifecycle of thread
-can synchronised be added for static method
 is parallel stream good for sort operation
