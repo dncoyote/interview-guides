@@ -997,8 +997,8 @@ linkedHashMap.put("Carol", 22);
 
 | HashTable     | HashMap     |
 | ------------- | ------------- |
-| Hashtable is synchronized, meaning it is thread-safe. All its methods are synchronized, making it suitable for concurrent access from multiple threads without external synchronization.1 | HashMap is not synchronized by default. It is not thread-safe and may lead to data corruption if accessed concurrently by multiple threads.  |
-| Neither keys nor values can be null in a Hashtable. Attempting to insert a null key or value will result in a NullPointerException. | HashMap allows one null key and multiple null values.  |
+| Hashtable is synchronized, meaning it is thread-safe. All its methods are synchronized, making it suitable for concurrent access from multiple threads without external synchronization. | HashMap is not synchronized by default. It is not thread-safe and may lead to data corruption if accessed concurrently by multiple threads.  |
+| Neither keys nor values can be null in a Hashtable. Attempting to insert a null key or value will result in a `NullPointerException`. | HashMap allows one null key and multiple null values.  |
 | Hashtable is a legacy class that was part of the original Java Collections Framework | HashMap is a modern implementation introduced later in Java's development. It offers more flexibility and better performance compared to Hashtable. |
 
 ## **Concurrent Hashmap**
@@ -2768,8 +2768,4 @@ API Gateway
 hibernate states
 ---
 
-diff between run and start
-can we run already running thread
-can we start already started thread
-lifecycle of thread
 is parallel stream good for sort operation
