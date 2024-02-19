@@ -1,22 +1,5 @@
 # **Framework, Libraries and Technologies**
 
-## **HTTP Requests**
-
-- HTTP is the protocol used by web browsers and servers to communicate and exchange information.
-- An HTTP request is a message sent by a client, typically a web browser or an application, to request data from a server.
-- HTTP request typically consists of the following components:
-
-  - HTTP Method: This indicates the type of request being made, such as GET, POST, PUT, DELETE, etc. Each HTTP method has a specific purpose, such as retrieving data (GET), submitting data (POST), updating data (PUT), or deleting data (DELETE).
-  - URL (Uniform Resource Locator): This specifies the web address of the resource being requested. It includes the protocol (e.g., http:// or https://), the domain name (e.g., www.example.com), and the path to the resource (e.g., /images/pic.jpg).
-  - Headers: These are key-value pairs that provide additional information about the request, such as the type of data being sent, the language preference, caching settings, and more. Headers are used to convey meta-information about the request to the server.
-  - Body (optional): This is the data, such as form data or JSON, that is sent as part of the request. It is typically used in POST, PUT, and DELETE requests to send data to the server.
-
-- Once the HTTP request is sent to the server, the server processes the request and generates an HTTP response, which is sent back to the client with the requested data. The response typically contains a response status code indicating the outcome of the request (e.g., 200 OK, 404 Not Found, etc.), headers with additional information, and optionally, a response body with the requested data.
-
-## **REST API**
-
-- A REST API (Representational State Transfer Application Programming Interface) is a type of web API that uses HTTP requests to perform operations on data.
-
 ## **SOAP**
 - SOAP, stands for Simple Object Access Protocol.
 - It is a protocol for exchanging structured information in web services. 
@@ -65,61 +48,6 @@ The SOAP specification is extensible, meaning that additional features can be ad
 - RPC stands for Remote Procedure Call.
 - It is a protocol that allows a program to cause a procedure (subroutine) to execute in another address space (commonly on another machine).
 - In an RPC, a client program initiates a procedure call that is executed on a remote server. The client and server can be written in different programming languages and can run on different operating systems. RPC abstracts the communication details between the client and the server, making it appear as if the client is calling a procedure locally.
-
-## **Authentication v/s Authorization**
-
-- Authentication : Authentication is the process of verifying the identity of a user, system, or entity to ensure they are who they claim to be.
-- Authorization : Authorization, also known as access control, is the process of determining what actions or operations an authenticated user or entity is allowed to perform on a system or resource.
-
-## **REST API Authentication**
-
-- Basic Authentication:
-  - Clients send a username and password with each request.
-  - Typically used with HTTPS for security.
-  - Simple but not the most secure option.
-- Token-Based Authentication:
-  - Clients receive a token (e.g., JWT) upon successful login.
-  - The token is included in the request headers for subsequent API calls.
-  - Tokens can carry user-related information and have expiration times.
-- OAuth 2.0:
-  - An authorization framework used for delegating access to a third-party application without exposing the user's credentials.
-  - Provides various grant types (authorization code, client credentials, implicit, resource owner password credentials).
-  - Popular for securing APIs used by mobile and web applications.
-- API Keys:
-  - Clients include an API key in the request headers to authenticate.
-  - Simple and commonly used for rate limiting and access control.
-  - Typically not suitable for user authentication.
-- Bearer Token:
-  - Similar to token-based authentication, but the token is referred to as a "bearer token."
-  - Clients include the token in the request headers with the "Bearer" prefix.
-- OpenID Connect (OIDC):
-  - An extension of OAuth 2.0 that provides identity information about the user in addition to authentication.
-  - Often used for single sign-on (SSO) and user identity management.
-- HMAC (Hash-based Message Authentication Code):
-  - Clients generate a hash of the request data and a secret key, which is included in the request headers.
-  - Requires a shared secret between the client and server.
-- Session-Based Authentication:
-  - Clients authenticate once (e.g., using a username and password) and receive a session token.
-  - The session token is stored on the server, and a session ID or cookie is sent to the client.
-  - Commonly used in web applications but less common in pure REST APIs.
-- Client Certificates (Mutual SSL):
-  - Both the client and server have SSL certificates, and mutual authentication is performed during the SSL handshake.
-  - Used in scenarios where server-to-client trust is important.
-- Custom Authentication:
-  - Implement custom authentication mechanisms tailored to specific application requirements.
-  - Can include multi-factor authentication (MFA), biometric authentication, or any other unique methods.
-
-## **Basic Auth in HTTP**
-
-- Create HTTPS connection.
-- Set up Basic Authentication Header
-  - By encoding username and password, and add it to a Basic Authentication Header.
-- Send the Authentication header as request.
-- Characteristics
-  - Security: Basic Authentication transmits credentials with every request, so it's crucial to use it over HTTPS to ensure the confidentiality of the credentials during transmission.
-  - Statelessness: Basic Authentication is stateless. Each request should contain the necessary authentication information, and the server does not maintain session or user state between requests.
-  - Efficiency: Basic Authentication is efficient for simple authentication needs but may not be suitable for more complex scenarios. For improved performance, you might consider using tokens or sessions once the user's identity is confirmed.
-  - Authentication Overhead: Authenticating with each request can create additional overhead, especially if the authentication process is time-consuming or resource-intensive. Caching or using stateful sessions can help mitigate this.
 
 ## **JWT**
 
@@ -255,10 +183,6 @@ JDBC (Java Database Connectivity) is a Java-based API (Application Programming I
 
 ## **MVC Pattern**
 - MVC (Model-View-Controller) Pattern: Separates the application logic into three interconnected components - Model (data), View (user interface), and Controller (handles user input).
-
-
-## **Microservices**
-
 
 ## **Docker**
 - Docker is a platform that enables developers to automate the deployment of applications within lightweight, portable containers. 
