@@ -943,7 +943,23 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 - Each key in a HashMap must be unique. Duplicate keys are not allowed. If you attempt to add a duplicate key, the existing value associated with that key will be replaced with the new value.
 - HashMap allows `null` keys and values. You can have at most one `null` key and multiple `null` values.
 - HashMap does not guarantee the order of its elements. The iteration order of the elements may change over time, especially when the HashMap is modified (e.g., adding or removing elements).
+- HashMap allows adding a custom object as a key in a HashMap. However, the custom class must ovverride `hashCode()` and `equals()`. The custom objects should also be immutable.
 - HashMap provides constant-time performance for the basic operations (addition, removal, and retrieval of key-value pairs) on average, making it suitable for most scenarios where quick access to data is required.
+
+#### Working
+- When you add a key-value pair to a HashMap, the key is passed through a hashing function to generate a hash code. The hash code is an integer value that represents the key.
+-The hashing function aims to evenly distribute keys across the available buckets in the hash table.
+- Internally, a HashMap maintains an array of linked lists or arrays called "buckets."
+- Each bucket corresponds to a unique hash code.
+- The size of the bucket array is determined by the initial capacity and load factor of the HashMap. The load factor determines when the HashMap should resize its internal array to accommodate more elements.
+- After computing the hash code, the HashMap determines the index of the bucket where the key-value pair should be stored.
+- If the bucket is empty, the key-value pair is added directly to the bucket.
+- If the bucket is not empty (collision occurs), the HashMap appends the key-value pair to the end of the linked list or array in that bucket.
+- To resolve collisions, some implementations of HashMap may use techniques like separate chaining (linked lists) or open addressing (probing).
+- When you want to retrieve the value associated with a key, the HashMap computes the hash code of the key and determines the corresponding bucket.
+- It then searches the linked list or array in that bucket to find the key-value pair with the matching key.
+- If the key is found, the associated value is returned. Otherwise, null is returned to indicate that the key is not present in the HashMap.
+- The average time complexity for insertion, deletion, and retrieval operations in a HashMap is O(1) (constant time)
 
 #### LinkedHashMap
 
@@ -2704,10 +2720,8 @@ API Gateway
 --
 hibernate states
 ---
-working of hashmap
 difference between hashmap and hashtable
 can we add a object as a key in hm
-what happens when duplicate key is added in hm
 diff between arraylist and vector
 diff between run and start
 can we run already running thread
