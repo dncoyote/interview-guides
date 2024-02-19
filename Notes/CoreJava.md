@@ -879,7 +879,7 @@ Collections.sort(myCollection);
   - Vector
   - CopyOnWriteArrayList
 
-#### **ArrayList**
+### **ArrayList**
 
 - ArrayList is an implementation of the List interface that uses a dynamic array to store its elements.
 - It provides fast random access to elements, making it suitable for scenarios where you frequently access elements by their index.
@@ -890,7 +890,7 @@ Collections.sort(myCollection);
 
 A dynamic array is a data structure that can grow or shrink in size as needed. It is implemented as a single contiguous block of memory, and elements are stored in adjacent memory locations.
 
-#### **LinkedList**
+### **LinkedList**
 
 - LinkedList is another implementation of the List interface that uses a doubly-linked list to store its elements.
 - While LinkedList supports random access, accessing elements by index is slower compared to ArrayList because it requires traversing the list from the beginning or end to reach the desired index.
@@ -900,6 +900,19 @@ A dynamic array is a data structure that can grow or shrink in size as needed. I
 ##### **Doubly-linked list**
 
 A doubly linked list is a data structure consisting of nodes, where each node contains a data element and two references (pointers) to the previous and next nodes in the list.
+
+### **Vector**
+- Vector is a legacy class that was part of the original Java Collections Framework. 
+- It is a resizable, thread-safe implementation of the List interface, meaning it allows you to store and manipulate ordered collections of elements. 
+- Vector implements the List interface
+- It is thread safe.
+
+##### **Arraylist v/s Vector**
+| Arraylist      | Vector      |
+| ------------- | ------------- |
+| ArrayList is not synchronized, meaning it is not thread-safe | Vector is synchronized, making it thread-safe. |
+| ArrayList is part of the Java Collections Framework introduced in Java 2.0 | Vector is a legacy class that predates the Java Collections Framework |
+| Arraylist has better performance | Vector may have slower performance compared to ArrayList, especially in single-threaded scenarios |
 
 ## **Set**
 
@@ -911,12 +924,12 @@ A doubly linked list is a data structure consisting of nodes, where each node co
   - TreeSet
   - EnumSet
 
-#### HashSet
+### HashSet
 
 - Elements are stored in a hash table and do not maintain any specific order. You cannot rely on the order of elements in a HashSet.
 - HashSet offers constant-time performance for basic operations like adding, removing, and checking for the existence of elements. i.e., they are fast.
 
-#### LinkedHashSet
+### LinkedHashSet
 
 - LinkedHashSet extends HashSet and maintains the order of elements by using a linked list. When you iterate over a LinkedHashSet, the elements are returned in the order they were added. This provides a predictable iteration order.
 - Operations may be slightly slower than those of a HashSet, although they are still quite efficient.
@@ -932,7 +945,7 @@ A doubly linked list is a data structure consisting of nodes, where each node co
   - LinkedHashMap
   - HashTable
 
-#### HashMap
+### HashMap
 
 - HashMap is an implementation of the Map interface that does not guarantee any specific order for its elements.
 - Key-value pairs are stored based on the hash code of the keys, making the retrieval of values efficient.
@@ -961,7 +974,7 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 - If the key is found, the associated value is returned. Otherwise, null is returned to indicate that the key is not present in the HashMap.
 - The average time complexity for insertion, deletion, and retrieval operations in a HashMap is O(1) (constant time)
 
-#### LinkedHashMap
+### LinkedHashMap
 
 - LinkedHashMap is another implementation of the Map interface, but it maintains the order of elements based on the order in which they were added.
 - The order of elements in a LinkedHashMap is predictable and matches the insertion order. This means that when you iterate through a LinkedHashMap, the elements are returned in the order they were added.
@@ -973,12 +986,20 @@ linkedHashMap.put("Bob", 30);
 linkedHashMap.put("Carol", 22);
 ```
 
-##### **Connection between HashMap and HashSet**
+##### Connection between HashMap and HashSet
 - They both use hash tables to achieve their functionality efficiently. 
 - A HashSet is essentially a HashMap where the elements are the keys, and the values associated with those keys are a constant (PRESENT in the case of HashSet) indicating that the key is present.
 - A HashSet is backed by a HashMap where the elements are the keys, and the values are a constant (usually PRESENT).
 - When you add an element to a HashSet, it is essentially being added as a key in the underlying HashMap.
 - When you perform operations like contains on a HashSet, it is utilizing the HashMap operations.
+
+##### HashTable v/s HashMap
+
+| HashTable     | HashMap     |
+| ------------- | ------------- |
+| Hashtable is synchronized, meaning it is thread-safe. All its methods are synchronized, making it suitable for concurrent access from multiple threads without external synchronization.1 | HashMap is not synchronized by default. It is not thread-safe and may lead to data corruption if accessed concurrently by multiple threads.  |
+| Neither keys nor values can be null in a Hashtable. Attempting to insert a null key or value will result in a NullPointerException. | HashMap allows one null key and multiple null values.  |
+| Hashtable is a legacy class that was part of the original Java Collections Framework | HashMap is a modern implementation introduced later in Java's development. It offers more flexibility and better performance compared to Hashtable. |
 
 ## **Concurrent Hashmap**
 
@@ -2357,7 +2378,35 @@ Thread 11: Message 4
 Thread 12: Message 4
 
 ```
+### Lifecycle of Thread
+- `New`: The thread is in the new state when it has been created but has not yet started its execution. At this stage, the thread has been instantiated, but the `start()` method has not been called yet to begin its execution.
+
+- `Runnable`: The thread enters the runnable state after the `start()` method is called. In this state, the thread is eligible to run, but it may not be currently executing due to CPU scheduling decisions. Threads in the runnable state may be waiting for the CPU to execute their code.
+
+- `Running`: When the CPU scheduler selects a thread from the runnable pool and starts executing its code, the thread enters the running state. In this state, the thread's code is being executed by the CPU.
+
+- `Blocked/Waiting`: A thread enters the blocked or waiting state when it is temporarily suspended from execution, typically due to actions such as waiting for I/O operations, synchronization, or waiting for another thread to complete. Threads in this state are not eligible for CPU execution until they transition back to the runnable state.
+
+- `Timed Waiting`: This is a special case of the blocked or waiting state where a thread waits for a specific period of time before transitioning back to the runnable state. Threads can enter this state by calling methods such as `Thread.sleep()` or `Object.wait()` with a specified timeout.
+
+- `Terminated/Dead`: The thread enters the terminated or dead state when its `run()` method completes its execution or when the `stop()` method is called explicitly. Once a thread reaches this state, it cannot be started again, and its resources are released. After termination, a thread cannot transition to any other state.
+
 ### Features
+
+#### `run()`
+- `run()` method represents the entry point for the code that will be executed by the thread.
+- It contains the code that defines the behavior of the thread when it is running.
+- You override the `run()` method in a class that extends the Thread class or implements the Runnable interface. Inside the `run()` method, you write the code that you want to execute concurrently.
+- Invoking the `run()` method directly does not create a new thread; instead, it executes the `run()` method in the current thread context.
+- You cannot directly run an already running thread in Java. Once a thread has been started using the `start()` method, it begins its execution and runs until its `run()` method completes or until it is explicitly interrupted or stopped.
+
+#### `start()`
+- `start()` method is used to create a new thread and start its execution.
+- When you call the `start()` method on a Thread object, it creates a new thread of execution and then invokes the `run()` method on that thread.
+- The `start()` method ensures that the new thread executes independently and concurrently with other threads in the program.
+- Once a thread has been started by calling `start()`, it cannot be started again. Attempting to do so will result in an `IllegalThreadStateException`.
+- It's essential to call `start()` to ensure that the thread executes concurrently with other threads in the program.
+- You cannot start an already started thread in Java. Once a thread has been started using the `start()` method, it transitions from the "new" state to the "runnable" state and begins its execution.
 
 #### Thread States
 - Threads can be in different states, such as NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, and TERMINATED.
@@ -2695,8 +2744,6 @@ class C should inherit both class A and class B
 dynamic method
 Function keyword in java
 ---
-What is Statelessness in restful api design?
-What is API Versioning
 Difference between OAuth and Basic Authentication
 What to do when DDOS attack happens in RestAPI
 What is Hibernate proxy
@@ -2720,9 +2767,7 @@ API Gateway
 --
 hibernate states
 ---
-difference between hashmap and hashtable
-can we add a object as a key in hm
-diff between arraylist and vector
+
 diff between run and start
 can we run already running thread
 can we start already started thread
