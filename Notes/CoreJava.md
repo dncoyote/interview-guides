@@ -961,7 +961,7 @@ A doubly linked list is a data structure consisting of nodes, where each node co
 
 #### Working
 - When you add a key-value pair to a HashMap, the key is passed through a hashing function to generate a hash code. The hash code is an integer value that represents the key.
--The hashing function aims to evenly distribute keys across the available buckets in the hash table.
+- The hashing function aims to evenly distribute keys across the available buckets in the hash table.
 - Internally, a HashMap maintains an array of linked lists or arrays called "buckets."
 - Each bucket corresponds to a unique hash code.
 - The size of the bucket array is determined by the initial capacity and load factor of the HashMap. The load factor determines when the HashMap should resize its internal array to accommodate more elements.
