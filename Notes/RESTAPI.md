@@ -36,7 +36,7 @@
 
 #### Types
 - URI Versioning
-    - `https://api.example.com/resource?version=1`
+    - `https://api.example.com/v1/resource`
 - Query Parameter Versioning
     - `https://api.example.com/resource?version=1`
 - Header Versioning
