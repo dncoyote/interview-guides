@@ -2768,4 +2768,6 @@ API Gateway
 hibernate states
 ---
 
-is parallel stream good for sort operation
+design patterns
+How dependency injection is achieved
+get() and load()
