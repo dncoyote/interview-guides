@@ -95,13 +95,13 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
   }
   ```
 
-## **Overloading `public static void main(String[] args)`**
+## **Overloading the main method**
 - The main method in Java can be overloaded.
 - You can have multiple main methods in the same class, as long as they have the same signature with different parameters.
 - However, the main method that serves as the entry point for a Java application must have the signature `public static void main(String[] args)`.
 
 ```java
-ublic class MainClass {
+public class MainClass {
     
     // Main method with String array argument
     public static void main(String[] args) {
@@ -2904,14 +2904,9 @@ get() and load()
 What is @Autowired, why cant I use new keyword
 Can I connect one spring boot app to two differnt database.
 WHat is a bean.
-why serialId is provided for serialization
-how its ensured that same class in serialized
-intern
-java reflections
 create three thread that will execute one after the other only
 if id is not provided then will @PathVariable cause problem for getEmpDetails()
 Singleton design pattern
-can psvmain() be overloaded
 query to find manager name from employee table but no managerid
 java,core java
 non conventional database
