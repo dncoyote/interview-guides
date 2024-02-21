@@ -95,6 +95,35 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
   }
   ```
 
+## **Overloading `public static void main(String[] args)`**
+- The main method in Java can be overloaded.
+- You can have multiple main methods in the same class, as long as they have the same signature with different parameters.
+- However, the main method that serves as the entry point for a Java application must have the signature `public static void main(String[] args)`.
+
+```java
+ublic class MainClass {
+    
+    // Main method with String array argument
+    public static void main(String[] args) {
+        System.out.println("Inside main method with String array argument.");
+        for (String arg : args) {
+            System.out.println("Argument: " + arg);
+        }
+    }
+
+    // Overloaded main method with a single String argument
+    public static void main(String arg) {
+        System.out.println("Inside overloaded main method with single String argument.");
+        System.out.println("Argument: " + arg);
+    }
+
+    // Another overloaded main method with no arguments
+    public static void main() {
+        System.out.println("Inside another overloaded main method with no arguments.");
+    }
+}
+```
+
 ## **Primitive**
 
 - A primitive is a data type that represents a single value and is not an object.
@@ -475,6 +504,25 @@ public class MyClass {
 
 ## **Strings are immutable**
 - Java strings are immutable, meaning their content cannot be changed after they are created. When you perform operations on a string that appear to modify it, such as concatenation or substring extraction, a new string is created with the modified content. This property makes `String` thread safe.
+
+## **`intern()`**
+- `intern()` is a method defined in the String class. When invoked on a String object, it checks if there is another string with the same content in the constant pool of the JVM. 
+- If a string with the same content exists, it returns a reference to that string. 
+- If not, it adds the string to the pool and returns a reference to it. 
+- This helps in saving memory by reusing common string literals.
+```java
+String s1 = new String("hello");
+String s2 = "hello";
+
+// Here, s1 and s2 will reference different objects
+System.out.println(s1 == s2); // Output will be false
+
+// Using intern() to get the reference from the string pool
+s1 = s1.intern();
+
+// Now, s1 and s2 will reference the same object from the string pool
+System.out.println(s1 == s2); // Output will be true
+```
 
 ## **`==` operator v/s `equals()` method**
 
@@ -1364,6 +1412,34 @@ public class AbstractClassExample {
 - The Serializable interface in Java is a marker interface.
 - Serializable interface in Java is used to indicate that an object's state can be converted into a stream of bytes and then be restored back into an object again.
 - This process is known as serialization and deserialization, respectively
+
+## **Serialization in java**
+- Serialization is the process of converting an object into a stream of bytes, allowing the object to be easily stored, transmitted over a network, or persisted to a storage medium such as a file or a database. Serialization is primarily used in Java to make objects persistent or transportable.
+
+#### Serialization scenarios
+- Persistence: Objects can be serialized and stored in a database, allowing them to be retrieved and reconstructed later.
+- Inter-process Communication: Objects can be serialized and transmitted between different processes or across a network, enabling communication between distributed systems.
+- Caching: Serialized objects can be cached in memory or on disk to improve performance and reduce data retrieval overhead.
+- Deep Copying: Serialization can be used to create deep copies of objects by serializing and then deserializing them, effectively creating a new instance with the same state.
+
+#### `serialVersionUID`
+- When implementing the Serializable interface in Java, you have the option to declare a `serialVersionUID` field in your class. 
+- This field is a version identifier that uniquely identifies the version of the class for the purpose of serialization. It helps in ensuring that the serialized data is compatible between different versions of the class.
+
+###### Backward compatibility
+- When you declare a `serialVersionUID` in a class implementing the Serializable interface, you gain more control over how instances of that class are serialized and deserialized. This control is particularly useful when you need to maintain backward compatibility with previously serialized data across different versions of your application.
+- As your application evolves, you may make changes to the class definition of a serializable class. These changes could include adding or removing fields, changing field types, or modifying method signatures. In some cases, these changes might render the new version of the class incompatible with previously serialized instances of the class.
+
+```java
+import java.io.Serializable;
+
+public class MyClass implements Serializable {
+    private static final long serialVersionUID = 123456789L;
+
+    // Class members and methods
+}
+
+```
 
 ## **Functional Interface**
 
@@ -2546,6 +2622,59 @@ public synchronized void someMethod() {
   - AtomicBoolean
   - AtomicIntegerArray and AtomicLongArray
 
+## Java Reflection
+- Java Reflection is a feature that allows you to inspect or manipulate the structure, behavior, and metadata of classes, interfaces, fields, methods, and constructors at runtime. 
+- It provides a way to examine and modify the properties and behavior of Java objects dynamically, without knowing their exact types at compile time.
+- Reflection in Java is primarily facilitated by the `java.lang.reflect package`, which contains classes and interfaces for accessing and manipulating the runtime behavior of objects.
+```java
+class MyClass {
+    private int privateField;
+    public String publicField;
+
+    public void publicMethod() {
+        System.out.println("Inside publicMethod");
+    }
+
+    private void privateMethod() {
+        System.out.println("Inside privateMethod");
+    }
+}
+
+public class ReflectionExample {
+    public static void main(String[] args) throws Exception {
+        // Get the class object for MyClass
+        Class<?> myClass = MyClass.class;
+
+        // Print the class name
+        System.out.println("Class name: " + myClass.getName());
+
+        // Print the declared fields of MyClass
+        System.out.println("Declared fields:");
+        Field[] fields = myClass.getDeclaredFields();
+        for (Field field : fields) {
+            System.out.println(field.getName() + " (Type: " + field.getType() + ")");
+        }
+
+        // Print the declared methods of MyClass
+        System.out.println("Declared methods:");
+        Method[] methods = myClass.getDeclaredMethods();
+        for (Method method : methods) {
+            System.out.println(method.getName() + " (Return type: " + method.getReturnType() + ")");
+        }
+
+        // Accessing and invoking methods using Reflection
+        MyClass obj = new MyClass();
+        Method publicMethod = myClass.getDeclaredMethod("publicMethod");
+        publicMethod.invoke(obj); // Invoking publicMethod dynamically
+
+        // Accessing and modifying fields using Reflection
+        Field privateField = myClass.getDeclaredField("privateField");
+        privateField.setAccessible(true); // Set accessible to true to access private field
+        privateField.setInt(obj, 10); // Setting the value of privateField
+        System.out.println("Modified privateField value: " + privateField.getInt(obj));
+    }
+}
+```
 ## Callback Mechanism
 
 - A callback mechanism is a programming pattern where a function or method (known as a callback function) is passed as an argument to another function or method. 
