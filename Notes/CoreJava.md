@@ -2771,3 +2771,20 @@ hibernate states
 design patterns
 How dependency injection is achieved
 get() and load()
+
+What is @Autowired, why cant I use new keyword
+Can I connect one spring boot app to two differnt database.
+WHat is a bean.
+why serialId is provided for serialization
+how its ensured that same class in serialized
+intern
+java reflections
+create three thread that will execute one after the other only
+if id is not provided then will @PathVariable cause problem for getEmpDetails()
+Singleton design pattern
+can psvmain() be overloaded
+query to find manager name from employee table but no managerid
+java,core java
+non conventional database
+nosql database
+java 8
