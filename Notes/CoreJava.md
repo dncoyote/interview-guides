@@ -2484,6 +2484,67 @@ Thread 12: Message 4
 - It's essential to call `start()` to ensure that the thread executes concurrently with other threads in the program.
 - You cannot start an already started thread in Java. Once a thread has been started using the `start()` method, it transitions from the "new" state to the "runnable" state and begins its execution.
 
+#### `join()`
+- `join()` method is used to wait for a thread to complete its execution before continuing with the current thread's execution. 
+- When you call `join()` on a thread object, the current thread will pause its execution and wait for the specified thread to finish its execution.
+
+```java
+public class MultiThreadingExample {
+    public static void main(String[] args) {
+        // Create and start the first thread
+        Thread thread1 = new Thread(() -> {
+            try {
+                System.out.println("Thread 1 is running...");
+                Thread.sleep(2000); // Simulate some task
+                System.out.println("Thread 1 completed.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread1.start();
+
+        // Wait for the first thread to complete before starting the second thread
+        try {
+            thread1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Create and start the second thread
+        Thread thread2 = new Thread(() -> {
+            try {
+                System.out.println("Thread 2 is running...");
+                Thread.sleep(2000); // Simulate some task
+                System.out.println("Thread 2 completed.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread2.start();
+
+        // Wait for the second thread to complete before starting the third thread
+        try {
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Create and start the third thread
+        Thread thread3 = new Thread(() -> {
+            try {
+                System.out.println("Thread 3 is running...");
+                Thread.sleep(2000); // Simulate some task
+                System.out.println("Thread 3 completed.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread3.start();
+    }
+}
+
+```
+
 #### Thread States
 - Threads can be in different states, such as NEW, RUNNABLE, BLOCKED, WAITING, TIMED_WAITING, and TERMINATED.
 - The Thread class provides methods like start(), sleep(), and join() to control thread states.
@@ -2519,7 +2580,71 @@ Threads can communicate and coordinate their activities using methods like wait(
 - It is used to introduce a delay in the execution of the current thread, without releasing any locks.
 - `sleep()` does not release any locks, and the thread retains any locks it holds.
 
+```java
+public class MultiThreadingExample {
+    public static void main(String[] args) {
+        Object lock = new Object();
 
+        Thread thread1 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    System.out.println("Thread 1 is running...");
+                    Thread.sleep(2000); // Simulate some task
+                    System.out.println("Thread 1 completed.");
+                    lock.notify(); // Notify waiting threads
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread1.start();
+
+        synchronized (lock) {
+            try {
+                lock.wait(); // Wait for thread1 to complete
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Thread thread2 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    System.out.println("Thread 2 is running...");
+                    Thread.sleep(2000); // Simulate some task
+                    System.out.println("Thread 2 completed.");
+                    lock.notify(); // Notify waiting threads
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread2.start();
+
+        synchronized (lock) {
+            try {
+                lock.wait(); // Wait for thread2 to complete
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Thread thread3 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    System.out.println("Thread 3 is running...");
+                    Thread.sleep(2000); // Simulate some task
+                    System.out.println("Thread 3 completed.");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread3.start();
+    }
+}
+
+```
 ## **Runnable Interface**
 
 - The Runnable interface is a functional interface in Java that defines a single abstract method `run()`. It is commonly used to define the code that should be executed in a new thread.
