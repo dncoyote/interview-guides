@@ -3037,3 +3037,4 @@ java,core java
 non conventional database
 nosql database
 java 8
+@SpringBootApplication: It is a combination of three annotations @EnableAutoConfiguration, @ComponentScan, and @Configuration
