@@ -3038,3 +3038,17 @@ non conventional database
 nosql database
 java 8
 @SpringBootApplication: It is a combination of three annotations @EnableAutoConfiguration, @ComponentScan, and @Configuration
+the exception hierarchy
+whether finally block is called all the time
+how to improve speed of rest api endpoint
+Consumer interface
+filters in springboot
+parent class of exception
+can we override a private method
+how to read .properties file values in spring boot application
+idempotent in java
+function v/s predicate
+what is the annotation used to call multiple rest endpoint simultaneously in spring boot
+call by value and call by reference
+can we create private static?
+@bean annotation
