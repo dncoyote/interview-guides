@@ -771,6 +771,10 @@ public final class ImmutablePerson {
 - The `finalize()` method is defined in the Object class, so all classes in Java have a `finalize()` method inherited from Object. By default, the `finalize()` method does nothing, so if a class needs to perform cleanup operations, it should override this method.
 - `finalize()` has been deprecated since Java 9. It is recommended to use try-catch-finally or try-with resources or `Autocloseable` interface instead.
 
+## **Exception
+- Exception class is the superclass of all checked exceptions. It represents exceptional conditions that can be handled programmatically, such as I/O errors, network errors, and application-specific errors. Subclasses of Exception include `IOException`, `SQLException`, and `RuntimeException`.
+- The parent class of the Exception class and Error class in Java is the Throwable class.
+
 ## **Exception handling**
 
 - Exception handling in Java is a mechanism to handle runtime errors and exceptional situations that may occur during the execution of a program.
@@ -865,6 +869,9 @@ public void readFromFile(String filename) throws IOException {
 }
 
 ```
+## **Error**
+- Error class is the superclass of all unchecked exceptions. It represents serious errors that typically cannot be recovered from, such as `OutOfMemoryError`, `StackOverflowError`, and `AssertionError`. Errors are typically caused by external factors or problems with the environment in which the Java Virtual Machine (JVM) is running.
+
 ## **Stack Overflow Error**
 - Stack Overflow typically refers to a specific runtime error that occurs when the call stack of a program exceeds its allocated size.
 - The call stack is a region of memory used to manage function/method calls and local variables in a program. Each time a method is called, a new frame is added to the call stack, and when the method completes, its frame is removed.
@@ -3033,8 +3040,6 @@ create three thread that will execute one after the other only
 if id is not provided then will @PathVariable cause problem for getEmpDetails()
 Singleton design pattern
 query to find manager name from employee table but no managerid
-java,core java
-non conventional database
 nosql database
 java 8
 @SpringBootApplication: It is a combination of three annotations @EnableAutoConfiguration, @ComponentScan, and @Configuration
