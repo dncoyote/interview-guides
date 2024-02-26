@@ -56,6 +56,26 @@
 - HTTPS operates over TCP/IP, typically using port 443.
 - It encrypts data transmitted between the client and server, preventing unauthorized access and tampering by third parties.
 
+## **Perfomance of RESTful Endpoints**
+#### Implement caching
+- You can utilize caching mechanisms to store frequently accessed data in memory or in a distributed cache. 
+- This helps reduce the need to fetch data from the database or perform expensive computations repeatedly.
+- Ehcache, Caffeine, Redis, and Hazelcast.
+
+#### Optimize database queries
+- Optimize database queries by indexing frequently queried fields, avoiding unnecessary joins, and using appropriate database design techniques such as denormalization. 
+- Use database profiling tools to identify and optimize slow queries.
+- Ensure that your database tables are appropriately indexed based on the columns frequently used in queries. Indexes speed up data retrieval by enabling the database to locate rows more efficiently
+- Craft SQL queries that retrieve only the necessary data and avoid unnecessary joins, distinct operations, subqueries, or complex aggregations.
+- Implement pagination or limit the number of rows returned by queries to prevent the retrieval of large result sets. Use techniques like `LIMIT` and `OFFSET`, and the `Pageable` interface.
+
+#### Asynchronous processing
+- Performing asynchronous processing in a Spring Boot application involves executing tasks concurrently without blocking the main thread, thereby improving responsiveness and resource utilization.
+
+#### Horizontal scaling
+- Scale your application horizontally by deploying multiple instances of your application behind a load balancer. 
+- This allows you to distribute incoming traffic across multiple servers and handle increased load effectively.
+
 ## **Authentication v/s Authorization**
 - Authentication : Authentication is the process of verifying the identity of a user, system, or entity to ensure they are who they claim to be.
 - Authorization : Authorization, also known as access control, is the process of determining what actions or operations an authenticated user or entity is allowed to perform on a system or resource.
