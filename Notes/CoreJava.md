@@ -3085,7 +3085,6 @@ how to read .properties file values in spring boot application
 idempotent in java
 function v/s predicate
 what is the annotation used to call multiple rest endpoint simultaneously in spring boot
-call by value and call by reference
 can we create private static?
 @bean annotation
 many to many mapping using springboot and hibernate
