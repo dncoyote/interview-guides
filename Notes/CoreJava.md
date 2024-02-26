@@ -3057,3 +3057,6 @@ what is the annotation used to call multiple rest endpoint simultaneously in spr
 call by value and call by reference
 can we create private static?
 @bean annotation
+many to many mapping using springboot and hibernate
+spring batch
+spring jms
