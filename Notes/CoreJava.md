@@ -1808,6 +1808,30 @@ public class PredicateExample {
 
 ```
 
+## **Consumer Interface**
+- Consumer interface is a functional interface that represents an operation that accepts a single input argument and returns no result.
+- The Consumer interface contains a single abstract method called `accept`, which takes a single argument of a specified type and performs some operation on it.
+- Consumer can be used in lambda expressions or method references to define actions or behaviors that operate on objects of a specified type.
+
+```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+
+        // Using Consumer interface with lambda expression
+        Consumer<String> printName = (name) -> System.out.println(name);
+
+        // Iterating over the list and applying the consumer action to each element
+        names.forEach(printName);
+    }
+}
+
+```
+
 ## **Method Reference**
 - The `::` notation in Java is called the Method Reference operator.
 - It provides a shorthand syntax for creating lambda expressions that directly invoke a method or constructor.
