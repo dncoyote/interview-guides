@@ -323,6 +323,10 @@ class Dog extends Animal {
     }
 }
 ```
+#### Dynamic method dispatch
+- Dynamic method dispatch is a mechanism in object-oriented programming languages, that allows the selection of the method to invoke at runtime rather than at compile time. It enables polymorphism
+- Dynamic method dispatch is primarily associated with method overriding, where a subclass provides a specific implementation of a method that is already defined in its superclass.
+
 
 ## **Encapsulation**
 - Encapsulation is the bundling of data and methods that operate on the data into a single unit or class. It hides the internal state of an object and only exposes the necessary operations.

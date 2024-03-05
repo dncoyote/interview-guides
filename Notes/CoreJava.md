@@ -123,7 +123,45 @@ public class MainClass {
     }
 }
 ```
+## **Dynamic method dispatch**
+- Dynamic method dispatch is a mechanism in object-oriented programming languages, that allows the selection of the method to invoke at runtime rather than at compile time. It enables polymorphism
+- Dynamic method dispatch is primarily associated with method overriding, where a subclass provides a specific implementation of a method that is already defined in its superclass.
 
+```java
+// Superclass
+class Animal {
+    void sound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+// Subclass
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks");
+    }
+}
+
+// Another Subclass
+class Cat extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal animal1 = new Dog(); // Dog object
+        Animal animal2 = new Cat(); // Cat object
+        
+        animal1.sound(); // Dynamic method dispatch: invokes Dog's sound() method
+        animal2.sound(); // Dynamic method dispatch: invokes Cat's sound() method
+    }
+}
+
+```
 ## **Primitive**
 
 - A primitive is a data type that represents a single value and is not an object.
