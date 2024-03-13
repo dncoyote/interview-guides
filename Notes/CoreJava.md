@@ -50,7 +50,6 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 - Groovy
 - Kotlin
 
----
 
 #### **JRE**
 
@@ -58,15 +57,12 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
 - The JRE does not include development tools (e.g., compiler) or source code. It is designed for end-users who want to run Java applications.
 - End-users need a JRE installed on their system to execute Java applications.
 
----
-
 #### **JDK**
 
 - The JDK is a software development kit used for developing Java applications. It includes the tools, executables, and libraries needed for Java development.
 - The JDK contains the Java Compiler (javac) for compiling Java source code into bytecode, various utilities for building and packaging Java applications, and a set of libraries and APIs.
 - It also includes the JRE (Java Runtime Environment) as part of its package, so developers can run and test their Java applications during development.
 
----
 
 ## **public static void main**
 
@@ -88,7 +84,7 @@ The JVM is responsible for executing Java bytecode. The JVM is a virtual machine
        }
    }
 
-   *****************
+
    // Java 21
   void main(){
    System.out.println("Hello World!");
