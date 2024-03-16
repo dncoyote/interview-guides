@@ -891,8 +891,6 @@ Checked exceptions must be either caught or declared, while unchecked exceptions
 | This exception is typically thrown when you attempt to load a class using methods like Class.forName() or ClassLoader.loadClass(), and the specified class cannot be found in the classpath. | This error typically occurs when the JVM tries to load a class that was available during compilation but is missing during runtime execution.     |
 | It often indicates a missing or incorrect class name or a missing dependency that the class depends on.                                                                                      | It indicates that the class definition was found during compilation, but at runtime, the class file is not present or cannot be located.          |
 
----
-
 ## **Custom Exception**
 
 - Custom exceptions can be created by extending the Exception class or one of its subclasses like RuntimeException.
@@ -988,8 +986,6 @@ myCollection.add(7);
 
 Collections.sort(myCollection);
 ```
-
----
 
 ## **List**
 
