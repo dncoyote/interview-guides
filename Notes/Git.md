@@ -10,4 +10,15 @@ Most popular version controlling system.
 - CRLF - carriage return/line feed
 
 
+
 ## Creating snapshots
+
+#### `git init`
+
+#### `git add "FILENAME"`
+
+#### `git add .`
+
+#### `git commit -m "MESSAGE"`
+
+#### `git status`
