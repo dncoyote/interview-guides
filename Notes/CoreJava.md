@@ -2133,6 +2133,57 @@ public class AnonymousClassDemo {
 }
 
 ```
+
+## **Java 11 Features**
+#### String Class new methods
+- isBlan
+- lines
+- strip
+- stripLeading
+- stripTrailing
+- repeat
+
+#### copyOf Method for collections
+
+#### Collectors.toUnmodifiableList()
+
+#### toArray()
+
+#### Predicate.not
+
+#### orElseThrow
+
+#### try with resources
+
+#### private methods in interfaces
+
+#### writeString and readString in IO methods
+
+#### New HTTP Client
+
+## **Java 17 Features**
+#### String
+- indent
+- transform
+
+#### Collectors.teeing Method
+
+#### toList() Collectors
+
+#### Text Blocks
+
+#### Switch Expressions
+
+#### Pattern matching for instanceof
+
+#### NullPointerExceptions
+
+#### Records
+- Records will allow you to create immutable data classes
+
+#### Sealed Classes
+- permits keyword.
+
 ## **Inheritance**
 - Inheritance allows one class to inherit properties and methods from another class.
 - The class that is being inherited from is called the superclass or parent class, and the class that inherits is called the subclass or child class.
