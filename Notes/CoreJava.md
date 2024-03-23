@@ -2136,7 +2136,7 @@ public class AnonymousClassDemo {
 
 ## **Java 11 Features**
 #### String Class new methods
-- isBlan
+- isBlank
 - lines
 - strip
 - stripLeading
@@ -2173,18 +2173,149 @@ public class AnonymousClassDemo {
 #### Text Blocks
 
 #### Switch Expressions
+##### Pattern Matching
+- Pattern matching in switch expressions is a feature introduced in Java that allows you to use patterns directly within switch cases.
 
+```java
+//switch without pattern matching 
+switch (dayNumber) {
+            case 1:
+                day = "Monday";
+                break;
+            case 2:
+                day = "Tuesday";
+                break;
+            case 3:
+                day = "Wednesday";
+                break;
+            case 4:
+                day = "Thursday";
+                break;
+            case 5:
+                day = "Friday";
+                break;
+            case 6:
+                day = "Saturday";
+                break;
+            case 7:
+                day = "Sunday";
+                break;
+            default:
+                day = "Invalid Day";
+        }
+ System.out.println("Day of the week: " + day);
+ 
+ //switch with pattern matching
+String day = switch (dayNumber) {
+            case 1 -> "Monday";
+            case 2 -> "Tuesday";
+            case 3 -> "Wednesday";
+            case 4 -> "Thursday";
+            case 5 -> "Friday";
+            case 6 -> "Saturday";
+            case 7 -> "Sunday";
+            default -> "Invalid Day";
+        };
+
+        System.out.println("Day of the week: " + day);
+
+
+```
+##### Extended switch statement
+- The extended switch statement with case L -> allows us to combine multiple cases into one code block, enhancing readability and reducing redundancy.
+
+```java
+String typeOfDay = switch (day) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> "Weekday";
+            case SATURDAY, SUNDAY -> "Weekend";
+        };
+
+        System.out.println("Type of day: " + typeOfDay);
+
+String typeOfDay;
+        switch (day) {
+            case MONDAY:
+            case TUESDAY:
+            case WEDNESDAY:
+            case THURSDAY:
+            case FRIDAY:
+                typeOfDay = "Weekday";
+                break;
+            case SATURDAY:
+            case SUNDAY:
+                typeOfDay = "Weekend";
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid day");
+        }
+
+        System.out.println("Type of day: " + typeOfDay);
+```
+##### Error-Prone Defaults in Switch Expressions
+- Error-Prone Defaults in switch expressions help catch missing cases during compilation by introducing a default case that throws an exception. This improves code robustness by ensuring that all possible cases are handled explicitly.
+
+```java
+String typeOfDay = switch (day) {
+            case MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY -> "Weekday";
+            case SATURDAY, SUNDAY -> "Weekend";
+            default -> throw new IllegalArgumentException("Invalid day");
+        };
+
+        System.out.println("Type of day: " + typeOfDay);
+
+String typeOfDay;
+        switch (day) {
+            case MONDAY:
+            case TUESDAY:
+            case WEDNESDAY:
+            case THURSDAY:
+            case FRIDAY:
+                typeOfDay = "Weekday";
+                break;
+            case SATURDAY:
+            case SUNDAY:
+                typeOfDay = "Weekend";
+                break;
+            // Missing default case
+        }
+
+        if (typeOfDay == null) {
+            throw new IllegalArgumentException("Invalid day");
+        }
+
+        System.out.println("Type of day: " + typeOfDay);
+```
 #### Pattern matching for instanceof
 
 #### NullPointerExceptions
 
 #### Records
 - Records will allow you to create immutable data classes
+- New feature introduced in Java 16 and then finalized in Java 17.
+-  Records provide a concise way to declare classes whose main purpose is to store and transport data, often referred to as data transfer objects (DTOs) or immutable data holders. 
+- Records are designed to reduce boilerplate code by automatically generating methods such as constructors, accessors (getters), `equals()`, `hashCode()`, and `toString()` based on the record components (fields). 
+- Records are particularly useful when you need to define data objects, such as entities representing database records, configuration settings, or simple data transfer objects.
+- Records are immutable by default, meaning once created, their state cannot be modified. This helps in ensuring data integrity and thread safety.
+- They reduce boilerplate code, making the codebase more maintainable and less error-prone.
+
+```java
+public record Person(String name, int age) {
+    // Record body (optional)
+}
+
+// Creating an instance of the Person record
+Person person = new Person("John Doe", 30);
+
+// Accessing components using getters (automatically generated)
+System.out.println("Name: " + person.name());
+System.out.println("Age: " + person.age());
+```
 
 #### Sealed Classes
 - Sealed class is a class that specifies which other classes can extend or implement it. It limits the inheritance hierarchy to a predefined set of subclasses or implementing classes.
 - They provide a mechanism to control and restrict the inheritance hierarchy, enhancing code maintainability and security by defining a predefined set of permitted subclasses or implementing classes.
 - Sealed classes are final by default, meaning they cannot be extended outside of the permitted subclasses or implementing classes.
+- Classes extending the Sealed class should be final or sealed or non-sealed.
 
 ## **Inheritance**
 - Inheritance allows one class to inherit properties and methods from another class.
@@ -2424,21 +2555,6 @@ class MyClass implements Serializable {
     private transient String myTransientString;
     private String nonTransientField;
 }
-```
-
-## **Record**
-
-- New feature introduced in Java 16.
-- Records are a new kind of class that was introduced to simplify the creation of classes primarily used to store data.
-- Records provide a concise way to declare classes with named fields, and they automatically generate standard methods such as constructors, getters, `equals()`, `hashCode()`, and `toString()`.
-- Records are particularly useful when you need to define data objects, such as entities representing database records, configuration settings, or simple data transfer objects.
-- Records can also be used in various contexts where you need to work with data, and their concise syntax helps reduce boilerplate code, making your codebase more maintainable and easier to understand.
-
-```java
-public record Person(String name, int age) {
-    // You can add methods or additional constructors here
-}
-Person person = new Person("Alice", 30);
 ```
 
 ## **var**
