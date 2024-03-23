@@ -2182,7 +2182,9 @@ public class AnonymousClassDemo {
 - Records will allow you to create immutable data classes
 
 #### Sealed Classes
-- permits keyword.
+- Sealed class is a class that specifies which other classes can extend or implement it. It limits the inheritance hierarchy to a predefined set of subclasses or implementing classes.
+- They provide a mechanism to control and restrict the inheritance hierarchy, enhancing code maintainability and security by defining a predefined set of permitted subclasses or implementing classes.
+- Sealed classes are final by default, meaning they cannot be extended outside of the permitted subclasses or implementing classes.
 
 ## **Inheritance**
 - Inheritance allows one class to inherit properties and methods from another class.
