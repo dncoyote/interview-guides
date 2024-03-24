@@ -284,7 +284,7 @@ fun main() {
 
 ## **Kotlin**
 - Kotlin is a modern, statically typed programming language.
-- It is developed by JetBrains.
+- It is developed by JetBrains and first released in 2011.
 - It runs on the Java Virtual Machine (JVM) and is designed to be concise, expressive, safe, and interoperable with existing Java code. 
 - Kotlin is used for developing a wide range of applications, including Android apps, server-side applications, web development, and more.
 #### Features
