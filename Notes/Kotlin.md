@@ -359,18 +359,108 @@ val message = "Hello, Kotlin!" // Type inferred as String
 ##### Interoperability with Java
 - Kotlin can seamlessly work with existing Java code and libraries.
 
+## **Main Program**
+- A main program refers to the entry point of an executable Kotlin application. It's where the program execution begins. 
+- Any code written outside of the main function will not be executed unless it is called from within main or from functions called within main.
+
+```kotlin
+fun operateOnNumbers(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val sum = operateOnNumbers(5, 3) { x, y -> x + y } // Using lambda expression for addition
+    val product = operateOnNumbers(5, 3) { x, y -> x * y } // Using lambda expression for multiplication
+
+    println("Sum: $sum")
+    println("Product: $product")
+}
+```
+## **Types of data**
+#### Primitives
+- Primitive data types represent basic values and are stored directly in memory. They are optimized for performance and memory usage.
+- Primitive types are more memory-efficient
+##### Numbers
+```kotlin
+val byteValue: Byte = 10
+val shortValue: Short = 100
+val intValue: Int = 1000
+val longValue: Long = 100000L
+val floatValue: Float = 3.14f
+val doubleValue: Double = 2.71828
+```
+##### Characters
+```kotlin
+val charValue: Char = 'A'
+```
+
+##### Boolean
+```kotlin
+val isTrue: Boolean = true
+val isFalse: Boolean = false
+```
+#### Reference Data Types
+- Reference data types represent complex data structures and are stored as references to memory locations.
+##### Strings
+- Represents a sequence of characters.
+```kotlin
+val stringValue: String = "Hello, Kotlin!"
+```
+##### Arrays
+- Represents a fixed-size collection of elements of the same type.
+```kotlin
+val numbers: Array<Int> = arrayOf(1, 2, 3, 4, 5)
+val chars: CharArray = charArrayOf('a', 'b', 'c')
+```
+##### Collections
+- Represent collections of elements.
+```kotlin
+val list: List<String> = listOf("apple", "banana", "cherry")
+val set: Set<Int> = setOf(1, 2, 3)
+val map: Map<String, Int> = mapOf("one" to 1, "two" to 2)
+```
+##### Custom Data Types
+- Classes, objects, enums, and data classes defined by the programmer.
+```kotlin
+data class Person(val name: String, val age: Int)
+
+val person1 = Person("Alice", 30)
+val person2 = Person("Bob", 25)
+```
+
+## **`val`**
+- `val` keyword is used to declare read-only variables, also known as immutable variables, meaning their values cannot be modified after initialization.
+- Once a value is assigned to a `val` variable, it cannot be changed or reassigned. The value remains constant throughout the program execution.
+- When declaring a `val` variable, you must assign an initial value.
+- You can read the value of a val variable, but you cannot modify it(Read-Only Access).
+```
+val variableName: DataType = initialValue
+```
+```kotlin
+val pi: Double = 3.14159
+val message: String = "Hello, Kotlin!"
+val age: Int = 25
+```
+
+## **Functions**
+- Functions are blocks of code that perform a specific task and can be called multiple times from different parts of the program.
+- Functions allow you to encapsulate logic, improve code reusability, and make your code more organized and modular.
+```
+fun functionName(parameter1: Type1, parameter2: Type2, ...): ReturnType {
+    // Function body
+}
+```
+
+
 ## **Higher Order Functions**
 - Can accept Functions as parameters.
 - Can return Function.
 
 ## **Lambdas**
 
-oop vs fp
-Main function
+
 var x: Int =3
 $
-val
-variables and data types
 Null Values and Null safe language
 action
 Unit
