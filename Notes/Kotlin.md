@@ -161,3 +161,25 @@ val message = "Hello, Kotlin!" // Type inferred as String
 ```
 ##### Interoperability with Java
 - Kotlin can seamlessly work with existing Java code and libraries.
+
+## **Higher Order Functions**
+- Can accept Functions as parameters.
+- Can return Function.
+
+## **Lambdas**
+
+oop vs fp
+Main function
+var x: Int =3
+$
+val
+variables and data types
+Null Values and Null safe language
+action
+Unit
+
+
+
+Jetpackcompose
+Expose
+Ktor
