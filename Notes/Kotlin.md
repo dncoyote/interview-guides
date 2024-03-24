@@ -85,6 +85,203 @@ val result = factorial(5) // 120
 ##### Reduced Bugs
 - Immutability and pure functions reduce the chances of introducing bugs related to unintended side effects or state changes.
 
+## **OOP v/s FP**
+#### Concept
+##### OOP
+- Focuses on modeling the software as a collection of objects that have state (attributes) and behavior (methods). Objects interact with each other by sending messages and invoking methods.
+##### FP
+- Treats computation as the evaluation of mathematical functions. Functions are first-class citizens, meaning they can be passed around as arguments, returned from other functions, and assigned to variables.
+
+#### Data and State
+##### OOP
+- Relies heavily on mutable state within objects. Objects encapsulate data and behavior, and state changes through method invocations. Inheritance and polymorphism are key concepts in managing and structuring data.
+```java
+public class Counter {
+    private int count;
+
+    public void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Counter counter = new Counter();
+        counter.increment();
+        System.out.println("Count: " + counter.getCount());
+    }
+}
+```
+##### FP
+- Emphasizes immutability and avoids mutable state. Data is immutable by default, and functions operate on immutable data structures. Pure functions have no side effects and always produce the same output for the same input.
+```kotlin
+fun incrementCount(count: Int): Int {
+    return count + 1
+}
+
+fun main() {
+    var count = 0
+    count = incrementCount(count)
+    println("Count: $count")
+}
+```
+
+#### Functions and Procedures
+##### OOP
+- Uses methods (procedures) associated with objects to perform actions or modify state. Methods can have side effects and may interact with mutable state.
+```java
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+        int sum = calculator.add(5, 3);
+        System.out.println("Sum: " + sum);
+    }
+}
+```
+
+##### FP
+- Functions are pure and focus on data transformations. Functions take input, perform computations, and return output without modifying external state. Higher-order functions and lambda expressions are common in FP.
+```kotlin
+fun addNumbers(a: Int, b: Int): Int {
+    return a + b
+}
+
+fun main() {
+    val sum = addNumbers(5, 3)
+    println("Sum: $sum")
+}
+```
+
+#### Control Flow
+##### OOP
+- Uses control structures like loops and conditionals (if-else statements) to control the flow of execution within methods and objects.
+```java
+public class LoopExample {
+    public static void main(String[] args) {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Iteration: " + i);
+        }
+    }
+}
+```
+
+##### FP
+- Emphasizes recursion and higher-order functions for control flow. Recursion replaces traditional loops in many scenarios, and functions can be passed as arguments to other functions for dynamic behavior.
+```kotlin
+fun iterateNumbers() {
+    (0 until 5).forEach { println("Iteration: $it") }
+}
+
+fun main() {
+    iterateNumbers()
+}
+```
+
+#### Modularity and Reusability
+##### OOP
+-  Promotes modularity through classes and objects. Code can be organized into reusable components using inheritance, encapsulation, and polymorphism.
+```java
+public class Circle {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+
+    public static void main(String[] args) {
+        Circle circle = new Circle(5.0);
+        double area = circle.getArea();
+        System.out.println("Area of the circle: " + area);
+    }
+}
+```
+
+##### FP
+- Encourages modularity through functions. Functions are small, reusable units of code that can be composed and combined to build complex behavior. Higher-order functions facilitate code reuse and abstraction.
+```kotlin
+fun calculateArea(radius: Double): Double {
+    return Math.PI * radius * radius
+}
+
+fun main() {
+    val circleRadius = 5.0
+    val area = calculateArea(circleRadius)
+    println("Area of the circle: $area")
+}
+```
+
+#### State Management and Side Effects
+##### OOP
+- Manages state within objects, which can lead to complex state management and potential side effects. Encapsulation helps control access to object state.
+```java
+public class BankAccount {
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient balance.");
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000.0);
+        account.deposit(500.0);
+        account.withdraw(200.0);
+        System.out.println("Current Balance: " + account.getBalance());
+    }
+}
+```
+
+##### FP
+- Avoids mutable state and side effects as much as possible. Pure functions guarantee deterministic behavior and easier reasoning about code.
+```kotlin
+data class BankAccount(val balance: Double)
+
+fun deposit(account: BankAccount, amount: Double): BankAccount {
+    return account.copy(balance = account.balance + amount)
+}
+
+fun withdraw(account: BankAccount, amount: Double): BankAccount {
+    return if (account.balance >= amount) {
+        account.copy(balance = account.balance - amount)
+    } else {
+        println("Insufficient balance.")
+        account
+    }
+}
+
+fun main() {
+    val initialAccount = BankAccount(1000.0)
+    val updatedAccount = deposit(initialAccount, 500.0)
+    val finalAccount = withdraw(updatedAccount, 200.0)
+    println("Current Balance: ${finalAccount.balance}")
+}
+```
+
 ## **Kotlin**
 - Kotlin is a modern, statically typed programming language.
 - It is developed by JetBrains.
