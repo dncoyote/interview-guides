@@ -1582,23 +1582,6 @@ public class Main {
     }
 }
 ```
-## **Function**
-- The Function interface represents a single function that accepts one argument and produces a result.
--  It is a functional interface and is widely used in functional programming paradigms introduced in Java 8.
-- The Function interface has a single abstract method called `apply`, which takes an argument of a specified type and returns a result of another specified type.
-```java
-public class Main {
-    public static void main(String[] args) {
-        // Define a Function to convert a String to its length
-        Function<String, Integer> strLengthFunction = (str) -> str.length();
-
-        // Apply the Function to get the length of a string
-        int length = strLengthFunction.apply("Hello, World!");
-        System.out.println("Length of the string: " + length); // Output: Length of the string: 13
-    }
-}
-```
-
 
 ## **Default method**
 - It is a method defined within an interface that provides a default implementation
@@ -1854,6 +1837,22 @@ public class PredicateExample {
     }
 }
 
+```
+## **Function**
+- The Function interface represents a single function that accepts one argument and produces a result.
+- It is a functional interface and is widely used in functional programming paradigms introduced in Java 8.
+- The Function interface has a single abstract method called `apply`, which takes an argument of a specified type and returns a result of another specified type.
+```java
+public class Main {
+    public static void main(String[] args) {
+        // Define a Function to convert a String to its length
+        Function<String, Integer> strLengthFunction = (str) -> str.length();
+
+        // Apply the Function to get the length of a string
+        int length = strLengthFunction.apply("Hello, World!");
+        System.out.println("Length of the string: " + length); // Output: Length of the string: 13
+    }
+}
 ```
 
 ## **Consumer Interface**
