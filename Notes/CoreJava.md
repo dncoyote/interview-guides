@@ -2142,6 +2142,8 @@ public class AnonymousClassDemo {
 - stripTrailing
 - repeat
 
+#### .Of Method
+
 #### copyOf Method for collections
 
 #### Collectors.toUnmodifiableList()
@@ -2170,6 +2172,24 @@ public class AnonymousClassDemo {
 #### toList() Collectors
 
 #### Text Blocks
+- Text blocks, also known as multi-line strings, are a new feature used to simplify the creation and manipulation of strings that span multiple lines. 
+- They allow developers to write strings in a more readable and maintainable format, especially when dealing with large text or code snippets without using escape sequences such as \t, \n etc.
+- Text blocks are particularly useful in scenarios such as SQL queries, JSON strings, HTML templates, and code generation where multi-line strings are common. 
+- They contribute to cleaner and more maintainable Java code.
+```java
+public class TextBlocksExample {
+    public static void main(String[] args) {
+        String textBlock = """
+            This is a text block
+            That spans multiple lines
+            It can include special characters like \t, \n, etc.
+            And also supports interpolation with ${variables}
+            """;
+
+        System.out.println(textBlock);
+    }
+}
+```
 
 #### Switch Expressions
 ##### Pattern Matching
@@ -2286,7 +2306,8 @@ String typeOfDay;
 ```
 #### Pattern matching for instanceof
 
-#### NullPointerExceptions
+#### Meaningful NullPointerExceptions
+- Meaningful NPEs provide more information about the root cause of the NullPointerException, making it easier for developers to identify the problematic code or variable.
 
 #### Records
 - Records will allow you to create immutable data classes
