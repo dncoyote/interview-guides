@@ -38,7 +38,6 @@ fun operateOnNumbers(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
 }
 
 val result = operateOnNumbers(5, 3) { x, y -> x + y } // 8
-
 ```
 ##### Lambda Expression
 - Lambda Expression is a concise way to represent a block of code that can be passed around as an argument to other functions, stored in variables, or returned from functions.
@@ -65,7 +64,6 @@ fun factorial(n: Int): Int {
 }
 
 val result = factorial(5) // 120
-
 ```
 
 ##### Referential Transparency
@@ -86,3 +84,80 @@ val result = factorial(5) // 120
 
 ##### Reduced Bugs
 - Immutability and pure functions reduce the chances of introducing bugs related to unintended side effects or state changes.
+
+## **Kotlin**
+- Kotlin is a modern, statically typed programming language.
+- It is developed by JetBrains.
+- It runs on the Java Virtual Machine (JVM) and is designed to be concise, expressive, safe, and interoperable with existing Java code. 
+- Kotlin is used for developing a wide range of applications, including Android apps, server-side applications, web development, and more.
+#### Features
+##### Conciseness
+- Kotlin reduces boilerplate code and promotes concise syntax.
+```kotlin
+// Kotlin code for defining a data class
+data class User(val name: String, val age: Int)
+```
+##### Null Safety
+- Kotlin emphasizes null safety to prevent null pointer exceptions.
+- Use ? for nullable types and !! for asserting non-nullability.
+```kotlin
+// Nullable type in Kotlin
+var nullableValue: String? = "Hello"
+nullableValue = null // Allowed with nullable type
+```
+##### Smart Casts
+- Kotlin automatically casts types based on checks.
+```kotlin
+// Smart cast example in Kotlin
+fun printLength(obj: Any) {
+    if (obj is String) {
+        println(obj.length) // Automatically cast to String
+    }
+}
+```
+##### Extension Functions
+- Extend existing classes with new functions.
+```kotlin
+// Extension function in Kotlin
+fun String.addExclamation(): String {
+    return "$this!"
+}
+
+val greeting = "Hello".addExclamation() // "Hello!"
+```
+##### Data Classes
+- Simplifies the creation of classes to hold data.
+```kotlin
+// Data class in Kotlin
+data class User(val name: String, val age: Int)
+
+val user1 = User("Alice", 30)
+val user2 = User("Bob", 25)
+```
+##### Higher-Order Functions
+- Functions that take other functions as parameters or return functions.
+##### Lambda Expressions:
+- Concise syntax for defining anonymous functions.
+##### Coroutines
+- Simplifies asynchronous programming with lightweight threads.
+```kotlin
+// Coroutine example in Kotlin
+suspend fun fetchData(): String {
+    delay(1000) // Simulate delay
+    return "Data fetched"
+}
+
+// Coroutine usage
+GlobalScope.launch {
+    val data = fetchData()
+    println(data)
+}
+```
+##### Type Inference
+- Kotlin can often infer types, reducing the need for explicit type declarations.
+```kotlin
+// Type inference in Kotlin
+val message = "Hello, Kotlin!" // Type inferred as String
+```
+##### Interoperability with Java
+- Kotlin can seamlessly work with existing Java code and libraries.
