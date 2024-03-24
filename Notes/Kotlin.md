@@ -442,6 +442,115 @@ val message: String = "Hello, Kotlin!"
 val age: Int = 25
 ```
 
+## **`var`**
+- `var` is a keyword used to declare mutable variables. Mutable variables are those whose values can be changed or reassigned after initialization. 
+- The `var` keyword is used when you need a variable whose value can vary during the program's execution.
+```
+var variableName: DataType = initialValue
+```
+```kotlin
+var count: Int = 10
+count = 15
+```
+
+## **`val` v/s `var`**
+| `val`      | `var`      |
+| ------------- | ------------- |
+| Declares read-only variables whose values cannot be changed after initialization. | Declares mutable variables whose values can be changed or reassigned after initialization. |
+| Used for constants or fixed values that remain constant throughout the program. | Used when the value of a variable needs to be modified during the program's execution. |
+
+## **Side Effects**
+- Side effects refer to observable changes or interactions with the external world that occur when a function is executed.
+- These changes can include modifying mutable state, performing I/O operations, altering global variables, or causing system-level effects.
+- Side effects can make code harder to reason about, test, and maintain, as they introduce unpredictability and dependencies on external factors.
+
+#### Avoiding Side Effects
+- Use immutable data structures whenever possible to prevent accidental modifications and side effects.
+- Write pure functions that do not modify external state or have observable side effects. Pure functions are deterministic and rely only on their input parameters.
+- Minimize the use of global variables and mutable state. Instead, encapsulate state within objects and use local variables whenever possible.
+- Embrace functional programming concepts like immutability, higher-order functions, and function composition to reduce side effects and improve code readability.
+
+## **Null Safety in Kotlin**
+- Null safety in Kotlin refers to the language's built-in features and practices designed to prevent null pointer exceptions (NPEs) and ensure more reliable and predictable code behavior when dealing with nullable types.
+
+## **Safe Call Operator `?.`**
+- The safe call operator `?.` allows accessing properties, methods, or elements of an object only when the object reference is not null. 
+- If the object is null, the expression returns null instead of throwing a null pointer exception.
+- They simplify null checks and avoid explicit null checks in code.
+```
+val result = object?.property
+```
+```kotlin
+val name: String? = null
+val length: Int? = name?.length
+println("Length: $length") // Output: null
+```
+
+## **Elvis  Operator `?:`**
+- The Elvis operator `?:` provides a default value to use when an expression on the left-hand side evaluates to null. 
+- It allows specifying a fallback value or expression to handle null cases gracefully.
+```
+val result = nullableValue ?: defaultValue
+```
+```kotlin
+val name: String? = null
+val length = name?.length ?: -1
+println("Length: $length") // Output: -1 (default value used when name is null)
+```
+
+## **Nullable Type Operator `?`**
+- The nullable type operator `?` explicitly indicates that a variable or property can be assigned a null value, making nullability explicit in the code.
+- Nullable types force developers to handle null cases explicitly, improving code robustness and preventing NPEs.
+```
+val nullableVariable: Type? = null
+var nullableProperty: Type? = null
+```
+```kotlin
+fun main() {
+    val nullableString: String? = null
+    val length: Int? = nullableString?.length ?: -1 // Default value if nullableString is null
+    println("Length: $length") // Output: -1 (default value used when nullableString is null)
+}
+```
+- In this example, nullableString is declared as a nullable String?, and the safe access operator (?.) is used to access its length property safely. The Elvis operator (?:) provides a default value of -1 if nullableString is null, ensuring that length is always a non-null integer value.
+
+## **Not Null Assertion  Operator `!!`**
+- The not-null assertion operator `!!` is used to assert that an expression is not null. 
+- It converts a nullable type to a non-nullable type, but it can lead to a `NullPointerException` if the expression on the left-hand side evaluates to null.
+```
+val result = nullableValue!!
+```
+```kotlin
+val name: String? = "Alice"
+val length = name!!.length
+println("Length: $length") // Output: 5 (non-null assertion used, assuming name is not null)
+```
+
+## **Data Class**
+- Data class is a type of class primarily used to hold and manage data. 
+- It is designed to reduce boilerplate code by automatically generating several standard functions such as `equals()`, `hashCode()`, `toString()`, `copy()`, and `componentN()` methods based on the properties defined in the class. 
+- Data classes are commonly used to represent immutable data objects .
+```
+data class ClassName(val property1: Type, val property2: Type, ...)
+```
+```kotlin
+data class Person(val name: String, val age: Int)
+
+fun main() {
+    val person1 = Person("Alice", 30)
+    val person2 = Person("Bob", 25)
+
+    println(person1) // Output: Person(name=Alice, age=30)
+    println(person2) // Output: Person(name=Bob, age=25)
+
+    val person3 = person1.copy(age = 35) // Creating a copy with modified age
+    println(person3) // Output: Person(name=Alice, age=35)
+
+    val (name, age) = person2 // Destructuring declaration
+    println("Name: $name, Age: $age") // Output: Name: Bob, Age: 25
+}
+```
+
 ## **Functions**
 - Functions are blocks of code that perform a specific task and can be called multiple times from different parts of the program.
 - Functions allow you to encapsulate logic, improve code reusability, and make your code more organized and modular.
@@ -451,20 +560,136 @@ fun functionName(parameter1: Type1, parameter2: Type2, ...): ReturnType {
 }
 ```
 
-
 ## **Higher Order Functions**
-- Can accept Functions as parameters.
-- Can return Function.
+- Higher-order functions in Kotlin are functions that can take other functions as parameters or return functions as results.
+- This is a fundamental concept in functional programming, allowing you to treat functions as first-class citizens and enabling powerful programming paradigms like function composition, function chaining, and passing behavior as arguments.
+- They are often used with lambda expressions for conciseness and readability.
+- Function Composition: Allows combining multiple functions to create new behaviors.
+- Function Chaining: Enables chaining multiple functions together for sequential execution.
+- Declarative Programming: Facilitates writing code in a more declarative and expressive style.
 
+#### Higher-Order Function with Function Parameter
+- A higher-order function with a function parameter is a function that takes another function as an argument.
+- This is a fundamental concept in functional programming that enables passing behavior as a parameter to a function.
+```kotlin
+fun operateOnNumbers(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+fun main() {
+    val sum = operateOnNumbers(5, 3) { x, y -> x + y } // Using lambda expression for addition
+    val product = operateOnNumbers(5, 3) { x, y -> x * y } // Using lambda expression for multiplication
+
+    println("Sum: $sum")
+    println("Product: $product")
+}
+```
+#### Higher-Order Function with Function Return Type
+- A higher-order function with a function return type is a function that returns another function as its result.
+- This enables creating functions dynamically based on certain conditions or parameters.
+```kotlin
+fun createAddFunction(): (Int, Int) -> Int {
+    return { x, y -> x + y }
+}
+
+fun main() {
+    val addFunction = createAddFunction()
+    val sum = addFunction(5, 3) // Using the returned function to perform addition
+
+    println("Sum: $sum")
+}
+```
+```kotlin
+fun createMathOperation(operationType: String): (Int, Int) -> Int {
+    return when (operationType) {
+        "addition" -> { a, b -> a + b }
+        "subtraction" -> { a, b -> a - b }
+        "multiplication" -> { a, b -> a * b }
+        "division" -> { a, b -> a / b }
+        else -> throw IllegalArgumentException("Invalid operation type")
+    }
+}
+
+fun main() {
+    val addFunction = createMathOperation("addition")
+    val subtractFunction = createMathOperation("subtraction")
+    val multiplyFunction = createMathOperation("multiplication")
+    val divideFunction = createMathOperation("division")
+
+    val result1 = addFunction(10, 5) // Result: 15
+    val result2 = subtractFunction(10, 5) // Result: 5
+    val result3 = multiplyFunction(10, 5) // Result: 50
+    val result4 = divideFunction(10, 5) // Result: 2
+
+    println("Result of addition: $result1")
+    println("Result of subtraction: $result2")
+    println("Result of multiplication: $result3")
+    println("Result of division: $result4")
+}
+```
+
+## **Pure Functions**
+- Pure function always produces the same output for the same input, regardless of the external state or environment. 
+- Pure functions do not modify the state of the program or have any observable side effects. They only depend on their input parameters and return a value without modifying any external state.
+- Pure functions are used in scenarios where you want to ensure predictability, maintainability, and testability of your code.
+    - Calculations and computations.
+    - Data transformation operations like mapping, filtering and sorting.
+```kotlin
+fun addNumbers(a: Int, b: Int): Int {
+    return a + b
+}
+```
+```kotlin
+//Pure Function : Mapping
+fun squareNumbers(numbers: List<Int>): List<Int> {
+    return numbers.map { it * it }
+}
+
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5)
+    val squaredNumbers = squareNumbers(numbers)
+
+    println("Original Numbers: $numbers")
+    println("Squared Numbers: $squaredNumbers")
+}
+
+//Pure Function : Filtering
+fun filterEvenNumbers(numbers: List<Int>): List<Int> {
+    return numbers.filter { it % 2 == 0 }
+}
+
+fun main() {
+    val numbers = listOf(1, 2, 3, 4, 5)
+    val evenNumbers = filterEvenNumbers(numbers)
+
+    println("Original Numbers: $numbers")
+    println("Even Numbers: $evenNumbers")
+}
+
+//Pure Function : Sorting
+fun sortNumbers(numbers: List<Int>): List<Int> {
+    return numbers.sorted()
+}
+
+fun main() {
+    val numbers = listOf(5, 3, 8, 1, 2)
+    val sortedNumbers = sortNumbers(numbers)
+
+    println("Original Numbers: $numbers")
+    println("Sorted Numbers: $sortedNumbers")
+}
+```
 ## **Lambdas**
 
 
-var x: Int =3
 $
-Null Values and Null safe language
 action
 Unit
-
+coroutine
+constructors
+iteration
+companion
+when
 
 
 Jetpackcompose
