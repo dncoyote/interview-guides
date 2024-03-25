@@ -2312,7 +2312,7 @@ String typeOfDay;
 #### Records
 - Records will allow you to create immutable data classes
 - New feature introduced in Java 16 and then finalized in Java 17.
--  Records provide a concise way to declare classes whose main purpose is to store and transport data, often referred to as data transfer objects (DTOs) or immutable data holders. 
+- Records provide a concise way to declare classes whose main purpose is to store and transport data, often referred to as data transfer objects (DTOs) or immutable data holders. 
 - Records are designed to reduce boilerplate code by automatically generating methods such as constructors, accessors (getters), `equals()`, `hashCode()`, and `toString()` based on the record components (fields). 
 - Records are particularly useful when you need to define data objects, such as entities representing database records, configuration settings, or simple data transfer objects.
 - Records are immutable by default, meaning once created, their state cannot be modified. This helps in ensuring data integrity and thread safety.

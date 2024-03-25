@@ -681,6 +681,97 @@ fun main() {
 ```
 ## **Lambdas**
 
+## **Coroutines**
+- Coroutine in Kotlin is a concurrency design pattern and language feature that allows you to write asynchronous, non-blocking code in a sequential manner.
+- Coroutines enable you to perform long-running tasks, such as network requests, disk operations, or CPU-intensive computations, without blocking the main thread or causing thread starvation. 
+- Coroutines are lightweight, efficient, and designed to handle concurrency in a structured and intuitive way.
+#### Features
+##### Coroutine Builders
+- Kotlin provides coroutine builders like launch, async, and runBlocking to create and manage coroutines.
+##### Asynchronous Execution
+- Coroutines allow you to execute code asynchronously, making it suitable for tasks that involve waiting for I/O operations, such as network requests or file I/O.
+##### Non-Blocking Operations
+- Unlike traditional threading models, coroutines are non-blocking, meaning they don't block the main thread while waiting for a task to complete. This helps prevent UI freezes and improves responsiveness in applications.
+##### Structured Concurrency
+- Kotlin's coroutine framework provides structured concurrency, allowing you to manage and coordinate multiple coroutines effectively.
+##### Cancellation and Error Handling
+- Error handling mechanisms, such as try-catch blocks, can be used within coroutines to handle exceptions gracefully and cancellation can be used to cancel or stop a coroutine's execution when it's no longer needed or when an error occurs.
+
+#### Uses
+- Coroutines can be used for parallelism by launching multiple coroutines that execute tasks concurrently, leveraging multi-core processors for improved performance.
+- Coroutines are commonly used for asynchronous programming tasks, such as making network requests, fetching data from databases, or performing background computations without blocking the main thread.
+- They are used to handle concurrent processing of data and resources without the complexities of traditional threading models.
+
+#### Launching a Coroutine with `launch` Builder
+```kotlin
+fun main() {
+    // Launching a new coroutine in the GlobalScope
+    GlobalScope.launch {
+        delay(1000) // Simulating a long-running task
+        println("Coroutine completed")
+    }
+
+    println("Main thread continues") // Executed immediately
+    Thread.sleep(2000) // Adding delay to keep the main thread alive
+}
+```
+- `launch` is used to start a new coroutine in the GlobalScope or a specified coroutine scope.
+
+#### Launching a Coroutine with `async` Builder
+```kotlin
+suspend fun fetchData(): String {
+    delay(1000) // Simulating a network request delay
+    return "Data fetched successfully"
+}
+
+fun main() = runBlocking {
+    // Launching a coroutine with async builder
+    val deferred = async {
+        fetchData()
+    }
+
+    println("Main thread continues") // Executed immediately
+
+    // Waiting for the async task to complete and printing the result
+    println("Async result: ${deferred.await()}")
+}
+```
+- `async` is used to perform a computation asynchronously and return a Deferred result.
+
+#### Using Coroutines with Scope
+```kotlin
+suspend fun fetchUserData(): String {
+    delay(1000) // Simulating a network request delay
+    return "User data fetched successfully"
+}
+
+fun main() = runBlocking {
+    // Creating a coroutine scope
+    coroutineScope {
+        launch {
+            println("Launching coroutine 1")
+            delay(2000) // Simulating a task delay
+            println("Coroutine 1 completed")
+        }
+
+        launch {
+            println("Launching coroutine 2")
+            delay(1000) // Simulating another task delay
+            println("Coroutine 2 completed")
+        }
+
+        // Waiting for child coroutines to complete before continuing
+        delay(3000)
+        println("All coroutines completed")
+    }
+
+    println("Main thread continues") // Executed after all coroutines complete
+}
+```
+- `runBlocking` and `coroutineScope` are coroutine builders that provide a coroutine scope for structured concurrency.
+- `delay` is a suspending function used to simulate delays in coroutines without blocking the thread.
+
+---
 
 $
 action
