@@ -679,7 +679,38 @@ fun main() {
     println("Sorted Numbers: $sortedNumbers")
 }
 ```
-## **Lambdas**
+## **Lambda Expression**
+- A lambda expression is a compact piece of code that is used to represent an anonymous function (a function without a name) that can be passed as an argument to a method or stored as a variable. It consists of parameters, the arrow operator, and a body.
+- Lambda expressions are particularly useful in scenarios where you need to pass behavior as an argument.
+- They lead to more concise and expressive code, making your Kotlin programs more readable and maintainable.
+
+```
+val lambdaName: (parameters) -> returnType = { arguments ->
+    // Lambda body
+    // Code to be executed
+}
+```
+```kotlin
+val square: (Int) -> Int = { x ->
+    x * x
+}
+
+println(square(5))
+```
+```kotlin
+//Lambda expression with no parameters
+{ println("Hello, Kotlin!") }
+//Lambda expression with a single parameter
+{ x: Int -> println("Number: $x") }
+//Lambda expression with multiple parameters
+{ x: Int, y: Int -> println("Sum: ${x + y}") }
+//Lambda expression with no parameters and a return value
+{ -> "Hello, Kotlin!" }
+//Lambda expression with a single parameter and a return value
+{ x: Int -> x * x }
+//Lambda expression with multiple parameters and a return value
+{ x: Int, y: Int -> x + y }
+```
 
 ## **Coroutines**
 - Coroutine in Kotlin is a concurrency design pattern and language feature that allows you to write asynchronous, non-blocking code in a sequential manner.
@@ -776,7 +807,6 @@ fun main() = runBlocking {
 $
 action
 Unit
-coroutine
 constructors
 iteration
 companion
