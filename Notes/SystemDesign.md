@@ -53,3 +53,8 @@
 - Asynchronous events (e.g., order placement, status updates) are published to Kafka topics for processing.
 - The Notification Service subscribes to relevant Kafka topics to trigger email notifications based on events and status changes.
 - Rate limiting is enforced at the API Gateway to prevent spam hits and manage request rates per user/IP address.
+
+## **SAGA Design Pattern**
+- The Saga design pattern is a pattern used in distributed systems to manage long-lived transactions that involve multiple steps across different services or databases.
+- It's particularly relevant in microservices architectures where each microservice has its own database and transactions can span multiple microservices. 
+- The goal of the Saga pattern is to ensure data consistency and transactional integrity in such distributed environments.
