@@ -58,3 +58,42 @@
 - The Saga design pattern is a pattern used in distributed systems to manage long-lived transactions that involve multiple steps across different services or databases.
 - It's particularly relevant in microservices architectures where each microservice has its own database and transactions can span multiple microservices. 
 - The goal of the Saga pattern is to ensure data consistency and transactional integrity in such distributed environments.
+
+---
+- I was part of a Healthcare Imaging Platform based out of North America. This platform was used by Healthcare Institutions like Medical Diagnostic Labs and Hospitals to view and manipulate images that is received from scanning machines. The tech stack of this project was in java version 8, backend web framework was J2EE, backend database was PostgreSQL. 
+- This was great learning experience for me, I got the opportunity to work Healthcare domain specific technologies like HL7 and DICOM's.
+- I also got the opportunity to collaborate with the Platform team to configure the Amazon EC2 instances with our backend environment. We also used Amazon RDS for the PostgreSQL instances. I worked on integrating Amazon S3 APIs into our backend application for seamless image upload, retrieval, and processing.
+- My primary role in this project was to understand the various DICOM API's present in DCM4CHE, DCM4CHE is another Healthcare Imaging Platform that is open source and out application is build on top of DCM4CHE and we reuse most of the API's. In some scenarios the client would request us to add some changes based on the filtering and searching criteria and we would do the same. I also had to perform the unit testing for these features using JUnit. I also had to work with the front end engineers to ensure that the backend API's were properly integrated.
+
+---
+As a backend developer on the Healthcare Imaging platform deployed in the AWS cloud, I played a pivotal role in integrating various AWS services to enhance scalability, reliability, and performance. Specifically, we leveraged Amazon EC2 for virtual servers hosting our Java 8 application, Amazon RDS for PostgreSQL to manage the backend database, and Amazon S3 for storing and accessing DICOM images efficiently.
+
+To ensure seamless integration with AWS, I collaborated with the Platform Team to configure and manage these services effectively. This involved setting up EC2 instances with the necessary Java and J2EE environments, configuring security groups, and managing instance scaling for optimal performance and cost-efficiency.
+
+For database management, we utilized Amazon RDS to easily provision, scale, and manage PostgreSQL instances, ensuring data integrity and availability. I implemented database backups, monitoring, and optimization strategies to maintain system reliability.
+
+Additionally, we utilized Amazon S3 for storing DICOM images securely, implementing access control policies and encryption mechanisms to protect sensitive patient data. I worked on integrating S3 APIs into our backend application for seamless image upload, retrieval, and processing.
+
+In terms of dependency management, we used Maven or Gradle as build automation tools to manage project dependencies and package our Java application for deployment. Continuous Integration/Continuous Deployment (CI/CD) pipelines were set up using tools like Jenkins or AWS CodePipeline to automate the build, test, and deployment processes, ensuring rapid and reliable delivery of updates to the AWS cloud environment.
+
+Deploying to the AWS cloud typically involves the following steps:
+
+AWS Account Setup: Create an AWS account and configure necessary permissions for accessing AWS services.
+
+Infrastructure Planning: Determine the required AWS services (e.g., EC2, RDS, S3) based on application needs and scalability requirements.
+
+Environment Setup: Configure AWS resources such as EC2 instances, RDS databases, S3 buckets, and networking settings (VPC, subnets, security groups).
+
+Application Deployment: Deploy the Java application to EC2 instances using tools like SSH, AWS CLI, or deployment scripts. Set up application monitoring and logging using AWS CloudWatch.
+
+Database Configuration: Set up and configure the database (e.g., PostgreSQL on RDS) including schema creation, data migration, and performance tuning.
+
+Storage and File Management: Utilize Amazon S3 for storing and accessing files/images securely. Implement access control and encryption as needed.
+
+Security and Compliance: Configure security settings such as IAM roles, security groups, SSL certificates, and encryption to ensure data protection and compliance with industry standards.
+
+Scaling and Monitoring: Implement auto-scaling policies for EC2 instances based on traffic patterns. Set up monitoring and alerts using AWS CloudWatch for proactive system management.
+
+Backup and Disaster Recovery: Implement backup and recovery strategies for both application data (RDS snapshots) and stored files (S3 versioning, cross-region replication).
+
+Testing and Optimization: Perform thorough testing (unit, integration, performance) of the deployed application and optimize AWS resources for cost-efficiency and performance.
