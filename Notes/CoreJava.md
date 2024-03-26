@@ -2162,6 +2162,55 @@ public class AnonymousClassDemo {
 
 #### New HTTP Client
 
+#### var
+
+- `var` keyword was introduced in Java 10 as part of a feature called "Local-Variable Type Inference."
+- It allows you to declare local variables without explicitly specifying their data types, relying on the compiler to infer the type based on the assigned value.
+- This feature is sometimes referred to as "type inference."
+- Key characteristics
+
+  - Initialization Required: When using var, you must initialize the variable at the same time you declare it. This is because the compiler infers the type based on the assigned value.
+
+  - Readability: While var can make your code more concise, it's important to use it judiciously. It's often a good practice to use var when the right-hand side expression makes the type obvious.
+
+  - Type Inference: The var keyword does not remove the static typing of Java; it's just a way to make your code more concise by inferring types for local variables. The variables declared with var still have a specific, static type determined by the assigned value.
+
+  - Compile-Time Safety: Java's strong type inference system ensures that the type of the variable is known at compile time. This means that you still get the benefits of compile-time type checking.
+
+  - Not Suitable for All Variables: var is primarily intended for local variables with simple initializations. It's not meant for method parameters, fields, or return types of methods.
+
+```java
+var message = "Hello, World!";
+----
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+for (var name : names) {
+    System.out.println(name);
+}
+----
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+var evenNumbers = numbers.stream()
+                       .filter(num -> num % 2 == 0)
+                       .collect(Collectors.toList());
+----
+var point = new Point(5, 10);
+var currentDate = LocalDate.now();
+----
+Map<String, Integer> scores = Map.of("Alice", 95, "Bob", 87, "Charlie", 92);
+for (var entry : scores.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+----
+var pairs = new ArrayList<Pair<String, Integer>>();
+pairs.add(new Pair<>("Alice", 25));
+pairs.add(new Pair<>("Bob", 30));
+----
+var numbers = new int[]{1, 2, 3, 4, 5};
+var sum = 0;
+for (var num : numbers) {
+    sum += num;
+}
+```
+
 ## **Java 17 Features**
 #### String
 - indent
@@ -2305,6 +2354,63 @@ String typeOfDay;
         System.out.println("Type of day: " + typeOfDay);
 ```
 #### Pattern matching for instanceof
+- `instanceof` that allows you to test whether an object is an instance of a particular class or interface. It checks if an object belongs to a specific type or one of its subclasses/interfaces.
+- It simplifies the code by combining the instanceof check and casting into a single operation. 
+- This eliminates the need for explicit casting, reducing boilerplate code and thereby making the code more concise and readable.
+
+```java
+class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    public void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class InstanceOfExample {
+    public static void main(String[] args) {
+        Animal animal = new Dog();
+
+        if (animal instanceof Dog) {
+            Dog dog = (Dog) animal; // Explicit casting
+            dog.bark();
+        } else {
+            animal.makeSound();
+        }
+    }
+}
+```
+```java
+class Animal {
+    public void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+}
+
+class Dog extends Animal {
+    public void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class InstanceOfExample {
+    public static void main(String[] args) {
+        Animal animal = new Dog();
+
+        if (animal instanceof Dog dog) {
+            dog.bark(); // No explicit casting needed
+        } else {
+            animal.makeSound();
+        }
+    }
+}
+```
+- `instanceof` check and casting are combined into a single statement: `if (animal instanceof Dog dog)`. If the object is an instance of Dog, it is automatically cast to Dog and assigned to the variable dog.
+
 
 #### Meaningful NullPointerExceptions
 - Meaningful NPEs provide more information about the root cause of the NullPointerException, making it easier for developers to identify the problematic code or variable.
@@ -2336,6 +2442,20 @@ System.out.println("Age: " + person.age());
 - They provide a mechanism to control and restrict the inheritance hierarchy, enhancing code maintainability and security by defining a predefined set of permitted subclasses or implementing classes.
 - Sealed classes are final by default, meaning they cannot be extended outside of the permitted subclasses or implementing classes.
 - Classes extending the Sealed class should be final or sealed or non-sealed.
+
+```java
+public sealed class Shape permits Circle, Rectangle {
+    // Common methods and attributes for Shape class
+}
+
+non-sealed class Circle extends Shape {
+    // Methods and attributes specific to Circle class
+}
+
+final class Rectangle extends Shape {
+    // Methods and attributes specific to Rectangle class
+}
+```
 
 ## **Inheritance**
 - Inheritance allows one class to inherit properties and methods from another class.
@@ -2574,55 +2694,6 @@ public class Main {
 class MyClass implements Serializable {
     private transient String myTransientString;
     private String nonTransientField;
-}
-```
-
-## **var**
-
-- `var` keyword was introduced in Java 10 as part of a feature called "Local-Variable Type Inference."
-- It allows you to declare local variables without explicitly specifying their data types, relying on the compiler to infer the type based on the assigned value.
-- This feature is sometimes referred to as "type inference."
-- Key characteristics
-
-  - Initialization Required: When using var, you must initialize the variable at the same time you declare it. This is because the compiler infers the type based on the assigned value.
-
-  - Readability: While var can make your code more concise, it's important to use it judiciously. It's often a good practice to use var when the right-hand side expression makes the type obvious.
-
-  - Type Inference: The var keyword does not remove the static typing of Java; it's just a way to make your code more concise by inferring types for local variables. The variables declared with var still have a specific, static type determined by the assigned value.
-
-  - Compile-Time Safety: Java's strong type inference system ensures that the type of the variable is known at compile time. This means that you still get the benefits of compile-time type checking.
-
-  - Not Suitable for All Variables: var is primarily intended for local variables with simple initializations. It's not meant for method parameters, fields, or return types of methods.
-
-```java
-var message = "Hello, World!";
-----
-List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
-for (var name : names) {
-    System.out.println(name);
-}
-----
-List<Integer> numbers = List.of(1, 2, 3, 4, 5);
-var evenNumbers = numbers.stream()
-                       .filter(num -> num % 2 == 0)
-                       .collect(Collectors.toList());
-----
-var point = new Point(5, 10);
-var currentDate = LocalDate.now();
-----
-Map<String, Integer> scores = Map.of("Alice", 95, "Bob", 87, "Charlie", 92);
-for (var entry : scores.entrySet()) {
-    System.out.println(entry.getKey() + ": " + entry.getValue());
-}
-----
-var pairs = new ArrayList<Pair<String, Integer>>();
-pairs.add(new Pair<>("Alice", 25));
-pairs.add(new Pair<>("Bob", 30));
-----
-var numbers = new int[]{1, 2, 3, 4, 5};
-var sum = 0;
-for (var num : numbers) {
-    sum += num;
 }
 ```
 
