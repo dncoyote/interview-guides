@@ -59,6 +59,54 @@
 - It's particularly relevant in microservices architectures where each microservice has its own database and transactions can span multiple microservices. 
 - The goal of the Saga pattern is to ensure data consistency and transactional integrity in such distributed environments.
 
+#### Scenarios in E-commerce Website:
+
+Order Placement:
+
+Scenario: A customer places an order for multiple items, involving inventory reservation, payment processing, and shipping initiation.
+Saga Steps:
+Inventory Service Step: Reserve items in the inventory.
+Payment Service Step: Process payment for the order.
+Shipping Service Step: Initiate shipping of the ordered items.
+Compensation Actions:
+If inventory reservation fails, release the reserved items.
+If payment processing fails, refund the payment.
+If shipping initiation fails, cancel the shipment.
+Orchestration: Saga orchestrator manages the order processing steps and compensations.
+
+Order Cancellation:
+
+Scenario: A customer cancels an order before it's shipped, requiring reversal of inventory reservation and payment processing.
+Saga Steps:
+Inventory Release Step: Release the reserved items in the inventory.
+Payment Refund Step: Refund the payment for the cancelled order.
+Compensation Actions:
+If inventory release fails, log an error for manual intervention.
+If payment refund fails, log an error for manual intervention.
+Orchestration: Saga orchestrator coordinates the cancellation process and compensations.
+
+Inventory Replenishment:
+
+Scenario: Inventory levels are low for certain products, triggering a replenishment process involving supplier communication and stock update.
+Saga Steps:
+Supplier Communication Step: Place an order with the supplier for replenishment.
+Inventory Update Step: Update the inventory with the received stock.
+Compensation Actions:
+If supplier communication fails, retry or escalate to manual intervention.
+If inventory update fails, log an error for manual intervention.
+Orchestration: Saga orchestrator manages the replenishment process and compensations.
+
+User Registration with Bonus Offer:
+
+Scenario: A new user registers on the e-commerce platform with a bonus offer that includes account credit and discount coupons.
+Saga Steps:
+Account Credit Step: Add credit to the user's account as per the bonus offer.
+Coupon Generation Step: Generate and allocate discount coupons to the user.
+Compensation Actions:
+If account credit fails, revoke the user's bonus offer.
+If coupon generation fails, rollback the allocated coupons.
+Orchestration: Saga orchestrator handles the user registration process and compensations.
+
 ---
 - I was part of a Healthcare Imaging Platform based out of North America. This platform was used by Healthcare Institutions like Medical Diagnostic Labs and Hospitals to view and manipulate images that is received from scanning machines. The tech stack of this project was in java version 8, backend web framework was J2EE, backend database was PostgreSQL. 
 - This was great learning experience for me, I got the opportunity to work Healthcare domain specific technologies like HL7 and DICOM's.
