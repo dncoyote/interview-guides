@@ -192,6 +192,7 @@
 
 ### Advanced concepts apart from interviews
 
+
 - Bitwise + DP
 - Extended Euclidean algorithm
 - Modulo Multiplicative Inverse
