@@ -3268,6 +3268,26 @@ Defines a callback implementation that prints the received data.
 Calls the fetchData method with the callback.
 The main thread can continue its work while data fetching is in progress.
 
+## **Things to consider when upgrading from Java 11 to 17**
+#### Compatibility and Deprecation:
+- Review the Java 17 release notes and migration guides to understand deprecated APIs, removed features, and backward compatibility concerns.
+- Identify any third-party libraries, frameworks, or tools used in your application that may require updates or compatibility checks with Java 17.
+#### Language and API Changes:
+- Familiarize yourself with new language enhancements, syntax improvements, and API additions introduced in Java 17 (e.g., pattern matching for switch statements, sealed classes and interfaces, enhanced Stream API).
+- Update codebase to leverage new Java 17 features where applicable, ensuring compatibility with existing code and best practices.
+#### Tooling and IDE Support:
+- Ensure that your Integrated Development Environment (IDE) supports Java 17 syntax highlighting, code analysis, and project configurations.
+- Update build tools (e.g., Maven, Gradle) and development environments to versions compatible with Java 17, including plugin updates if necessary.
+#### Library and Framework Compatibility:
+- Verify compatibility of third-party libraries, dependencies, and frameworks with Java 17 by checking their official documentation, release notes, and community forums.
+- Update libraries and dependencies to versions that support Java 17 or identify alternative solutions if compatibility issues arise.
+#### JDK and Runtime Environment:
+- Download and install Java Development Kit (JDK) 17 or later from the official Oracle or OpenJDK distributions.
+- Update runtime environments, application servers, and deployment configurations to use Java 17 for testing and production environments.
+#### Testing and Quality Assurance:
+- Conduct thorough testing of your application after the upgrade to Java 17 to ensure functionality, performance, and compatibility across different use cases and environments.
+- Implement unit tests, integration tests, and regression tests to validate code changes, new features, and interactions with updated dependencies.
+
 ## **New Features : Java**
 
 #### Java 8 (March 2014)
