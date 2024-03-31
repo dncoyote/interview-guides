@@ -175,7 +175,23 @@
 - Regression Testing:
   - Conduct regression testing to verify that the code changes or fixes have resolved the issue without introducing new bugs or regressions.
   - Validate the stability and reliability of the legacy system through thorough testing across different user scenarios and edge cases.
-  
+
+## **Things to keep in mind when developing a Multi-geographical application**
+#### Global Content Delivery:
+- Leverage CDNs or edge caching networks to cache and deliver static content (e.g., images, CSS, JavaScript) closer to end-users in different geographical locations, reducing latency and improving content delivery speed.
+- Implement dynamic content caching and edge computing strategies to optimize response times for dynamic content based on user location.
+#### Regional Availability Zones:
+- Deploy application components, databases, and services across multiple availability zones within each geographical region to ensure high availability, fault tolerance, and disaster recovery capabilities.
+- Utilize cloud provider's regional data centers or availability zones to distribute workload and mitigate single points of failure.
+#### Performance Monitoring and Optimization:
+- Set up comprehensive performance monitoring and analytics tools to track application performance metrics (e.g., response times, throughput, error rates) across different geographical regions.
+- Continuously optimize application performance through load testing, A/B testing, and performance tuning based on real-time monitoring data and user feedback.
+#### Utility classes for time-zones and currency converter:
+- You can create a utility class in Java to handle time zones efficiently, especially when dealing with customers from different regions such as Sweden and North America.
+- You can also expand this utility class based on your specific requirements, such as adding additional methods for handling daylight saving time, parsing date/time strings to UTC timestamps, or performing time zone conversions with offsets.
+- Handling currency in a multi-geographical application involves considerations such as currency conversion, formatting, and localization based on user preferences or detected geographic regions. 
+- Modify this utility class to handle additional currency-related functionalities such as currency rounding, currency symbol placement, and error handling for unsupported currency pairs. Additionally, ensure that exchange rates are updated regularly and obtained from a trusted source in a production environment.
+
 ## **Authentication v/s Authorization**
 - Authentication : Authentication is the process of verifying the identity of a user, system, or entity to ensure they are who they claim to be.
 - Authorization : Authorization, also known as access control, is the process of determining what actions or operations an authenticated user or entity is allowed to perform on a system or resource.
