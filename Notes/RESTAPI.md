@@ -76,6 +76,106 @@
 - Scale your application horizontally by deploying multiple instances of your application behind a load balancer. 
 - This allows you to distribute incoming traffic across multiple servers and handle increased load effectively.
 
+## **Challenges**
+
+### Database Query Optimization
+##### Scenario
+- During a routine system audit, we discovered that the query performance for fetching patient medical history associated with DICOM images was degrading over time, leading to slower response times for clinicians accessing patient records during diagnosis.
+- The issue was traced to inefficient database queries that lacked proper indexing and optimization strategies. As a result, fetching patient medical history alongside DICOM images was causing unnecessary database load and impacting overall system performance.
+##### Solution
+- Conducted a comprehensive analysis of the database schema, query execution plans, and indexing strategies using PostgreSQL's EXPLAIN command to identify slow-performing queries and potential optimization opportunities.
+- Introduced appropriate indexes on key columns involved in join operations and filtering conditions to improve query execution speed.
+- Rewrote complex queries using optimized SQL syntax, utilizing PostgreSQL's query planner to generate efficient execution plans and minimize unnecessary data retrieval.
+- Implemented query caching at the application layer using Spring's caching annotations to cache frequently accessed patient medical history data, reducing database round-trips and improving response times for subsequent requests.
+##### Scenario
+- During peak hours, radiologists experienced delays when retrieving DICOM image metadata for large datasets, impacting their ability to analyze patient images efficiently and make timely diagnoses.
+- The challenge stemmed from inefficient database queries that were not optimized for fetching DICOM image metadata in bulk. As a result, the application struggled to handle concurrent requests from multiple radiologists, leading to performance bottlenecks and increased response times.
+##### Solution
+- Identified the specific queries responsible for fetching DICOM image metadata and analyzed their execution plans and performance metrics using PostgreSQL's query profiling tools.
+- Optimized query performance by restructuring queries, adding appropriate indexes, and leveraging PostgreSQL's query optimizer to improve query execution speed.
+- Implemented a caching mechanism for frequently accessed DICOM image metadata, using Redis as a distributed cache to store and serve cached metadata, reducing database load and improving response times.
+- Monitored cache hit rates, cache expiration policies, and cache effectiveness to ensure optimal utilization of the caching layer and minimize data retrieval from the database for improved system performance.
+
+### Caching Strategies
+##### Scenario
+- During a system load test, we observed that repeated requests for DICOM image thumbnails were resulting in high server load and increased response times, impacting the user experience for clinicians and researchers accessing image previews.
+- The challenge stemmed from the lack of a caching mechanism for DICOM image thumbnails, leading to repeated generation and retrieval of thumbnails for each request. This resulted in unnecessary server load and slower response times, especially during peak usage periods.
+##### Solution
+- Implemented a caching layer for DICOM image thumbnails using Redis as a distributed cache to store pre-generated thumbnails based on image identifiers.
+- Modified the application logic to first check the cache for thumbnail availability before generating new thumbnails, reducing the computational overhead and improving response times for thumbnail requests.
+- Configured cache expiration policies and eviction strategies to manage cache size and freshness, ensuring that cached thumbnails are updated periodically and invalidated when necessary.
+- Monitored cache utilization metrics, cache hit rates, and cache miss rates to fine-tune caching configurations and optimize the caching layer for improved performance and scalability.
+##### Scenario
+- Clinicians accessing patient reports and studies frequently encountered delays when retrieving historical study data and reports, impacting their ability to make informed medical decisions in real-time.
+- The issue arose from the lack of caching for historical study data and reports, leading to repeated database queries for retrieving the same data for different users. This resulted in increased server load and slower response times, particularly during peak usage hours.
+##### Solution
+- Implemented a caching strategy for historical study data and reports using Spring's caching annotations and an in-memory cache (e.g., ConcurrentHashMap) to store and serve cached data.
+- Modified the application logic to first check the cache for historical study data and reports before querying the database, reducing the number of database round-trips and improving response times for subsequent requests.
+- Configured cache expiration policies and eviction mechanisms to ensure data freshness and consistency, periodically updating cached data and invalidating outdated entries.
+- Monitored cache utilization metrics, cache hit rates, and cache efficiency to optimize caching configurations and enhance the overall performance of data retrieval operations for clinicians and researchers.
+
+### Asynchronous Processing
+##### Scenario
+- During peak hours, the application experienced delays in processing large DICOM image uploads, affecting the responsiveness of the system and causing user frustration.
+- The challenge was due to synchronous processing of image uploads, where the application waited for each image to be fully processed before moving on to the next upload. This synchronous behavior led to blocking user requests and increased response times.
+##### Solution
+- Implemented asynchronous processing for DICOM image uploads using Spring's @Async annotation or CompletableFuture to offload image processing tasks to separate threads.
+- Utilized a message queue system such as RabbitMQ or Kafka to decouple image processing tasks from the main application flow, allowing concurrent processing of multiple image uploads.
+- Introduced a background processing service to handle image uploads asynchronously, monitoring progress, and notifying users upon completion to improve user experience and system responsiveness.
+- Configured thread pool settings, concurrency limits, and task scheduling strategies to optimize resource utilization and ensure efficient handling of concurrent image processing tasks.
+
+### Caching HTTP Responses
+##### Scenario
+- The application frequently served static resources such as DICOM image thumbnails, CSS files, and JavaScript libraries, resulting in increased server load and longer response times during peak usage periods.
+- The challenge was to reduce server load and improve response times for static resource requests by implementing an efficient caching strategy for HTTP responses.
+##### Solution
+- Implemented server-side caching using NGINX or Apache HTTP Server as a reverse proxy cache to cache static resources like DICOM image thumbnails, CSS files, and JavaScript libraries.
+- Configured caching directives such as Cache-Control headers (e.g., max-age, public, private), ETag headers, and Last-Modified headers to control caching behavior and cache expiration policies.
+- Utilized content delivery networks (CDNs) like Amazon CloudFront or Cloudflare to cache static resources at edge locations closer to end-users, reducing latency and improving content delivery speed.
+
+## **Debugging an issue in a legacy system**
+- When debugging an issue in a legacy system, it's essential to follow a systematic approach to identify, isolate, and resolve the problem effectively
+### Database Query Performance Issue
+- Users report slow response times when querying patient records in the legacy system.
+##### Approach
+- Reproduce the Issue:
+  - Identify the specific scenario or user workflow that triggers the slow response times.
+  - Reproduce the issue consistently to understand its scope and impact on system performance.
+- Collect Data:
+  - Gather relevant data such as query execution plans, database logs, and performance metrics (CPU usage, memory usage, disk I/O) during the slow query execution.
+  - Use database profiling tools (e.g., EXPLAIN command in SQL databases) to analyze query execution plans and identify inefficient query patterns.
+- Analyze Code and Queries:
+  - Review the application codebase and SQL queries associated with the slow-performing feature.
+  - Look for potential bottlenecks, suboptimal query structures, missing indexes, or excessive data fetching that could contribute to the performance issue.
+- Optimize Queries:
+  - Refactor and optimize SQL queries by adding appropriate indexes, rewriting complex joins or subqueries, and reducing  unnecessary data retrieval.
+  - Utilize database tuning techniques (e.g., query caching, query hints, query optimization hints) to improve query performance.
+- Test and Validate:
+  - Apply the optimized SQL queries to the legacy system and conduct performance testing to validate improvements.
+  - Monitor performance metrics and user feedback to ensure that the issue has been resolved satisfactorily. 
+
+### Application Crash or Error
+- The legacy system frequently crashes or throws unexpected errors during specific user interactions.
+##### Approach
+- Replicate the Issue:
+  - Identify the sequence of user actions or inputs that consistently trigger the application crash or error.
+  - Replicate the issue in a controlled environment (e.g., development or staging environment) to analyze its root cause.
+- Review Error Logs:
+  - Access and review error logs, crash reports, stack traces, and exception messages generated by the legacy system when the issue occurs.
+  - Look for common error patterns, error codes, and stack trace information to understand the nature of the problem.
+- Debugging Tools:
+  - Use debugging tools and techniques appropriate for the programming language and technology stack of the legacy system.
+  - Utilize integrated development environments (IDEs) with debugging capabilities, logging frameworks, and debugging libraries (e.g., log4j, SLF4J) to trace code execution and identify code paths leading to errors.
+- Code Inspection:
+  - Inspect the relevant sections of the codebase associated with the error-prone feature or functionality.
+  - Look for potential coding mistakes, logic errors, null pointer exceptions, memory leaks, or resource leaks that could cause the application to crash or behave unpredictably.
+- Isolate and Test:
+  - Isolate the suspected code segments or modules causing the issue and create test cases to reproduce the error in a controlled environment.
+  - Apply code fixes, error handling mechanisms, and defensive programming practices to address identified issues and prevent future occurrences.
+- Regression Testing:
+  - Conduct regression testing to verify that the code changes or fixes have resolved the issue without introducing new bugs or regressions.
+  - Validate the stability and reliability of the legacy system through thorough testing across different user scenarios and edge cases.
+  
 ## **Authentication v/s Authorization**
 - Authentication : Authentication is the process of verifying the identity of a user, system, or entity to ensure they are who they claim to be.
 - Authorization : Authorization, also known as access control, is the process of determining what actions or operations an authenticated user or entity is allowed to perform on a system or resource.

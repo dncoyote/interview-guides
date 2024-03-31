@@ -192,7 +192,6 @@
 
 ### Advanced concepts apart from interviews
 
-
 - Bitwise + DP
 - Extended Euclidean algorithm
 - Modulo Multiplicative Inverse
@@ -201,7 +200,7 @@
 - Mathematical Expectation
 - Catalan Numbers
 - Fermat’s Theorem
-- Wilson's Theorem
+- Wilson'  s Theorem
 - Euler's Theorem
 - Lucas Theorem
 - Chinese Remainder Theorem
