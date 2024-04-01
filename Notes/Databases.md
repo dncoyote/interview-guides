@@ -304,3 +304,41 @@ INSERT INTO author_book (author_id, book_id) VALUES
 (2, 101),  -- Author B wrote Book X as well
 (3, 103);  -- Author C wrote Book Z
 ```
+
+## **Design the DB for a Pencil Factory**
+### Entities and Attributes:
+- Product: Represents a type of pencil.
+Attributes: Product ID (Primary Key), Name, Description, Price, Quantity in Stock, Production Date, Expiry Date, Category.
+- Supplier: Represents a supplier of raw materials.
+Attributes: Supplier ID (Primary Key), Name, Contact Information, Address.
+- Employee: Represents an employee working in the factory.
+Attributes: Employee ID (Primary Key), Name, Position, Contact Information, Salary.
+- Order: Represents a purchase order for raw materials or equipment.
+Attributes: Order ID (Primary Key), Supplier ID (Foreign Key), Date, Total Cost, Status.
+- Production Batch: Represents a batch of pencils produced.
+Attributes: Batch ID (Primary Key), Product ID (Foreign Key), Quantity Produced, Production Date, Supervisor ID (Foreign Key).
+- Customer: Represents a customer purchasing pencils.
+Attributes: Customer ID (Primary Key), Name, Contact Information, Address.
+### Relationships:
+- One Supplier can supply many Orders (One-to-Many relationship).
+- One Employee can supervise many Production Batches (One-to-Many relationship).
+- One Product can belong to many Production Batches (One-to-Many relationship).
+- One Customer can place many Orders (One-to-Many relationship).
+### Database Tables:
+- Product Table:
+Columns: ProductID, Name, Description, Price, QuantityInStock, ProductionDate, ExpiryDate, Category.
+- Supplier Table:
+Columns: SupplierID, Name, ContactInfo, Address.
+- Employee Table:
+Columns: EmployeeID, Name, Position, ContactInfo, Salary.
+- Order Table:
+Columns: OrderID, SupplierID, Date, TotalCost, Status.
+- Production Batch Table:
+Columns: BatchID, ProductID, QuantityProduced, ProductionDate, SupervisorID.
+- Customer Table:
+Columns: CustomerID, Name, ContactInfo, Address.
+### Foreign Keys:
+- SupplierID in Order Table references Supplier Table.
+- ProductID in Production Batch Table references Product Table.
+- SupervisorID in Production Batch Table references Employee Table.
+- CustomerID in Order Table references Customer Table.
