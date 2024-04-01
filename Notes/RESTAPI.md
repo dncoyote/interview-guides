@@ -176,6 +176,15 @@
   - Conduct regression testing to verify that the code changes or fixes have resolved the issue without introducing new bugs or regressions.
   - Validate the stability and reliability of the legacy system through thorough testing across different user scenarios and edge cases.
 
+> "In a legacy system I worked on, there was a limitation where I couldn't directly pass data as a Hibernate response with sorting and limiting features. Instead, I had to extract the data from the database using Hibernate, process it within the backend using Java data structures, apply sorting and limiting logic programmatically, and then pass the processed data as a structured object to the front end engineer. This workaround was necessary due to the system's inability to directly handle sorting and limiting operations in the database queries."
+- The data volume might be too large to handle in-memory sorting and pagination effectively without impacting system performance or causing memory issues.
+- React's component-based architecture and virtual DOM rendering require structured data in a specific format (e.g., JSON objects) for efficient rendering and updating of UI components.
+- The format or structure of data processed and passed from the backend (handled by Hibernate and Java data structures) might not align with the expected data format or schema in React components, leading to rendering errors or data inconsistencies.
+- Differences in configuration and dependency management between J2EE and Spring Boot, requiring updates or modifications to ensure compatibility and optimal performance.
+- Adapting legacy codebase's architecture, design patterns, and business logic to fit the Spring Boot framework's conventions and best practices.
+- Migrating and integrating existing data access layers, ORM mappings, and persistence strategies from J2EE technologies (e.g., Hibernate) to Spring Boot's data access frameworks (e.g., Spring Data JPA).
+- Handling potential compatibility issues or deprecated features between older J2EE versions and newer Spring Boot versions, requiring refactoring or rewriting code segments to align with modern standards and APIs.
+
 ## **Things to keep in mind when developing a Multi-geographical application**
 #### Global Content Delivery:
 - Leverage CDNs or edge caching networks to cache and deliver static content (e.g., images, CSS, JavaScript) closer to end-users in different geographical locations, reducing latency and improving content delivery speed.
