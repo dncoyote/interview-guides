@@ -2155,6 +2155,7 @@ public class AnonymousClassDemo {
 #### orElseThrow
 
 #### try with resources
+- Try-with-resources is a Java language feature introduced in Java 7 that simplifies resource management by automatically closing resources that are used within a try block
 
 #### private methods in interfaces
 
