@@ -236,7 +236,38 @@
 - You can also expand this utility class based on your specific requirements, such as adding additional methods for handling daylight saving time, parsing date/time strings to UTC timestamps, or performing time zone conversions with offsets.
 - Handling currency in a multi-geographical application involves considerations such as currency conversion, formatting, and localization based on user preferences or detected geographic regions. 
 - Modify this utility class to handle additional currency-related functionalities such as currency rounding, currency symbol placement, and error handling for unsupported currency pairs. Additionally, ensure that exchange rates are updated regularly and obtained from a trusted source in a production environment.
+```java
+public class TimeZoneUtility {
+    private static final String DEFAULT_DATE_FORMAT=  = "yyyy-MM-dd HH:mm:ss";
+    public static String getCurrentDateTime(String userTimeZone) {
+      //
+    }
 
+    public static String formatDateTime(LocalDateTime dateTime) {
+        //
+    }
+
+    public static String formatDateTime(LocalDateTime dateTime, String dateFormat) {
+       //
+    }
+
+    public static String getCurrentUtcDateTime() {
+       //
+    }
+
+    public static String convertDateTimeToTimeZone(String dateTimeStr, String sourceTimeZone, String targetTimeZone) {
+       //
+    }
+
+    public static String convertDateTimeToUtc(String dateTimeStr, String sourceTimeZone) {
+       //
+    }
+
+    public static boolean isDaylightSavingsTime(String dateTimeStr, String timeZone) {
+      //
+    }
+}
+```
 ## **Authentication v/s Authorization**
 - Authentication : Authentication is the process of verifying the identity of a user, system, or entity to ensure they are who they claim to be.
 - Authorization : Authorization, also known as access control, is the process of determining what actions or operations an authenticated user or entity is allowed to perform on a system or resource.
