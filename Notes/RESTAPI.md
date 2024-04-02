@@ -185,6 +185,53 @@
 - Migrating and integrating existing data access layers, ORM mappings, and persistence strategies from J2EE technologies (e.g., Hibernate) to Spring Boot's data access frameworks (e.g., Spring Data JPA).
 - Handling potential compatibility issues or deprecated features between older J2EE versions and newer Spring Boot versions, requiring refactoring or rewriting code segments to align with modern standards and APIs.
 
+- The Healthcare Imaging Project was quite challenging, especially in terms of the Health Domain specific technologies like HL7 and DICOM. 
+- There were lot of challenging scenarios for me.
+- One that comes to mind is when the client had assigned a task to me that involved a simple API call from legacy system done in J2EE, get the data in the modern Spring Boot application and pass it as response to the UI.
+- This simple scenario became quite challenging, I had to go through multiple iterations, eventually I had to transplant the entire code flow from the J2EE legacy system to the Spring boot application as we were not allowed to do any changes to the legacy system.
+- So I will explain why it was challenging, once implemented this API call, during developer testing we found out that the response from this API was not in a compatible format with the Component based REact front end.
+- So we devised a solution that will take the response from the legacy system and format it into a response compatible with the UI. So this worked.
+- But the sorting and pagination functionalities were not supported by the legacy system. So we went back to the code and programatically handled the sorting and pagination using java. During developer testing, all looked good, there were some edgecases but that could be handled as well.
+- But when we presented this to our client, they felt that this solution would reduce the systems performance as we were sorting and paginating using in-memory.
+- So that is when we presented another solution where we would transplant the entire workflow from the legacy system to the modern app. This was very challenging for me then, I mean looking back at it now, this is a simple lift and shift. But then I was maybe 3 or 4 years experienced. I had constantly go back and forth between the legacy and modern app, debug both systems.
+- There were differences in configuration and dependency management between J2EE and Spring Boot, I had to handle those.
+- I had to adapt the legacy codebase's architecture, design patterns, and business logic to fit the Spring Boot framework's conventions and best practices. This took me a lot of additional man hours, but eventually I pulled it off and was able to get this API running.
+- There was another scenario too, where I was part of the team, our task was to find a engineering solution to handle the different time zones in our application.
+- So we have customers from Sweden and customers all over North America. Sweden has only one time zone but North America has almost I think 6 or 7 time zones.
+- So we had to create TimezoneHandler class with a bunch of static methods with which we can reuse the code through our system. We also had to write methods to check if a particular datetime is a daylight savings time.
+- So these two were some fo the challenges that I faced in my application, luckily I was able to contribute to all of them with the help of my team.
+```java
+public class TimeZoneUtility {
+    private static final String DEFAULT_DATE_FORMAT=  = "yyyy-MM-dd HH:mm:ss";
+    public static String getCurrentDateTime(String userTimeZone) {
+      //
+    }
+
+    public static String formatDateTime(LocalDateTime dateTime) {
+        //
+    }
+
+    public static String formatDateTime(LocalDateTime dateTime, String dateFormat) {
+       //
+    }
+
+    public static String getCurrentUtcDateTime() {
+       //
+    }
+
+    public static String convertDateTimeToTimeZone(String dateTimeStr, String sourceTimeZone, String targetTimeZone) {
+       //
+    }
+
+    public static String convertDateTimeToUtc(String dateTimeStr, String sourceTimeZone) {
+       //
+    }
+
+    public static boolean isDaylightSavingsTime(String dateTimeStr, String timeZone) {
+      //
+    }
+}
+```
 ## **Coding and Deployment Pipeline**
 ### Coding Pipeline
 ##### Feature Development:
