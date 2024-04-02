@@ -185,6 +185,42 @@
 - Migrating and integrating existing data access layers, ORM mappings, and persistence strategies from J2EE technologies (e.g., Hibernate) to Spring Boot's data access frameworks (e.g., Spring Data JPA).
 - Handling potential compatibility issues or deprecated features between older J2EE versions and newer Spring Boot versions, requiring refactoring or rewriting code segments to align with modern standards and APIs.
 
+## **Coding and Deployment Pipeline**
+### Coding Pipeline
+##### Feature Development:
+- The development team receives a requirement to implement a DICOM image upload and retrieval feature in the healthcare application.
+- A developer, let's call her Emily, starts working on this feature by creating a new branch named feature/dicom-handling.
+- Emily follows best practices for Git version control, committing changes regularly with descriptive commit messages.
+##### Code Reviews and Quality Check:
+- After completing the feature implementation, Emily opens a pull request (PR) on GitHub for code reviews.
+- Team members review Emily's code changes in the PR, focusing on DICOM image upload logic, error handling, and data security.
+- Automated code analysis tools integrated with GitHub, such as SonarCloud, analyze the code for code quality, security vulnerabilities, and compliance with coding standards.
+##### Build Automation:
+- Once the code review process is completed and any feedback addressed, Emily's PR is merged into the main branch.
+- GitHub Actions CI/CD workflows are triggered automatically on the main branch update.
+- Maven build automation is used to compile the code, run unit tests, and package the application into a deployable artifact (e.g., WAR or JAR file).
+### Deployment Pipeline:
+##### Continuous Integration and Deployment:
+- The CI/CD pipeline in GitHub Actions orchestrates the deployment process.
+- Docker containers are built using Dockerfiles, containing the application code, dependencies, and environment configurations.
+- The Docker image is pushed to a container registry, such as Amazon ECR, for versioning and distribution.
+##### Environment Configuration:
+- Terraform or AWS CloudFormation templates automate the provisioning of AWS resources required for the feature, including Amazon RDS for PostgreSQL and Amazon S3 for DICOM image storage.
+- Environment-specific configurations, such as database connection strings and S3 bucket settings, are managed through environment variables.
+##### Deployment Strategy:
+- Blue-green deployment strategy is employed to minimize downtime and ensure reliability during deployments.
+- A new version of the application, containing the DICOM image handling feature, is deployed to a separate environment (e.g., blue environment).
+- Automated tests, including integration tests for DICOM image upload and retrieval, are executed against the blue environment to validate functionality and performance.
+- If tests pass and the deployment is successful, traffic is switched to the blue environment, and the old version (green environment) is decommissioned.
+### Pipeline Execution:
+##### Development and Testing:
+- Emily collaborates with the QA team to ensure thorough testing of the DICOM image handling feature.
+- Automated tests cover scenarios such as uploading DICOM images, retrieving images based on patient IDs, handling errors gracefully, and ensuring data security and privacy compliance.
+##### Deployment and Monitoring:
+- The deployment pipeline automates the deployment of the feature to staging and production environments.
+- Monitoring tools, such as AWS CloudWatch or Prometheus, monitor application performance, resource utilization, and error logs post-deployment.
+- Continuous monitoring and feedback loops help identify and resolve any issues or performance bottlenecks in real-time.
+
 ## **Things to keep in mind when developing a Multi-geographical application**
 #### Global Content Delivery:
 - Leverage CDNs or edge caching networks to cache and deliver static content (e.g., images, CSS, JavaScript) closer to end-users in different geographical locations, reducing latency and improving content delivery speed.
