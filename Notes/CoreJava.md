@@ -2163,7 +2163,7 @@ public class AnonymousClassDemo {
 
 #### New HTTP Client
 
-#### var
+#### `var`
 
 - `var` keyword was introduced in Java 10 as part of a feature called "Local-Variable Type Inference."
 - It allows you to declare local variables without explicitly specifying their data types, relying on the compiler to infer the type based on the assigned value.
@@ -2354,7 +2354,7 @@ String typeOfDay;
 
         System.out.println("Type of day: " + typeOfDay);
 ```
-#### Pattern matching for instanceof
+#### Pattern matching for `instanceof`
 - `instanceof` that allows you to test whether an object is an instance of a particular class or interface. It checks if an object belongs to a specific type or one of its subclasses/interfaces.
 - It simplifies the code by combining the instanceof check and casting into a single operation. 
 - This eliminates the need for explicit casting, reducing boilerplate code and thereby making the code more concise and readable.
@@ -2413,7 +2413,7 @@ public class InstanceOfExample {
 - `instanceof` check and casting are combined into a single statement: `if (animal instanceof Dog dog)`. If the object is an instance of Dog, it is automatically cast to Dog and assigned to the variable dog.
 
 
-#### Meaningful NullPointerExceptions
+#### Meaningful `NullPointerExceptions`
 - Meaningful NPEs provide more information about the root cause of the NullPointerException, making it easier for developers to identify the problematic code or variable.
 
 #### Records
