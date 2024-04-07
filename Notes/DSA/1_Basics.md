@@ -41,3 +41,9 @@ Base condition
 ### Recursion Tree
 - A recursion tree is a visual representation of the recursive calls made by a recursive function during its execution. It helps in understanding how the function breaks down a problem into smaller subproblems and combines their solutions to solve the original problem.
 
+## **Problems in Recursion**
+### Print name N time using Recursion
+### Print linearly from 1 to N time using Recursion
+### Print linearly from N time to 1 using Recursion
+### Backtracking
+### Print linearly from 1 to N time using Backtracking
