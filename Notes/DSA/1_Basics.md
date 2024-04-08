@@ -43,7 +43,96 @@ Base condition
 
 ## **Problems in Recursion**
 ### Print name N time using Recursion
+```java
+class Recursion {
+    
+    static void func(int i, int n){
+        
+            // Base Condition.
+            if(i>n) return;
+            System.out.println("Raj");
+
+            // Function call to print till i increments.
+            func(i+1,n);
+
+    }
+    public static void main(String[] args) {
+
+       // Here, let’s take the value of n to be 4.
+       int n = 4;
+       func(1,n);
+    }
+}
+```
 ### Print linearly from 1 to N time using Recursion
+```java
+class Recursion {
+    
+    static void func(int i, int n){
+        
+            // Base Condition.
+            if(i>n) return;
+            System.out.println(i);
+
+            // Function call to print i till i increments to n.
+            func(i+1,n);
+
+    }
+    public static void main(String[] args) {
+
+       // Here, let’s take the value of n to be 4.
+       int n = 4;
+       func(1,n);
+    }
+}
+```
 ### Print linearly from N time to 1 using Recursion
+```java
+class Recursion {
+    
+    static void func(int i, int n){
+        
+            // Base Condition.
+            if(i<1) return;
+            System.out.println(i);
+
+            // Function call to print i till i decrements to 1.
+            func(i-1,n);
+
+    }
+    public static void main(String[] args) {
+
+       // Here, let’s take the value of n to be 4.
+       int n = 4;
+       func(n,n);
+    }
+}
+```
 ### Backtracking
 ### Print linearly from 1 to N time using Backtracking
+```java
+class Recursion {
+    
+    static void func(int i, int n){
+        
+            // Base Condition.
+            if(i<1) return;
+
+            // Function call to print i till i decrements to 1.
+            func(i-1,n);
+            //Backtracking
+            System.out.println(i);
+
+    }
+    public static void main(String[] args) {
+
+       // Here, let’s take the value of n to be 4.
+       int n = 4;
+       func(n,n);
+    }
+}
+```
+### Print linearly from N to 1 time using Backtracking
+```java
+
+```
