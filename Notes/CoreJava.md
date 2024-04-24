@@ -3480,3 +3480,17 @@ spring batch
 spring jms
 How to fix latency in microservices, How to analyse this, How to fix, Why it happens, Circuit Breaker
 Heap Area v/s Stack Area
+
+java 21
+LTS released every 3 years.
+JEPS
+New Features
+-Virtual Thread
+-Sequenced Collections
+-Record Patterns
+-Pattern Matching for Switch
+-Generational Garbage Collector
+-Foreign Function & Memory API
+-String Template
+-Scoped Values
+-Unnamed Classed and Instance Main Methods
