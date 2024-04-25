@@ -115,3 +115,64 @@ Array after Pass 3: { 13, 20, 9, 24, 46, 52 }
 Array after Pass 4: { 13, 9, 20, 24, 46, 52 }
 - Pass 5: Compare 13 and 9, swap them, compare 13 and 20 (no swap), compare 20 and 24 (no swap), compare 24 and 46 (no swap), compare 46 and 52 (no swap).
 Array after Pass 5: { 9, 13, 20, 24, 46, 52 }
+
+## **Selection Sort** 
+- Insertion Sort is a simple sorting algorithm that builds the final sorted array (or list) one element at a time. 
+- It works by repeatedly taking an unsorted element from the input list and inserting it into its correct position in the sorted part of the list.
+
+#### Algorithm
+- Initial State: The first element in the list is considered as the sorted part (since a single element is always considered sorted initially). The rest of the elements are unsorted.
+- Iterative Insertion: Starting from the second element, the algorithm iteratively takes an element from the unsorted part and inserts it into its correct position in the sorted part.
+    - The algorithm compares the element with the elements in the sorted part, moving larger elements one position to the right to make space for the new element.
+    - It continues this process until all elements are sorted.
+- Termination: The list is fully sorted when all elements have been processed and inserted into the correct positions.
+
+```java
+public class InsertionSort {
+    public static void main(String[] args) {
+        int[] arr = { 14, 9, 15, 12, 6, 8, 13 };
+        System.out.println("Before sorting");
+        for (int n : arr) {
+            System.out.println(n);
+        }
+        int[] result = insertionSort(arr);
+        System.out.println("After sorting");
+        for (int n : result) {
+            System.out.println(n);
+        }
+    }
+
+    private static int[] insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i <= n - 1; i++) {
+            int j = i;
+            while (j > 0 && arr[j - 1] > arr[j]) {
+                int temp = arr[j - 1];
+                arr[j - 1] = arr[j];
+                arr[j] = temp;
+                j--;
+            }
+        }
+        return arr;
+    }
+}
+```
+
+#### Working
+Initial array: { 14, 9, 15, 12, 6, 8, 13 }
+
+- Iteration 1: Start with the sorted part [14] and the unsorted part [9, 15, 12, 6, 8, 13]. Take 9 from the unsorted part and insert it into its correct position in the sorted part.
+Array after Iteration 1: [9, 14, 15, 12, 6, 8, 13]
+- Iteration 2: Continue with the sorted part [9, 14] and the unsorted part [15, 12, 6, 8, 13]. Take 15 from the unsorted part and insert it into its correct position in the sorted part.
+Array after Iteration 2: [9, 14, 15, 12, 6, 8, 13] (no change as 15 is already in its correct position)
+- Iteration 3: Continue with the sorted part [9, 14, 15] and the unsorted part [12, 6, 8, 13]. Take 12 from the unsorted part and insert it into its correct position in the sorted part.
+Array after Iteration 3: [9, 12, 14, 15, 6, 8, 13]
+- Iteration 4: Continue with the sorted part [9, 12, 14, 15] and the unsorted part [6, 8, 13]. Take 6 from the unsorted part and insert it into its correct position in the sorted part.
+Array after Iteration 4: [6, 9, 12, 14, 15, 8, 13]
+- Iteration 5: Continue with the sorted part [6, 9, 12, 14, 15] and the unsorted part [8, 13]. Take 8 from the unsorted part and insert it into its correct position in the sorted part.
+Array after Iteration 5: [6, 8, 9, 12, 14, 15, 13]
+- Iteration 6: Continue with the sorted part [6, 8, 9, 12, 14, 15] and the unsorted part [13]. Take 13 from the unsorted part and insert it into its correct position in the sorted part.
+Array after Iteration 6: [6, 8, 9, 12, 13, 14, 15]
+
+# Sorting II
+## **Merge Sort**
