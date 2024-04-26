@@ -176,3 +176,12 @@ Array after Iteration 6: [6, 8, 9, 12, 13, 14, 15]
 
 # Sorting II
 ## **Merge Sort**
+
+## **Quick Sort**
+
+```java
+```
+
+#### Algorithm
+
+#### Working
