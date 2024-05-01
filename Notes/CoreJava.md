@@ -946,7 +946,7 @@ public void readFromFile(String filename) throws IOException {
 ## **Arrays**
 - Array is a data structure that allows you to store multiple values of the same type under a single variable name.
 - Arrays are used to store elements of a specific type in contiguous memory locations. 
-- Each element in an array can be accessed using an index, starting from 0 for the first element.
+- Each element in an array can be accessed using an index, starting from 0 for the first element to n-1.
 ```java
 // Declaration and initialization of an array of integers
 int[] numbers = {1, 2, 3, 4, 5};
