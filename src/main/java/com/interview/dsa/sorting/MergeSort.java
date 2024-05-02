@@ -1,4 +1,4 @@
-package com.interview.dsa;
+package com.interview.dsa.sorting;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.interview.dsa;
+package com.interview.dsa.sorting;
 
 public class BubbleSort {
     public static void main(String[] args) {
