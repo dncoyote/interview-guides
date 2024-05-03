@@ -28,6 +28,12 @@ print("Hello, World!")
 | Row 1, Cell 1 | Row 1, Cell 2 |
 | Row 2, Cell 1 | Row 2, Cell 2 |
 
+
+| Header 1      | Header 2      | Header 2      |
+| :---  | :----:  |---:           |
+| Row 1, Cell 1xxxxxxxx | Row 1, Cell 2 | xxxxxxxRow 1, Cell 3 |
+| Row 2, Cell 1 | Row 2, Cell 2xxxxxx | Row 2, Cell 3 |
+
 > This is a blockquote.
 
 **This is bold text.**
@@ -79,3 +85,18 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 &rarr;
 &harr;
 <kbd>&uarr;</kbd> 
+
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
+
+> [!TIP]
+> Optional information to help a user be more successful.
+
+> [!IMPORTANT]  
+> Crucial information necessary for users to succeed.
+
+> [!WARNING]  
+> Critical content demanding immediate user attention due to potential risks.
+
+> [!CAUTION]
+> Negative potential consequences of an action.
