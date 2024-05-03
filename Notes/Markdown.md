@@ -71,3 +71,11 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 ~~This text is strikethrough.~~
 
 :smile:, :heart:, :rocket:
+
+
+&uarr;
+&darr;
+&larr;
+&rarr;
+&harr;
+<kbd>&uarr;</kbd> 
