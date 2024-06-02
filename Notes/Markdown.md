@@ -46,6 +46,8 @@ _This is italic text._
   <img alt="image" src="images/javaarchiteecture.webp" />
 </div>
 
+![description](images/javaarchiteecture.webp)
+
 1. First item
 2. Second item
 3. Third item
