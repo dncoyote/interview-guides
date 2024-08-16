@@ -1136,7 +1136,30 @@ linkedHashMap.put("Carol", 22);
 
 #### PriorityQueue
 
-- Priority queue implementation based on a binary heap. It orders elements according to their natural order or a specified comparator.
+- Priority Queue is a type of data structure in which elements are ordered based on their priority rather than their insertion order.
+- Elements in a priority queue are processed based on their priority. The element with the highest priority is removed first.
+- By default, Java's PriorityQueue uses the natural ordering of elements (for example, numbers in ascending order), but you can also provide a custom comparator to define different ordering rules.
+- It uses a binary heap, which ensures that both insertion and removal operations can be performed efficiently in logarithmic time.
+- PriorityQueue is not synchronized.
+```java
+public class PriorityQueueExample {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+        // Add elements to the priority queue
+        queue.add(10);
+        queue.add(5);
+        queue.add(20);
+        queue.add(15);
+
+        // Print and remove elements from the priority queue
+        System.out.println("Priority Queue Elements (in priority order):");
+        while (!queue.isEmpty()) {
+            System.out.println(queue.poll());
+        }
+    }
+}
+```
 
 #### LinkedList
 
