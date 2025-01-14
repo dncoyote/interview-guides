@@ -86,7 +86,7 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 &larr;
 &rarr;
 &harr;
-<kbd>&uarr;</kbd> 
+<kbd>&uarr;</kbd>
 
 > [!NOTE]  
 > Highlights information that users should take into account, even when skimming.
@@ -102,3 +102,45 @@ This is an HTML abbreviation: HTML is an abbreviation for <abbr title="HyperText
 
 > [!CAUTION]
 > Negative potential consequences of an action.
+
+## **Two Sun**
+<div align="center">
+  <img alt="image" src="assets/Screenshot 2024-12-22 102541.png" />
+</div>
+
+#### Brute - 
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+
+#### Optimal -
+
+```java
+
+```
+>Time Complexity - 
+
+>Space Complexity - 
+#### Explanation
+
+-
+
+#### Steps
+
+-
+
+#### Follow up 
+
+-

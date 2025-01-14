@@ -1,4 +1,93 @@
 # **Core Java**
+## Table of Contents
+
+ 1. [Internal Concepts](#Internal-Concepts)
+    1. [JRE, JVM, JDK](#JRE,-JVM,-JDK)
+    2. [JAR Files](#JRE,-JVM,-JDK)
+    3. Compilation and Bytecode
+    4. Memory Management
+    5. Class Loading
+    6. Garbage Collection
+    7. Heap and Stack
+    8. Just-In-Time Compilation (JIT)
+    9. Java Process and Runtime
+ 2. [Language Basics](#Language-Basics)
+    - Variables and Data Types
+    - Arrays
+    - Operators
+    - Control Flow
+    - Methods and Functions
+    - Strings
+    - Packages
+    - Native Methods
+ 3. [Classes](#classes)
+    - Class Basics
+    - Attributes and Fields
+    - Methods
+    - Constructors
+    - Access Modifiers
+    - Nested classes
+    - Static
+    - Class modifiers
+    - Wrapper Classes
+    - Autoboxing
+    - Object Class
+    - Instanceof keyword
+ 4. [Inheritance](#Inheritance)
+    - Subclasses
+    - Accessing Superclass Members
+    - Method Overriding
+    - Super Keyword
+ 5. [Interfaces](#Interfaces)
+    - Basics
+    - Creating Interfaces
+    - Implementing and Extending Interfaces 
+    - Multiple Inheritance with Interfaces
+    - Static Methods in Interfaces
+    - Choosing between Interfaces and Abstract Classes
+    - Nested Interfaces
+    - Variables in Interfaces
+    - Sealed interfaces
+6. [Enumerations](#Enumerations)
+    - Declaring Enums
+    - Enum Constants
+    - Enum Constructors
+    - Enum Methods and Fields
+    - Enum Methods and Values
+        - name()
+        - ordinal()
+        - valueOf()
+7. [Exception Handling](#Enumerations)        
+    - Understanding Exceptions
+    - Types of Exceptions 
+    - Exception Hierarchy
+    - try-catch Blocks
+    - Multiple catch Blocks
+    - Finally Block 
+    - Throwing Exceptions
+    - Checked vs. Unchecked Exceptions
+    - Custom Exceptions
+    - Using try-with-resources
+    - Exception Propagation 
+    - Exception Chaining 
+    - Handling Uncaught Exceptions
+8. [Collections](#Enumerations)  
+    - Collection Interfaces
+    - Collection Classes
+    - Selecting the right collection class  
+9. [Generics](#Enumerations)  
+    - Basics 
+    - Type Parameters and Type Arguments
+    - Generic Classes
+    - Generic Methods
+10. [Annotations](#Enumerations)
+    - Fundamentals
+        - @Override
+        - @SuppressWarnings
+        - @Deprecated
+11. [Lambda Expressions](#Enumerations)
+    - Fundamentals
+12. [Java I/O](#Enumerations)
 
 ## **Java Architecture**
 
