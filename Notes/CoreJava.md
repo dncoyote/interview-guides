@@ -80,14 +80,66 @@
     - Type Parameters and Type Arguments
     - Generic Classes
     - Generic Methods
+    - Wildcards
+    - Generic Interfaces
 10. [Annotations](#Enumerations)
     - Fundamentals
         - @Override
         - @SuppressWarnings
         - @Deprecated
+        - @@SafeVarargs
+        - @FunctionalInterface
+        - @Native
+        - @Target
+        - @Retention
+        - @Inherited
+        - @Documented
+        - @Repeatable 
+    - Creating custom Annotations
 11. [Lambda Expressions](#Enumerations)
     - Fundamentals
 12. [Java I/O](#Enumerations)
+    - Understanding I/O Streams
+    - Byte Streams vs. Character Streams
+    - File I/O 
+    - Buffered Streams
+    - Standard Streams
+    - Reading and Writing Files
+    - Map and reduce
+    - Interfaces
+    - Serialization
+    - Java NIO
+13. [Multithreaded Programming](#Enumerations)
+    - Basics
+    - Thread Creation
+    - Synchronization
+    - Executor Framework
+    - Callable and Future
+    - Thread Communication
+    - Thread States
+    - Deadlocks and Livelocks
+    - Concurrency Utilities
+    - Atomic Classes
+    - Thread Pools
+    - Parallel Streams
+14. [Database](#Enumerations)
+    - JDBC
+    - CRUD
+15. [JVM Options](#Enumerations)
+    - Standard Options
+    - Memory Management
+    - Thread Management
+    - Performance Tuning
+    - GC Tuning
+    - Profiling and Debugging
+16. [Misc](#Enumerations)
+    - Date and Time APIs 
+    - JPA
+    - Hibernate
+    - Encoding and Decoding
+    - Encryption and Decryption
+    - Regex
+    - Reflection
 
 ## **Java Architecture**
 
