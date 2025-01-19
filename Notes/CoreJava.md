@@ -11,7 +11,7 @@
     7. Heap and Stack
     8. Just-In-Time Compilation (JIT)
     9. Java Process and Runtime
- 2. [Language Basics](#Language-Basics)
+ 2. [Language Basics](#language-basics)
     - Variables and Data Types
     - Arrays
     - Operators
@@ -141,6 +141,95 @@
     - Regex
     - Reflection
 
+## **Language Basics**
+### Variables
+ - A variable is a container for storing data values.
+ - Each variable has a name, type and value.
+```java
+int age = 31; 
+```
+#### Types of Variables
+###### Local Variables 
+- Declared inside methods, constructors, or blocks. They are accessible only within the scope where they are defined.
+```java
+public void display() {
+    int localVar = 10; // Local variable
+    System.out.println(localVar);
+}
+```
+###### Instance Variables 
+- Declared outside methods but inside a class. They belong to an instance of the class.
+```java
+public class MyClass {
+    int instanceVar = 20; // Instance variable
+}
+```
+
+###### Static Variables
+- Declared with the `static` keyword and shared among all instances of the class.
+```java
+public class MyClass {
+    static int staticVar = 30; // Static variable
+}
+```
+#### Literals
+- Literals are constant values directly assigned to variables. They represent fixed values in the source code.
+
+#### Type Conversion
+- Type Conversion is the process of converting a value from one data type to another.
+###### Implicit Type Conversion
+- Automatically performed by Java when converting a smaller data type to a larger one
+```java
+int num = 10;
+double result = num; // int to double
+System.out.println("Result: " + result);
+```
+> Conversion Order - byte -> short -> int -> long -> float -> double
+###### Explicit Type Conversion
+- Manually performed to convert a larger data type to a smaller one.
+- Can lead to data loss or truncation.
+```java
+ double num = 10.99;
+ int result = (int) num; // double to int
+ System.out.println("Result: " + result);
+```
+
+#### Type Casting
+- Casting refers to explicitly converting a value from one data type to another. It is performed using parentheses ().
+- Casting is used when working with generics
+- Used for object hierarchy conversions or narrowing primitives.
+```java
+Object obj = "Hello";
+String str = (String) obj; // Explicit casting
+```
+
+### Data Types
+- Data types define the type of data a variable can hold.
+- In Java, Data Types are broadly categorized into Primitive Data Types and Non-Primitive Data Types.
+#### Primitive Data Types
+- Java provides 8 built-in data types
+
+| Data Type      |Description      | Size      |Range      |Example      |
+| :---  | :---   |:---         |:---           |:---          |
+| `byte` | Integer (small range) | 1 byte |-128 to 127 |`byte b = 100;` |
+| `short` | Integer (medium range) | 2 bytes |-32,768 to 32,767 |`short s = 32000;` |
+| `int` | Integer (default) | 4 bytes |-2^31 to 2^31 - 1 |`int i = 123456789;` |
+| `long` | Integer (large range) | 8 bytes |-2^63 to 2^63 - 1 |`long l = 9223372036854775807L;` |
+| `float` | Decimal (single precision) | 4 bytes |3.4028235E38 to ~1.4E-45 |`float f = 3.14F;` |
+| `double` | Decimal (double precision) | 8 bytes |1.7976931348623157E308 to ~4.9E-324 |`double d = 3.141592653589793;` |
+| `char` | Single character | 2 bytes |0 to 65,535 (Unicode character set) |`char c = 'A';` |
+| `boolean` | True or False | 1 bit |true, false |`boolean isJavaFun = true;` |
+
+#### Non-Primitive Data Types
+- Non-primitive data types include Objects, Strings, Arrays, and Classes. 
+- They are more complex and do not have a fixed size.
+### Arrays
+### Operators
+### Control Flow
+### Methods and Functions
+### Strings
+### Packages
+### Native Methods
 ## **Java Architecture**
 
 <div align="center">
