@@ -143,6 +143,7 @@
 
 ## **Language Basics**
 ### Variables
+---
  - A variable is a container for storing data values.
  - Each variable has a name, type and value.
 ```java
@@ -204,6 +205,7 @@ String str = (String) obj; // Explicit casting
 ```
 
 ### Data Types
+---
 - Data types define the type of data a variable can hold.
 - In Java, Data Types are broadly categorized into Primitive Data Types and Non-Primitive Data Types.
 #### Primitive Data Types
@@ -220,16 +222,121 @@ String str = (String) obj; // Explicit casting
 | `char` | Single character | 2 bytes |0 to 65,535 (Unicode character set) |`char c = 'A';` |
 | `boolean` | True or False | 1 bit |true, false |`boolean isJavaFun = true;` |
 
-#### Non-Primitive Data Types
-- Non-primitive data types include Objects, Strings, Arrays, and Classes. 
-- They are more complex and do not have a fixed size.
+#### Non-Primitive Data Types | Reference Types
+- Non-primitive data types include Objects, Strings, Arrays, Enums and Classes. 
+- They are also called as  Reference Types.
+- These types refer to objects and hold the memory address (or reference) of the object rather than the actual data. In contrast to primitive types, which store the actual value, reference types store the memory address where the object data is stored.
+- Default value is `null`.
+- The reference variable itself is on the stack, but the object it refers to is stored in the heap.
+
+### `var` keyword | Local Variable Type Inference
+---
+- Local Variable Type Inference is a feature introduced in Java 10, 
+- This allows the compiler to infer the type of a local variable from the context without explicitly specifying the type. 
+- This is done using the `var` keyword.
+- `var` keyword can only be used for local variables inside methods, loops, and other local scopes. It cannot be used for instance variables, method parameters, or return types.
+```java
+var greeting = "Hello, World!"; // Java will infer the type as String
+var num = 10;  // Java infers the type as int
+var price = 99.99;  // Java infers the type as double
+
+//Collection
+var list = new ArrayList<String>();  // Java infers the type as ArrayList<String>
+list.add("Hello");
+list.add("World");
+
+//loop
+var arr = new int[]{1, 2, 3, 4, 5};
+for (var num : arr) {  // Java infers the type of num as int
+    System.out.println(num);
+}
+```
+
 ### Arrays
+---
+- An array is a container object that holds a fixed number of values of a single type
+- Java arrays are objects, and they store multiple values, either primitive or reference types, in a contiguous block of memory.
+- Once an array is created, its size cannot be changed.
+- The elements in an array are stored in consecutive memory locations.
+- Array elements are accessed by their index, starting from 0.
+
+#### Single-Dimensional Arrays
+```java
+int[] numbers = {1, 2, 3, 4, 5}; // Array of integers
+String[] names = {"Alice", "Bob", "Charlie"}; // Array of strings
+```
+
+#### Multi-Dimensional Arrays
+```java
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+int[][] matrix = new int[3][3]; // 2D array with 3 rows and 3 columns
+
+```
+
+#### Arrays of Objects
+- Java arrays can store objects as well as primitive data types. 
+- When you create an array of objects, each element in the array holds a reference to an object.
+```java
+// Array of String Objects
+String[] fruits = new String[3];  // Declare an array of 3 String objects
+fruits[0] = "Apple";  // Assign values to the array
+fruits[1] = "Banana";
+fruits[2] = "Orange";
+
+// Array of custom Objects
+Person[] people = new Person[2];
+people[0] = new Person("Alice", 25);
+people[1] = new Person("Bob", 30);
+```
 ### Operators
+---
+- Operators are used to manipulate data and variables in Java.
+    - Arithmetic Operators
+    - Relational Operators
+    - Logical Operators
+    - Bitwise Operators
+    - Assignment Operators
+    - Unary Operators
+    - Ternary (Conditional) Operator
+    - Instanceof Operator
+#### Bitwise Operators
+- Bitwise operators are used to perform bit-level operations on integer types (byte, short, int, long).
+```java
+int a = 5;  // Binary: 0101
+int b = 3;  // Binary: 0011
+
+System.out.println("a & b: " + (a & b)); // 1 (Binary: 0001)
+System.out.println("a | b: " + (a | b)); // 7 (Binary: 0111)
+System.out.println("a ^ b: " + (a ^ b)); // 6 (Binary: 0110)
+System.out.println("~a: " + (~a));       // -6 (Binary: 1010, Two's complement)
+System.out.println("a << 1: " + (a << 1)); // 10 (Binary: 1010)
+System.out.println("a >> 1: " + (a >> 1)); // 2 (Binary: 0010)
+```
+
+#### Ternary Operators
+- The ternary operator is a shorthand for the if-else statement. 
+- It takes three operands: a condition, a value for true, and a value for false.
+```java
+int a = 10;
+int b = 5;
+int result = (a > b) ? a : b;
+System.out.println("Max value: " + result); // 10
+```
+
 ### Control Flow
+---
 ### Methods and Functions
+---
 ### Strings
+---
 ### Packages
+---
 ### Native Methods
+---
 ## **Java Architecture**
 
 <div align="center">
