@@ -1,4 +1,4 @@
-# **Core Java - Interview**
+# **Core Java**
 ## Table of Contents
 
  1. [Internal Concepts](#Internal-Concepts)
