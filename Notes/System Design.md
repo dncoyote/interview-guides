@@ -4,7 +4,7 @@
  1. [Scaling](#Scaling)
     1. [Horizontal Scaling](#Horizontal)
     2. [Vertical Scaling](#Vertical)
- 2. [Client-Server Architecture](#client-Server-Architecture)
+ 2. [Client-Server Architecture](#client-server-architecture)
    
 
 # **Scaling**
