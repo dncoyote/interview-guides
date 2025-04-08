@@ -1,147 +1,160 @@
 # **System Design**
+## Table of Contents
 
-## **E-commerce application**
-#### Search Service
-- Use ElasticSearch for fast and efficient search functionality.
-- Implement caching using Redis or Memcached to store frequently accessed search results and reduce search latency.
-- Use a NoSQL database like MongoDB for storing product metadata and attributes.
+ 1. [Scaling](#Scaling)
+    1. [Horizontal Scaling](#Horizontal)
+    2. [Vertical Scaling](#Vertical)
+ 2. [Client-Server Architecture](#client-server-architecture)
+ 3. [Load Balancer](#load-balancer)
+ 4. [Caching](#caching)
+   
 
-#### Cart Service
-- Utilize MySQL database to manage cart items for each user.
-- Implement RESTful APIs for adding/removing items from the cart, updating quantities, and fetching cart details.
-- Use Redis for caching frequently accessed cart data to improve response times.
+# **Scaling**
+Scaling is a fundamental concept in distributed systems. It helps systems handle increasing workloads efficiently. The two primary scaling strategies are horizontal scaling (scaling out) and vertical scaling (scaling up).
+### Scalability 
+## Horizontal
+ - Involves adding more machines (nodes/servers) to a system to distribute the load.
+ - Used in distributed architectures to handle more requests, storage, and computation power.
+ - This scaling procedure involves adding more application servers, database replicas, or caching nodes.
+ - It works by distributing requests across multiple machines using load balancers.
+ - Each server runs a copy of the application, handling a portion of the traffic.
+ - Data is often sharded or partitioned across multiple nodes in a database.
+ - Horizontal scaling is ideal for distributed, fault-tolerant, and highly available systems.
+ - Horizontal scaling is preferable when - 
+    - When handling millions of users or high traffic (e.g., web applications, microservices).
+    - When needing high availability and fault tolerance.
+    - When using distributed databases (NoSQL) or cloud-based architectures.
 
-#### Place Order Service
-- Use MySQL database to store order information such as user details, products, quantities, and order status.
-- Implement RESTful APIs for placing orders, updating order status, and retrieving order history.
-- Integrate with the Notification Service to send email notifications for order confirmation, shipment updates, and delivery status.
+## Advantages and Disadvantages
+### Advantages
+ - High Availability & Fault Tolerance(Resilient) – If one server fails, others can continue processing requests.
+- Infinite Scalability – Can theoretically scale infinitely by adding more nodes.
+- Improved Performance – Load is distributed, reducing bottlenecks.
+- Better Cost Efficiency – Commodity hardware can be used instead of expensive high-performance machines.
 
-#### Assign Delivery Partner Service
-- Use MySQL database to store delivery partner details such as name, contact information, availability, and service areas.
-- Implement APIs for assigning delivery partners to orders based on location, availability, and order size.
-- Ensure synchronization with the Place Order Service to update order status and notify users about assigned delivery partners.
+### Disadvantages
+- Increased Complexity – Requires load balancing, distributed data handling, and synchronization.
+- Data Consistency Challenges – Databases may require replication, sharding, and eventual consistency mechanisms.
+- More Networking Overhead – Communication between nodes introduces latency.
 
-#### Notification Service
-- Implement an email notification service using SMTP or a third-party email service provider (e.g., SendGrid, Amazon SES).
-- Create templates for different notification types (order confirmation, shipment updates, delivery status) and dynamically populate user-specific details.
-- Integrate with other services (Place Order, Assign Delivery Partner) to trigger email notifications based on specific events and status changes.
+## Vertical
+ - Involves increasing the capacity of a single machine (more CPU, RAM, storage).
+ - The application continues running on a single, more powerful machine rather than multiple distributed servers.
+ - It works by  upgrading the hardware of an existing server (e.g., add more RAM, CPUs, SSDs) and improving the software performance  (e.g., better caching, optimizing database queries).
+ - Older monolithic architectures typically scale vertically.
+ - Small businesses and startups(Single server applications) often use vertical scaling before moving to horizontal scaling.
+ - Vertical scaling is preferable when - 
+    - When dealing with low-to-medium traffic applications.
+    - When keeping infrastructure simple (e.g., single-database apps).
+    - When latency-sensitive workloads require low network overhead.
 
-#### Synchronous Communication
-- Use REST templates for synchronous communication between microservices within the application.
-- Implement Feign clients for declarative RESTful API calls, simplifying service-to-service communication and reducing boilerplate code.
+## Advantages and Disadvantages
+### Advantages
+- Simplicity – No need for load balancing, data partitioning, or distributed coordination.
+- Lower Latency – No network overhead since everything is processed within a single machine.
+- Easier Consistency Management – No need for complex synchronization mechanisms.
 
-#### Asynchronous Communication (Kafka)
-- Integrate Apache Kafka for asynchronous communication between components, enabling real-time event processing and data streaming.
-- Use Kafka topics for publishing and subscribing to events such as order placement, status updates, and notification triggers.
-- Implement Kafka consumers to process messages asynchronously and update database states or trigger actions accordingly.
+### Disadvantages
+- Scalability Limits – There’s a hardware limit to CPU, RAM, and storage upgrades.
+- Single Point of Failure – If the machine crashes, the entire system goes down.
+- Expensive – High-end servers are costly, and upgrading becomes more expensive over time.
 
-#### Rate Limiter
-- Implement a rate-limiting mechanism to prevent spam hits and control the number of requests allowed per user or IP address.
-- Use algorithms like Token Bucket or Leaky Bucket to manage request rates and enforce rate limits at the API gateway or service level.
-- Monitor and log rate-limited requests to analyze traffic patterns and adjust rate-limiting configurations as needed.
+## Horizontal v/s Vertical
+| Feature      | Horizontal      | Vertical      |
+| :---  | :----:  | :----:           |
+| **Method** | 	Add more machines (nodes) | Upgrade a single machine |
+| **Scalability** | Virtually unlimited | Limited by hardware |
+| **Cost** | 	Cheaper (commodity hardware) | Expensive (high-end servers) |
+| **Complexity** | High (load balancing, sharding) | Low (simple upgrades) |
+| **Performance** | 	Distributed workload | Faster for single tasks |
+| **Failure Tolerance** | High (multiple nodes) | Low (single point of failure) |
+| **Use Cases** | 	Cloud apps, big data, web apps | Databases, legacy systems |
 
-#### Other Required Components
-- API Gateway: Use an API gateway (e.g., Netflix Zuul, Kong) to manage incoming requests, enforce security policies, and route traffic to appropriate microservices.
-- Authentication & Authorization: Implement JWT (JSON Web Tokens) for user authentication and authorization, ensuring secure access to protected resources.
-- Load Balancing: Use a load balancer (e.g., Nginx, HAProxy) to distribute incoming traffic across multiple instances of microservices for scalability and high availability.
-- Monitoring & Logging: Implement logging mechanisms (e.g., ELK stack, Splunk) and monitoring tools (e.g., Prometheus, Grafana) to track system performance, detect errors, and troubleshoot issues proactively.
+## Practices
+- Auto-Scaling – Use AWS Auto Scaling, Kubernetes HPA (Horizontal Pod Autoscaler), or GCP Compute Autoscaler for automatic scaling.
+- Load Balancing – Use NGINX, HAProxy, AWS ELB, or Cloudflare Load Balancer for distributing traffic across servers.
+- Database Partitioning & Replication – Use sharding (horizontal scaling) and read replicas (vertical scaling) for performance optimization.
+- Microservices Over Monoliths – Design microservices architectures that scale independently.
+- Hybrid Scaling – Combine horizontal and vertical scaling (e.g., scale up database servers but scale out application servers).
 
-#### Interconnections
-- Users interact with the frontend UI, which sends requests to the API Gateway.
-- The API Gateway routes requests to appropriate microservices (Search, Cart, Place Order, Assign Delivery Partner).
-- Microservices communicate synchronously using REST templates and Feign clients for real-time interactions (e.g., adding items to cart, placing orders).
-- Asynchronous events (e.g., order placement, status updates) are published to Kafka topics for processing.
-- The Notification Service subscribes to relevant Kafka topics to trigger email notifications based on events and status changes.
-- Rate limiting is enforced at the API Gateway to prevent spam hits and manage request rates per user/IP address.
+# **Client-Server Architecture**
+Client-Server Architecture is a fundamental design pattern in distributed systems where clients request services, and servers provide them. The client and server communicate over a network using standard protocols like HTTP, WebSockets, or gRPC.
+## Client
+- A client is a program or device that initiates requests to the server for data or services like Web browsers, mobile apps, desktop applications.
+-  They request data from the server, display processed data to users and maintain a session with the server (e.g., authentication tokens)
+## Server
+- A server is a program or system that processes client requests and sends back responses like  Web servers (NGINX, Apache), database servers (MySQL, PostgreSQL), API servers.
+- They process client requests, manage business logic and, store and retrieve data from databases.
+- Server is designed in a way, different types of clients can connect to it.
+- Server has all the information and acts as the central management system
 
-## **SAGA Design Pattern**
-- The Saga design pattern is a pattern used in distributed systems to manage long-lived transactions that involve multiple steps across different services or databases.
-- It's particularly relevant in microservices architectures where each microservice has its own database and transactions can span multiple microservices. 
-- The goal of the Saga pattern is to ensure data consistency and transactional integrity in such distributed environments.
+## Types of Client-Server Architecture
+### Two-Tier Architecture
+- Direct communication between client and server(A desktop application directly querying a database server).
+- Simple but has scalability limitations
 
-#### Scenarios in E-commerce Website:
+### Three-Tier Architecture
+- This is the most common Client-Server architecture and is more scalable and secure.
+- It has a client(React, Vue), application server(Backend API: Spring Boot, Express.js, Django) and database(MySQL, MongoDB).
 
-Order Placement:
+### Multi-Tier (N-Tier) Architecture
+- Large scale applications have more than three layers to fulfill caching, authentication, analytics etc.
 
-Scenario: A customer places an order for multiple items, involving inventory reservation, payment processing, and shipping initiation.
-Saga Steps:
-Inventory Service Step: Reserve items in the inventory.
-Payment Service Step: Process payment for the order.
-Shipping Service Step: Initiate shipping of the ordered items.
-Compensation Actions:
-If inventory reservation fails, release the reserved items.
-If payment processing fails, refund the payment.
-If shipping initiation fails, cancel the shipment.
-Orchestration: Saga orchestrator manages the order processing steps and compensations.
+## Advantages and Disadvantages
+### Advantages
+- Centralized Control - Easier to manage updates and security.
+- Scalability - Can handle many clients by adding more servers.
+- Data Integrity - Centralized database ensures consistency.
+- Security - Servers enforce access control and authentication.
 
-Order Cancellation:
+### Disadvantages
+- Single Point of Failure – If the server crashes, all clients are affected.
+- Network Dependency – Requires a reliable network for communication.
+- Server Overload – High traffic can slow down server response times.
 
-Scenario: A customer cancels an order before it's shipped, requiring reversal of inventory reservation and payment processing.
-Saga Steps:
-Inventory Release Step: Release the reserved items in the inventory.
-Payment Refund Step: Refund the payment for the cancelled order.
-Compensation Actions:
-If inventory release fails, log an error for manual intervention.
-If payment refund fails, log an error for manual intervention.
-Orchestration: Saga orchestrator coordinates the cancellation process and compensations.
+# **Load Balancer**
+- A Load Balancer is a system component (hardware or software) that sits between clients and backend servers to distribute incoming traffic across multiple servers to improve performance, maximize availability, prevent overloading and enable fault tolerance.
+- With a load balancer, traffic is evenly spread, it detects and skips unhealthy servers(Use `/actuator/health` as a reliable endpoint) and we can scale horizontally with ease. 
+- When a server goes down, the load balancer identifies the clients waiting to be served by the faulty servers and assign them to healthy servers, which ensures that all clients are served.
+- Simply put, it ensures that all the server's load is balanced.
+## Types of Load Balancers
+### Layer 4 Load Balancing
+### Layer 7 Load Balancing
 
-Inventory Replenishment:
+## Load Balancing Algorithms
+### Round Robin
+### Least Connections
+### IP Hash
+### Weighted Round Robin
+### Health Check Based
 
-Scenario: Inventory levels are low for certain products, triggering a replenishment process involving supplier communication and stock update.
-Saga Steps:
-Supplier Communication Step: Place an order with the supplier for replenishment.
-Inventory Update Step: Update the inventory with the received stock.
-Compensation Actions:
-If supplier communication fails, retry or escalate to manual intervention.
-If inventory update fails, log an error for manual intervention.
-Orchestration: Saga orchestrator manages the replenishment process and compensations.
+## How to design a scalable backend for an e-commerce app with high user traffic?
+“I’d use a Layer 7 Load Balancer like AWS ALB or Nginx to distribute incoming HTTP requests across multiple Spring Boot instances. The load balancer would perform health checks on each instance, support SSL termination, and handle path-based routing (e.g., /products to one service, /checkout to another). Behind the services, we’d use a database cluster and Redis cache, also fronted by their own load balancers where needed.”
 
-User Registration with Bonus Offer:
-
-Scenario: A new user registers on the e-commerce platform with a bonus offer that includes account credit and discount coupons.
-Saga Steps:
-Account Credit Step: Add credit to the user's account as per the bonus offer.
-Coupon Generation Step: Generate and allocate discount coupons to the user.
-Compensation Actions:
-If account credit fails, revoke the user's bonus offer.
-If coupon generation fails, rollback the allocated coupons.
-Orchestration: Saga orchestrator handles the user registration process and compensations.
-
+## Tools
+- Nginx - L4/L7 - Reverse proxy, L7 rules, SSL, caching
+- HAProxy - L4/L7
+- AWS ELB - L4/L7
+- Traefik - L7 - Cloud Native, automatic Service Discovery
+- Envoy Proxy - L7 - Used in Service Meshes
 ---
-- I was part of a Healthcare Imaging Platform based out of North America. This platform was used by Healthcare Institutions like Medical Diagnostic Labs and Hospitals to view and manipulate images that is received from scanning machines. The tech stack of this project was in java version 8, backend web framework was J2EE, backend database was PostgreSQL. 
-- This was great learning experience for me, I got the opportunity to work Healthcare domain specific technologies like HL7 and DICOM's.
-- I also got the opportunity to collaborate with the Platform team to configure the Amazon EC2 instances with our backend environment. We also used Amazon RDS for the PostgreSQL instances. I worked on integrating Amazon S3 APIs into our backend application for seamless image upload, retrieval, and processing.
-- My primary role in this project was to understand the various DICOM API's present in DCM4CHE, DCM4CHE is another Healthcare Imaging Platform that is open source and out application is build on top of DCM4CHE and we reuse most of the API's. In some scenarios the client would request us to add some changes based on the filtering and searching criteria and we would do the same. I also had to perform the unit testing for these features using JUnit. I also had to work with the front end engineers to ensure that the backend API's were properly integrated.
 
----
-As a backend developer on the Healthcare Imaging platform deployed in the AWS cloud, I played a pivotal role in integrating various AWS services to enhance scalability, reliability, and performance. Specifically, we leveraged Amazon EC2 for virtual servers hosting our Java 8 application, Amazon RDS for PostgreSQL to manage the backend database, and Amazon S3 for storing and accessing DICOM images efficiently.
-
-To ensure seamless integration with AWS, I collaborated with the Platform Team to configure and manage these services effectively. This involved setting up EC2 instances with the necessary Java and J2EE environments, configuring security groups, and managing instance scaling for optimal performance and cost-efficiency.
-
-For database management, we utilized Amazon RDS to easily provision, scale, and manage PostgreSQL instances, ensuring data integrity and availability. I implemented database backups, monitoring, and optimization strategies to maintain system reliability.
-
-Additionally, we utilized Amazon S3 for storing DICOM images securely, implementing access control policies and encryption mechanisms to protect sensitive patient data. I worked on integrating S3 APIs into our backend application for seamless image upload, retrieval, and processing.
-
-In terms of dependency management, we used Maven or Gradle as build automation tools to manage project dependencies and package our Java application for deployment. Continuous Integration/Continuous Deployment (CI/CD) pipelines were set up using tools like Jenkins or AWS CodePipeline to automate the build, test, and deployment processes, ensuring rapid and reliable delivery of updates to the AWS cloud environment.
-
-Deploying to the AWS cloud typically involves the following steps:
-
-AWS Account Setup: Create an AWS account and configure necessary permissions for accessing AWS services.
-
-Infrastructure Planning: Determine the required AWS services (e.g., EC2, RDS, S3) based on application needs and scalability requirements.
-
-Environment Setup: Configure AWS resources such as EC2 instances, RDS databases, S3 buckets, and networking settings (VPC, subnets, security groups).
-
-Application Deployment: Deploy the Java application to EC2 instances using tools like SSH, AWS CLI, or deployment scripts. Set up application monitoring and logging using AWS CloudWatch.
-
-Database Configuration: Set up and configure the database (e.g., PostgreSQL on RDS) including schema creation, data migration, and performance tuning.
-
-Storage and File Management: Utilize Amazon S3 for storing and accessing files/images securely. Implement access control and encryption as needed.
-
-Security and Compliance: Configure security settings such as IAM roles, security groups, SSL certificates, and encryption to ensure data protection and compliance with industry standards.
-
-Scaling and Monitoring: Implement auto-scaling policies for EC2 instances based on traffic patterns. Set up monitoring and alerts using AWS CloudWatch for proactive system management.
-
-Backup and Disaster Recovery: Implement backup and recovery strategies for both application data (RDS snapshots) and stored files (S3 versioning, cross-region replication).
-
-Testing and Optimization: Perform thorough testing (unit, integration, performance) of the deployed application and optimize AWS resources for cost-efficiency and performance.
+## Topics to explore
+- Load Balancing – Use NGINX, HAProxy, AWS ELB to distribute client requests.
+- Load Balancing Strategies (Round Robin, Least Connections, etc.)
+- Reverse Proxy vs Load Balancer
+- Service Discovery (Consul, Eureka, DNS-based)
+- Global Load Balancing (GeoDNS, Anycast)
+- Rate Limiting & Throttling
+- Zero-Downtime Deployments with Load Balancers
+- Load Balancer in Kubernetes (Ingress Controller)
+- Cloud Auto-Scaling (AWS, GCP, Azure)
+- Database Scaling (Sharding vs Replication vs Read Replicas)
+- Database Replication – Avoid bottlenecks by using read replicas.
+- Caching – Reduce load using Redis, Memcached, CDN caching.
+- Asynchronous Communication – Use message queues (Kafka, RabbitMQ) to decouple services.
+- API Security – Use OAuth, JWT, TLS encryption for secure authentication.
+- Microservices vs Monolithic Architecture
+- REST vs gRPC vs WebSockets
+- Load Balancing Strategies
+- Event-Driven Architecture

@@ -7,6 +7,7 @@
 5. [Microservices](Notes/Microservices.md)
 6. [Hibernate](Notes/Hibernate.md)
 7. [System Design](Notes/SystemDesign.md)
+7. [System Design Interview](Notes/SystemDesignInterview.md)
 8. [Design Patterns & Principles](Notes/DesignPatternsPrinciples.md)
 9. [Framework, Libraries & Technologies](Notes/Framework_Libraries_Technologies.md)
 10. [Database & SQL](Notes/Databases.md)
